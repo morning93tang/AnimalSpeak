@@ -15,6 +15,10 @@
 		1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */; };
 		1BFC2E931BF1AA7300885EBB /* imagepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E921BF1AA7300885EBB /* imagepickerTests.swift */; };
 		1BFC2E9E1BF1AA7300885EBB /* imagepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E9D1BF1AA7300885EBB /* imagepickerUITests.swift */; };
+		BE78A0E52249BFC6003876C4 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
+		BE78A0E62249BFC7003876C4 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
+		BE78A0E82249BFD8003876C4 /* imagepickerTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E8E1BF1AA7300885EBB /* imagepickerTests.xctest */; };
+		BE78A0E92249BFDC003876C4 /* imagepickerUITests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E991BF1AA7300885EBB /* imagepickerUITests.xctest */; };
 		DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE78A0E52249BFC6003876C4 /* Pods_imagepicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE78A0E62249BFC7003876C4 /* Pods_imagepicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE78A0E82249BFD8003876C4 /* imagepickerTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE78A0E92249BFDC003876C4 /* imagepickerUITests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,10 +301,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

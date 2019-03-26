@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'imagepicker' do
+    pod 'Alamofire', '~> 5.0.0-beta.3'
     pod 'SwiftyJSON', '~> 3.1'
 end
