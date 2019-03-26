@@ -39,21 +39,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func testbutton(_ sender: UIButton) {
+        let url: String = "http://192.168.0.103:8081/restapi/ios"
+        //let testDic = ["name":"SMH","age":12]as [String:Any]
+        //let jsonData = try! JSONSerialization.data(withJSONObject: testDic)
         
-        let parameters: Parameters = [
-            "foo": "bar",
-            "baz": ["a", 1],
-            "qux": [
-                "x": 1,
-                "y": 2,
-                "z": 3
-            ]
-        ]
-        
-        // All three of these calls are equivalent
-        AF.request("https://httpbin.org/post", method: .post, parameters: parameters, encoding: URLEncoding.httpBody)
-        
-        // HTTP body: foo=bar&baz[]=a&baz[]=1&qux[x]=1&qux[y]=2&qux[z]=3
+        let pd = ["abc":"cba","xyz":"zyx"]
+        var jsonString = ""
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: pd, options: .prettyPrinted)
+            jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        }catch{
+            print(error.localizedDescription)
+        }
+        let parameters = [
+            "methodId":1,
+            "postData":jsonString
+            
+            ] as [String : Any]
+        AF.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success:
+                if let value = response.result.value {
+                    print(value)
+                    let JSON = value as? NSDictionary
+                    print(JSON?["response"] as! String)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         
     }
