@@ -41,12 +41,12 @@ public class FunctionController {
 		System.out.println("requestString is:"+requestString);
 		ObjectMapper mapper = new ObjectMapper(); 
 		TypeReference<HashMap<String,String>> typeRef = new TypeReference<HashMap<String,String>>() {};
-		Map<String,String> temp = new HashMap<String,String>();
+		Map<String,String> data = new HashMap<String,String>();
 		
 		
 		switch(functionid){
 			case 1://check login password
-				temp = mapper.readValue(other, typeRef);
+				data = mapper.readValue(other, typeRef);
 				return test();
 			default:
 				return nullFunction();
