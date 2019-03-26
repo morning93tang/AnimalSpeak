@@ -62,7 +62,7 @@ public class FunctionController {
 	public Map<String,String> test1(Map<String,String> other) {
 		Map<String,String> rs = new HashMap<String,String>();
 		TestEntity te = FunctionMapper.test1((long) 1);
-		
+		System.out.println("input:"+other.get("abc"));
 		if(te == null) {
 			rs.put("response", "no such id");
 			return rs;
