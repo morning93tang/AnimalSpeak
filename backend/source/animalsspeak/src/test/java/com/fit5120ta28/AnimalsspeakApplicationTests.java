@@ -29,14 +29,16 @@ public class AnimalsspeakApplicationTests {
 	
 	public void csvTest1() throws Exception {
 		List<Double[]> temp1 = new ArrayList<>();
-		temp1 = getLocationArray("datasets/Red Kangroo.csv");
+		temp1 = getLocationArray("datasets/Koala.csv");
 		//System.out.println(temp1.get(50)[0]);
-		//System.out.println(temp1.get(50)[1]);
+		//System.out.println(temp1.get(50)[1]);\
+		System.out.println(temp1.size());
 		List<Double[]> temp2 = new ArrayList<>();
-		temp2 = getLocationArray("datasets/Koala.csv");
-		
+		temp2 = getLocationArray("datasets/Red Kangroo.csv");
+		System.out.println(temp2.size());  
 		List<Double[]> temp3 = new ArrayList<>();
 		temp3 = calculateOverLapPoints(temp1,temp2);
+		System.out.println(temp3.size());
 	}
 	
 	
@@ -62,9 +64,7 @@ public class AnimalsspeakApplicationTests {
 		    	   continue;
 		       }
 		       pointArr = new Double[2];
-		       
-		       
-		
+
 			   if(item[0].equalsIgnoreCase("end")) {
 				   break;
 		       }
@@ -89,17 +89,36 @@ public class AnimalsspeakApplicationTests {
 	
 	
 	public List<Double[]> calculateOverLapPoints(List<Double[]> sp1,List<Double[]> sp2){
+		System.out.println("-----------------------------");
+		System.out.println(sp1.size());
+		System.out.println(sp2.size());
 		List<Double[]> rs = new ArrayList<>();
+		Double[] pointArr;
+		//System.out.println(sp1.size());
+		//System.out.println(sp2.size());
 		for(int i = 0; i < sp1.size(); i++) {
-			double avg = 0d;
+			//double avg = 0d;
 			for(int j = 0; j < sp2.size(); j++) {
 				double x = Math.pow((sp1.get(i)[0] - sp2.get(j)[0]),2);
 				double y = Math.pow((sp1.get(i)[1] - sp2.get(j)[1]),2);
 				double dis = Math.sqrt(x+y);
-				avg = avg+dis;
+				//System.out.println(x);
+				//System.out.println(y);
+				//System.out.println(dis);
+				//avg = avg+dis;
+				if(dis<1) {
+					pointArr = new Double[2];
+					pointArr[0] = sp1.get(i)[0];
+					pointArr[1] = sp1.get(i)[1];
+					rs.add(pointArr);
+					pointArr = new Double[2];
+					pointArr[0] = sp2.get(j)[0];
+					pointArr[1] = sp2.get(j)[1];
+					rs.add(pointArr);
+				}
 			}
-			avg = avg/sp2.size();
-			System.out.println(avg);
+			//avg = avg/sp2.size();
+			//System.out.println(avg);
 		}
 		return rs;
 		
