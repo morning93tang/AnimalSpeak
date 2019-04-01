@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import com.fit5120ta28.entity.TestEntity;
+import com.fit5120ta28.entity.UserEntity;
 
 @Component
 public interface FunctionMapper {
@@ -23,5 +24,16 @@ public interface FunctionMapper {
     })
 	TestEntity test1(Long id);
 	
-	
+	@Select("SELECT * FROM user WHERE username = #{username}")
+    @Results({
+        @Result(property = "userid",  column = "userid"),
+        @Result(property = "username", column = "username"),
+        @Result(property = "password_salthash", column = "password_salthash"),
+        @Result(property = "firstname", column = "firstname"),
+        @Result(property = "lastname", column = "lastname"),
+        @Result(property = "phone", column = "phone"),
+        @Result(property = "address", column = "address"),
+        @Result(property = "logincookie", column = "logincookie")
+    })
+    UserEntity getOneByUsername(String username);
 }
