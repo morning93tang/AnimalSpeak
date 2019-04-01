@@ -25,10 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fit5120ta28.entity.*;
 import com.fit5120ta28.mapper.*;
-import com.hoshiumi.mathumi.entity.InvitationRecordEntity;
-import com.hoshiumi.mathumi.entity.MobileVertEntity;
-import com.hoshiumi.mathumi.entity.UserEntity;
-import com.hoshiumi.mathumi.util.BCrypt;
+
 
 @Controller
 public class FunctionController {
@@ -87,82 +84,7 @@ public class FunctionController {
 	}
 	
 	
-	public Map<String, String> signupNewUser(Map<String, String> signup) {
-		Map<String,String> rs = new HashMap<String,String>();
-						
-		
-		
-		
-		if(FunctionMapper.getOneByUsername(signup.get("username"))!=null) {
-			rs.put("response_code", "4");
-			rs.put("response_text", "duplicate username");
-			return rs;
-		}
-		
 	
-		
-		if(!me.getVert_code().equalsIgnoreCase(signup.get("vertification").trim())) {
-			rs.put("response_code", "2");
-			rs.put("response_text", "vertification code not correct");
-			return rs;
-		}
-		
-		String invitationEntityId = null;
-		if(!signup.get("invitation").trim().equals("")) {
-			invitationEntityId = AuthorizeMapper.getInvitationEntityIdByInvitationCode(signup.get("invitation").trim());
-			if(invitationEntityId==null) {
-				rs.put("response_code", "3");
-				rs.put("response_text", "no such invitation code");
-				return rs;
-			}
-			
-		}
-		
-		
-		//construct UserEntity instance
-		UserEntity user = new UserEntity();
-		user.setUsername(signup.get("username"));
-		//Hash password
-		String hashed = BCrypt.hashpw(signup.get("password"), BCrypt.gensalt());
-		user.setPassword_salthash(hashed);
-		user.setFirstname(signup.get("firstname").toUpperCase());
-		user.setLastname(signup.get("lastname").toUpperCase());
-		user.setPhone(signup.get("mobile"));
-		
-	
-		
-		
-		//preview finish, start sql inserting.
-		boolean updateFlag = AuthorizeMapper.createNewUserByForm(user);
-		if(!updateFlag) {
-			rs.put("response_code", "500");
-			//user table insert failed
-			rs.put("response_text", "db insert failed");
-		}
-		
-		//construct InvitationRecord instance
-		if(invitationEntityId!=null) {
-			InvitationRecordEntity invitationRecord = new InvitationRecordEntity();
-			invitationRecord.setInvitation_date(new Date());
-			invitationRecord.setUserid(AuthorizeMapper.getOneByUsername(user.getUsername()).getUserid());
-			invitationRecord.setInvitation_entityId(Long.parseLong(invitationEntityId));
-			
-			updateFlag = AuthorizeMapper.createInvitationRecord(invitationRecord);
-		}
-		
-		if(!updateFlag) {
-			rs.put("response_code", "501");
-			//invitation_record table insert failed
-			rs.put("response_text", "db insert failed");
-		}else {
-			rs.put("response_code", "200");
-			rs.put("response_text", "ok");
-		}
-		
-		
-		
-		return rs;
-	}
 	
 	
 	
