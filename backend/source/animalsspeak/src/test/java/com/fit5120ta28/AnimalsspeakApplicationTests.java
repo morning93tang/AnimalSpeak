@@ -2,6 +2,7 @@ package com.fit5120ta28;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,16 +18,41 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.fit5120ta28.controller.FunctionController;
+import com.fit5120ta28.mapper.FunctionMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AnimalsspeakApplicationTests {
 
+	@Autowired
+	FunctionMapper FunctionMapper;
+	
 	@Test
 	public void contextLoads() throws Exception {
 		System.out.println("start!!!!!!");
-		csvTest1();
+		//csvTest1();
+		test3();
+	}
+	
+	public void test2(){
+		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
+	}
+	public void test3() {
+		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass("birds"));
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
+		
 	}
 	
 	public void csvTest1() throws Exception {

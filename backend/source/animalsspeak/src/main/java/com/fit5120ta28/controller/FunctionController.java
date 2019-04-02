@@ -57,6 +57,12 @@ public class FunctionController {
 			case 2:
 				temp = mapper.readValue(other, typeRef);
 				return filterSpeciLocation();
+			case 3:
+				temp = mapper.readValue(other, typeRef);
+				return getAllAnimalsName();
+			case 4:
+				temp = mapper.readValue(other, typeRef);
+				return getAnimalsNameByClass(temp);
 			default:
 				return test2();
 				
@@ -101,8 +107,20 @@ public class FunctionController {
 	
 	public Map<String,String> getAllAnimalsName(){
 		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
 		return rs;
 	}
 	
+	public Map<String,String> getAnimalsNameByClass(Map<String,String> other){
+		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass(other.get("className")));
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
+		return rs;
+	}
 	
 }
