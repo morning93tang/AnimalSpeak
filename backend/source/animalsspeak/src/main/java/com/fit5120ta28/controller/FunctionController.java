@@ -25,6 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fit5120ta28.entity.*;
 import com.fit5120ta28.mapper.*;
+import com.fit5120ta28.lib.*;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -34,13 +36,14 @@ public class FunctionController {
 	
 	@Autowired
 	FunctionMapper FunctionMapper;
-
+	@Autowired
+	AnimalsSpeakLib AnimalsSpeakLib;
 
 	
 	@RequestMapping(value="/restapi/ios",method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin//(origins = "http://localhost:8080")
-    public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=true)String other) throws JsonMappingException, IOException {
+    public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=true)String other) throws Exception {
 		System.out.println("requestString is:"+requestString);
 		ObjectMapper mapper = new ObjectMapper(); 
 		TypeReference<HashMap<String,String>> typeRef = new TypeReference<HashMap<String,String>>() {};
@@ -51,6 +54,9 @@ public class FunctionController {
 			case 1:
 				temp = mapper.readValue(other, typeRef);
 				return test1(temp);
+			case 2:
+				temp = mapper.readValue(other, typeRef);
+				return filterSpeciLocation();
 			default:
 				return test2();
 				
@@ -75,6 +81,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	
 	public Map<String,String> test2() {
 		Map<String,String> rs = new HashMap<String,String>();
 		
@@ -84,8 +91,18 @@ public class FunctionController {
 	}
 	
 	
+	public Map<String,String> filterSpeciLocation() throws Exception{
+		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(AnimalsSpeakLib.filterSpeciLocation());
+		rs.put("response", jsonArray);
+		return rs;
+	}
 	
-	
+	public Map<String,String> getAllAnimalsName(){
+		Map<String,String> rs = new HashMap<String,String>();
+		return rs;
+	}
 	
 	
 }

@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,23 +30,30 @@ public class AnimalsspeakApplicationTests {
 	}
 	
 	public void csvTest1() throws Exception {
-		List<Double[]> temp1 = new ArrayList<>();
+		List<Double[]> temp1 = new ArrayList<Double[]>();
 		temp1 = getLocationArray("datasets/Koala.csv");
 		//System.out.println(temp1.get(50)[0]);
-		//System.out.println(temp1.get(50)[1]);\
+		//System.out.println(temp1.get(50)[1]);
 		System.out.println(temp1.size());
-		List<Double[]> temp2 = new ArrayList<>();
+		List<Double[]> temp2 = new ArrayList<Double[]>();
 		temp2 = getLocationArray("datasets/Red Kangroo.csv");
 		System.out.println(temp2.size());  
-		List<Double[]> temp3 = new ArrayList<>();
+		List<Double[]> temp3 = new ArrayList<Double[]>();
 		temp3 = calculateOverLapPoints(temp1,temp2);
 		System.out.println(temp3.size());
+		System.out.println(temp3.get(133)[0]);
+		System.out.println(temp3.get(133)[1]);
+		
+		Gson gson = new Gson();
+		
+		String jsonArray = gson.toJson(temp3);
+		System.out.println(jsonArray);
 	}
 	
 	
 		
 	public List<Double[]> getLocationArray(String file) {
-		List<Double[]> rs = new ArrayList<>();
+		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		
 		int count = 0;
@@ -92,7 +101,7 @@ public class AnimalsspeakApplicationTests {
 		System.out.println("-----------------------------");
 		System.out.println(sp1.size());
 		System.out.println(sp2.size());
-		List<Double[]> rs = new ArrayList<>();
+		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		//System.out.println(sp1.size());
 		//System.out.println(sp2.size());
@@ -106,7 +115,7 @@ public class AnimalsspeakApplicationTests {
 				//System.out.println(y);
 				//System.out.println(dis);
 				//avg = avg+dis;
-				if(dis<1) {
+				if(dis<0.2) {
 					pointArr = new Double[2];
 					pointArr[0] = sp1.get(i)[0];
 					pointArr[1] = sp1.get(i)[1];
