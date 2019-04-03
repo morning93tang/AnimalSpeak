@@ -63,6 +63,9 @@ public class FunctionController {
 			case 4:
 				temp = mapper.readValue(other, typeRef);
 				return getAnimalsNameByClass(temp);
+			case 5:
+				temp = mapper.readValue(other, typeRef);
+				return searchAnimalListByString(temp);
 			default:
 				return test2();
 				
@@ -118,6 +121,16 @@ public class FunctionController {
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass(other.get("className")));
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
+		return rs;
+	}
+	
+	public Map<String,String> searchAnimalListByString(Map<String,String> other){
+		Map<String,String> rs = new HashMap<String,String>();
+		String str = "%"+other.get("query")+"%";
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.searchAnimalListByString(str));
 		rs.put("response", jsonArray);
 		System.out.println(jsonArray);
 		return rs;

@@ -36,7 +36,7 @@ public class AnimalsspeakApplicationTests {
 	public void contextLoads() throws Exception {
 		System.out.println("start!!!!!!");
 		//csvTest1();
-		test3();
+		testsearchAnimalListByString();
 	}
 	
 	public void test2(){
@@ -53,6 +53,15 @@ public class AnimalsspeakApplicationTests {
 		rs.put("response", jsonArray);
 		System.out.println(jsonArray);
 		
+	}
+	
+	public void testsearchAnimalListByString() {
+		Map<String,String> rs = new HashMap<String,String>();
+		String str = "%kan%";
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.searchAnimalListByString(str));
+		rs.put("response", jsonArray);
+		System.out.println(jsonArray);
 	}
 	
 	public void csvTest1() throws Exception {
