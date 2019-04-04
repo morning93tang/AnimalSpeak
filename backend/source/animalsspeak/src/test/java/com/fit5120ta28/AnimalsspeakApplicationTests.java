@@ -18,9 +18,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.fit5120ta28.controller.FunctionController;
 import com.fit5120ta28.mapper.FunctionMapper;
@@ -35,8 +38,9 @@ public class AnimalsspeakApplicationTests {
 	@Test
 	public void contextLoads() throws Exception {
 		System.out.println("start!!!!!!");
-		//csvTest1();
-		testsearchAnimalListByString();
+		//deduplicate3();
+		csvTest1();
+		//testsearchAnimalListByString();
 	}
 	
 	public void test2(){
@@ -65,28 +69,129 @@ public class AnimalsspeakApplicationTests {
 	}
 	
 	public void csvTest1() throws Exception {
-		List<Double[]> temp1 = new ArrayList<Double[]>();
-		temp1 = getLocationArray("datasets/Koala.csv");
+		List<Double[]> result = new ArrayList<Double[]>();
+		//List<Double[]> temp1 = new ArrayList<Double[]>();
+		List<String> animals = new ArrayList<String>();
+		animals.add("koala");
+		animals.add("red kangaroo");
+		animals.add("dingo");
+		animals.add("Galah");
+		animals.add("little penguin");
+		
+		for(int i=0; i< animals.size();i++) {
+			if(i==0) {
+				result = getLocationArray(formFileName(animals.get(0)));
+				System.out.println("init done");
+			}else {
+				List<Double[]> temp = new ArrayList<Double[]>();
+				temp = getLocationArray(formFileName(animals.get(i)));
+				result = calculateOverLapPoints(result,temp);
+				System.out.println("follow done");
+			}
+			System.out.println("results size:"+result.size());
+			//result = deduplicate3(result);
+		}
+		
+		//temp1 = getLocationArray("datasets/Koala.csv");
 		//System.out.println(temp1.get(50)[0]);
 		//System.out.println(temp1.get(50)[1]);
-		System.out.println(temp1.size());
-		List<Double[]> temp2 = new ArrayList<Double[]>();
-		temp2 = getLocationArray("datasets/Red Kangroo.csv");
-		System.out.println(temp2.size());  
-		List<Double[]> temp3 = new ArrayList<Double[]>();
-		temp3 = calculateOverLapPoints(temp1,temp2);
-		System.out.println(temp3.size());
-		System.out.println(temp3.get(133)[0]);
-		System.out.println(temp3.get(133)[1]);
+		//System.out.println(temp1.size());
+		//List<Double[]> temp2 = new ArrayList<Double[]>();
+		//temp2 = getLocationArray("datasets/Red Kangroo.csv");
+		//System.out.println(temp2.size());  
+		//List<Double[]> temp3 = new ArrayList<Double[]>();
+		//temp3 = calculateOverLapPoints(temp1,temp2);
+		System.out.println(result.size());
+		
 		
 		Gson gson = new Gson();
 		
-		String jsonArray = gson.toJson(temp3);
+		String jsonArray = gson.toJson(result);
 		System.out.println(jsonArray);
 	}
 	
-	
+	public String formFileName(String animal) {
 		
+		return "datasets/"+animal+".csv";
+	}
+	
+	public List<Double[]> deduplicate(List<Double[]> li) {
+		List<Double[]> result = new ArrayList<Double[]>();
+		
+		for(int i = 0 ; i < li.size();i++) {
+			//System.out.println("i size:"+li.size()+"__"+"outer loop:"+i);
+			if(i==0) {
+				//System.out.println(li.get(0)[0]);
+				result.add(li.get(0));
+			}else {
+				boolean f = true;
+				for(int k = 0; k < result.size();k++) {
+					if(checkDoubleArrEqual(result.get(k),li.get(i))) {
+						f=false;
+						break;
+					}
+				}
+				if(f) {
+					result.add(li.get(i));
+				}
+				
+			}
+			
+		}
+		return result;
+	}
+	
+	public List<Double[]> deduplicate2(List<Double[]> li) {
+		
+		System.out.println("Before:"+li.size());
+		Set<Double[]> set = new HashSet<Double[]>(li);
+		List<Double[]> rs= new ArrayList<Double[]>(set);
+		System.out.println("After:"+rs.size());
+		return rs;
+	}
+	public List<Double[]> deduplicate3(List<Double[]> li) {
+		List<String> nli = new ArrayList<String>();
+		for(int i = 0;i<li.size();i++) {
+			nli.add(combineDoubleAsString(li.get(i)));
+		}
+	
+		System.out.println("Before:"+li.size());
+		Set<String> set = new HashSet<String>(nli);
+		List<String> rs= new ArrayList<String>(set);
+		System.out.println("After:"+rs.size());
+		List<Double[]> r2 = new ArrayList<Double[]>();
+		for(int k=0; k < rs.size();k++) {
+			
+			String[] str = rs.get(k).split("\\|");
+			//System.out.println(str.length);
+			Double[] d = new Double[2];
+			//System.out.println(str[0].indexOf("$"));
+			
+				d[0] = Double.valueOf(str[0]);
+			
+			
+			d[1] = Double.valueOf(str[1]);
+			r2.add(d);
+		}
+		return r2;
+	}
+	
+	public String combineDoubleAsString(Double[] d) {
+		String str1 = Double.toString(d[0]);
+		String str2 = Double.toString(d[1]);
+		return str1+"|"+str2;
+	}
+	
+	public boolean checkDoubleArrEqual(Double[] d1,Double[] d2) {
+		if(d1[0]==d2[0]&&d1[1]==d2[1]) {
+			return true;
+		}else {
+			return false;
+		}
+	
+	}
+	
+	
 	public List<Double[]> getLocationArray(String file) {
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
@@ -98,7 +203,7 @@ public class AnimalsspeakApplicationTests {
 		    String line = null;
 		  
 		    while((line=reader.readLine())!=null){
-		       if(count<=1) {
+		       if(count<=2) {
 		    	   count++;
 		    	   continue;
 		       }
@@ -127,7 +232,7 @@ public class AnimalsspeakApplicationTests {
 			  System.out.println(count);
 		      e.printStackTrace();
 		  }
-		
+		System.out.println("load csv done");
 		return rs;
 	}
 	
@@ -138,11 +243,14 @@ public class AnimalsspeakApplicationTests {
 		System.out.println(sp2.size());
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
+		List<Double> checkPool = new ArrayList<Double>();
 		//System.out.println(sp1.size());
 		//System.out.println(sp2.size());
 		for(int i = 0; i < sp1.size(); i++) {
 			//double avg = 0d;
+			//System.out.println("outer:"+i);
 			for(int j = 0; j < sp2.size(); j++) {
+				//System.out.println("inner:"+j);
 				double x = Math.pow((sp1.get(i)[0] - sp2.get(j)[0]),2);
 				double y = Math.pow((sp1.get(i)[1] - sp2.get(j)[1]),2);
 				double dis = Math.sqrt(x+y);
@@ -151,14 +259,28 @@ public class AnimalsspeakApplicationTests {
 				//System.out.println(dis);
 				//avg = avg+dis;
 				if(dis<0.2) {
-					pointArr = new Double[2];
-					pointArr[0] = sp1.get(i)[0];
-					pointArr[1] = sp1.get(i)[1];
-					rs.add(pointArr);
-					pointArr = new Double[2];
-					pointArr[0] = sp2.get(j)[0];
-					pointArr[1] = sp2.get(j)[1];
-					rs.add(pointArr);
+					
+					if(validCheckPool(sp1.get(i)[0],sp1.get(i)[1],checkPool)) {
+						continue;
+					}else {
+						pointArr = new Double[2];
+						pointArr[0] = sp1.get(i)[0];
+						pointArr[1] = sp1.get(i)[1];
+						checkPool.add(pointArr[0]);
+						checkPool.add(pointArr[1]);
+						rs.add(pointArr);
+					}
+					if(validCheckPool(sp2.get(j)[0],sp2.get(j)[1],checkPool)) {
+						continue;
+					}else {
+						pointArr = new Double[2];
+						pointArr[0] = sp2.get(j)[0];
+						pointArr[1] = sp2.get(j)[1];
+						checkPool.add(pointArr[0]);
+						checkPool.add(pointArr[1]);
+						rs.add(pointArr);
+					}
+					
 				}
 			}
 			//avg = avg/sp2.size();
@@ -167,5 +289,14 @@ public class AnimalsspeakApplicationTests {
 		return rs;
 		
 		
+	}
+	
+	public boolean validCheckPool(double x,double y,List<Double> li) {
+		for(int i = 0; i< li.size();i=i+2) {
+			if(li.get(i)==x && li.get(i+1)==y) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
