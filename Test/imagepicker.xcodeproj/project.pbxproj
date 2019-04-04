@@ -15,6 +15,11 @@
 		1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */; };
 		1BFC2E931BF1AA7300885EBB /* imagepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E921BF1AA7300885EBB /* imagepickerTests.swift */; };
 		1BFC2E9E1BF1AA7300885EBB /* imagepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E9D1BF1AA7300885EBB /* imagepickerUITests.swift */; };
+		BEE502EB22510DB700D753FE /* ROGoogleTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE502EA22510DB700D753FE /* ROGoogleTranslate.swift */; };
+		BEE502EF225267A600D753FE /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE502EE225267A600D753FE /* AnimalDetailViewController.swift */; };
+		BEE502F3225396B800D753FE /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = BEE502F2225396B700D753FE /* icon1.png */; };
+		BEF01227224C446600456638 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF01226224C446600456638 /* TabBarController.swift */; };
+		BEF01229224C8A6B00456638 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF01228224C8A6B00456638 /* MapViewController.swift */; };
 		DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +57,11 @@
 		1BFC2E9F1BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
+		BEE502EA22510DB700D753FE /* ROGoogleTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROGoogleTranslate.swift; sourceTree = "<group>"; };
+		BEE502EE225267A600D753FE /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		BEE502F2225396B700D753FE /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
+		BEF01226224C446600456638 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BEF01228224C8A6B00456638 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,10 +128,15 @@
 			children = (
 				1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */,
 				1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */,
+				BEE502F2225396B700D753FE /* icon1.png */,
 				1BFC2E811BF1AA7300885EBB /* Main.storyboard */,
 				1BFC2E841BF1AA7300885EBB /* Assets.xcassets */,
 				1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */,
 				1BFC2E891BF1AA7300885EBB /* Info.plist */,
+				BEF01226224C446600456638 /* TabBarController.swift */,
+				BEF01228224C8A6B00456638 /* MapViewController.swift */,
+				BEE502EA22510DB700D753FE /* ROGoogleTranslate.swift */,
+				BEE502EE225267A600D753FE /* AnimalDetailViewController.swift */,
 			);
 			path = imagepicker;
 			sourceTree = "<group>";
@@ -165,6 +180,7 @@
 				1BFC2E771BF1AA7300885EBB /* Frameworks */,
 				1BFC2E781BF1AA7300885EBB /* Resources */,
 				15ECBB217AF75D1452C9A91F /* [CP] Embed Pods Frameworks */,
+				6B22D18B9A55D2729B143683 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,7 +239,7 @@
 				TargetAttributes = {
 					1BFC2E791BF1AA7300885EBB = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 7JMJ4W6ULC;
+						DevelopmentTeam = 77X54GL6C9;
 						LastSwiftMigration = 1010;
 					};
 					1BFC2E8D1BF1AA7300885EBB = {
@@ -265,6 +281,7 @@
 			files = (
 				1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */,
 				1BFC2E851BF1AA7300885EBB /* Assets.xcassets in Resources */,
+				BEE502F3225396B800D753FE /* icon1.png in Resources */,
 				1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,16 +311,38 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B22D18B9A55D2729B143683 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		975209D4FA62D26BE2E4CA99 /* [CP] Check Pods Manifest.lock */ = {
@@ -331,8 +370,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF01227224C446600456638 /* TabBarController.swift in Sources */,
 				1BFC2E801BF1AA7300885EBB /* ImagePickerViewController.swift in Sources */,
+				BEE502EF225267A600D753FE /* AnimalDetailViewController.swift in Sources */,
+				BEE502EB22510DB700D753FE /* ROGoogleTranslate.swift in Sources */,
 				1BFC2E7E1BF1AA7300885EBB /* AppDelegate.swift in Sources */,
+				BEF01229224C8A6B00456638 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,14 +542,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7JMJ4W6ULC;
+				DEVELOPMENT_TEAM = 77X54GL6C9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = imagepicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.animalsSpeak.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = FIT5120;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -522,14 +565,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7JMJ4W6ULC;
+				DEVELOPMENT_TEAM = 77X54GL6C9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = imagepicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.animalsSpeak.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = FIT5120;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
