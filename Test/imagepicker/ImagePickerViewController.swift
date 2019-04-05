@@ -15,78 +15,167 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import AVFoundation
+import AlamofireImage
 
+protocol ResultDetailDelegate {
+    func gerResultData(detailResut: DetailResult) }
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    var detailResut = DetailResult()
+    var delegate:ResultDetailDelegate?
+    private var canceled: Bool
     @IBOutlet weak var labelResults: UITextView!
-    @IBOutlet weak var faceResults: UITextView!
+    @IBOutlet weak var popUpView: UIView!
+
+    @IBOutlet weak var animalImage: UIImageView!
     
-    var googleAPIKey = "AIzaSyDHHF_I9F_CxIkx4gQwteKwyhYherSBm9A"
-    var googleURL: URL {
-        return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBAction func startButton(_ sender: Any) {
+        self.camara()
+        self.uploadButton.isEnabled = false
     }
     
-    @IBAction func loadImageButtonTapped(_ sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
+    
+    
+    
+    var baiduAiURL: URL {
+        return URL(string: "https://aip.baidubce.com/rest/2.0/image-classify/v1/animal?access_token=24.81bd31c59cc027009ad197c531ef19c3.2592000.1556634027.282335-15897168")!
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.canceled = false
+        super.init(coder: aDecoder)!
+    }
+    
     
     @IBAction func testbutton(_ sender: UIButton) {
-        let url: String = "http://192.168.0.103:8081/restapi/ios"
-        //let testDic = ["name":"SMH","age":12]as [String:Any]
-        //let jsonData = try! JSONSerialization.data(withJSONObject: testDic)
-        
-        let pd = ["abc":"cba","xyz":"zyx"]
-        var jsonString = ""
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: pd, options: .prettyPrinted)
-            jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        }catch{
-            print(error.localizedDescription)
-        }
-        let parameters = [
-            "methodId":1,
-            "postData":jsonString
-            
-            ] as [String : Any]
-        AF.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
-            switch response.result {
-            case .success:
-                if let value = response.result.value {
-                    print(value)
-                    let JSON = value as? NSDictionary
-                    print(JSON?["response"] as! String)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
+        self.navigationController?.popViewController(animated: true)
+        self.canceled = true
+        dismiss(animated: true, completion: nil)
+//        let url: String = "http://118.139.91.44:8081/restapi/ios"
+//        //let testDic = ["name":"SMH","age":12]as [String:Any]
+//        //let jsonData = try! JSONSerialization.data(withJSONObject: testDic)
+//
+//        let pd = ["abc":"cba","xyz":"zyx"]
+//        var jsonString = ""
+//        do {
+//            let jsonData = try JSONSerialization.data(withJSONObject: pd, options: .prettyPrinted)
+//            jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+//        }catch{
+//            print(error.localizedDescription)
+//        }
+//        let parameters = [
+//            "methodId":2,
+//            "postData":jsonString
+//
+//            ] as [String : Any]
+//        AF.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
+//            switch response.result {
+//            case .success:
+//                if let value = response.result.value {
+//                    print(value)
+//                    let JSON = value as? NSDictionary
+//                    print(JSON?["response"] as! String)
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
         
     }
     
+    func pickAnImage(){
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = false
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func displayMessage(_ title: String,_ message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func camara(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .authorized: // The user has previously granted access to the camera.
+                imagePicker.sourceType = UIImagePickerController.SourceType.camera
+                imagePicker.allowsEditing = false
+                imagePicker.delegate = self
+                self.present(imagePicker, animated: true, completion: nil)
+            case .denied: // The user has previously denied access.
+                self.displayMessage("Not able to access your camera","Please check your permission settings")
+            case .restricted: // The user can't grant access due to restrictions.
+                self.displayMessage("Not able to access your camera","Please check your permission settings")
+            case .notDetermined:
+                // The user has not yet been asked for camera access.
+                AVCaptureDevice.requestAccess(for: .video) { granted in
+                    if granted {
+                        self.imagePicker.sourceType = UIImagePickerController.SourceType.camera
+                        self.imagePicker.allowsEditing = false
+                        self.imagePicker.delegate = self
+                        self.present(self.imagePicker, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        else {
+            pickAnImage()
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
-        labelResults.isHidden = true
-        faceResults.isHidden = true
-        spinner.hidesWhenStopped = true
+        self.labelResults.text = "Please upload an animal photo and we will tell you what it is."
+        self.popUpView.layer.cornerRadius = 10
+        self.popUpView.layer.masksToBounds = true
+        self.animalImage.contentMode = .scaleAspectFill
+        ///Set the subviews to be clipped to the bounds of the animalPhotoView.
+        self.animalImage.clipsToBounds = true
+        //Set cormerRadius,border and backgroud color for animalIconView.
+        self.animalImage.contentMode = .scaleAspectFill
+        self.animalImage.layer.cornerRadius = 5
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 1 {
+            self.camara()
+        }
+    }
+    
+    func matches(for regex: String, in text: String) -> [String] {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text,
+                                        range: NSRange(text.startIndex..., in: text))
+            return results.map {
+                String(text[Range($0.range, in: text)!])
+            }
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
+        }
+    }
 }
+
 
 
 /// Image processing
@@ -96,102 +185,111 @@ extension ViewController {
     func analyzeResults(_ dataToParse: Data) {
         
         // Update UI on the main thread
-        DispatchQueue.main.async(execute: {
             
             
             // Use SwiftyJSON to parse results
             let json = JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
-            
-            self.spinner.stopAnimating()
-            self.imageView.isHidden = true
-            self.labelResults.isHidden = false
-            self.faceResults.isHidden = false
-            self.faceResults.text = ""
+        
             
             // Check for errors
             if (errorObj.dictionaryValue != [:]) {
                 self.labelResults.text = "Error code \(errorObj["code"]): \(errorObj["message"])"
             } else {
                 // Parse the response
+                //print(json)
+                let responses: JSON = json
                 print(json)
-                let responses: JSON = json["responses"][0]
-                
-                // Get face annotations
-                let faceAnnotations: JSON = responses["faceAnnotations"]
-                if faceAnnotations != nil {
-                    let emotions: Array<String> = ["joy", "sorrow", "surprise", "anger"]
+                let labelAnnotations: JSON = responses["result"]
+                    if labelAnnotations[0]["name"] != "非动物"{
+                        let numLabels: Int = labelAnnotations.count
+                        var labels: Array<String> = []
+                        if numLabels > 0 {
+                            
+                            for index in 0..<numLabels {
+                                let des = labelAnnotations[index]["baike_info"]["description"].stringValue
+                                if (des.contains("澳洲")) || (des.contains("澳大利亚")){
+                                    labels.append(labelAnnotations[index]["name"].stringValue)
+                                }
+                            }
+                            
+                            print(labels)
+                        }
                     
-                    let numPeopleDetected:Int = faceAnnotations.count
-                    
-                    self.faceResults.text = "People detected: \(numPeopleDetected)\n\nEmotions detected:\n"
-                    
-                    var emotionTotals: [String: Double] = ["sorrow": 0, "joy": 0, "surprise": 0, "anger": 0]
-                    var emotionLikelihoods: [String: Double] = ["VERY_LIKELY": 0.9, "LIKELY": 0.75, "POSSIBLE": 0.5, "UNLIKELY":0.25, "VERY_UNLIKELY": 0.0]
-                    
-                    for index in 0..<numPeopleDetected {
-                        let personData:JSON = faceAnnotations[index]
+                        let translator = ROGoogleTranslate()
+                        translator.apiKey = "AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0" // Add your API Key here
                         
-                        // Sum all the detected emotions
-                        for emotion in emotions {
-                            let lookup = emotion + "Likelihood"
-                            let result:String = personData[lookup].stringValue
-                            emotionTotals[emotion]! += emotionLikelihoods[result]!
-                        }
-                    }
-                    // Get emotion likelihood as a % and display in UI
-                    for (emotion, total) in emotionTotals {
-                        let likelihood:Double = total / Double(numPeopleDetected)
-                        let percent: Int = Int(round(likelihood * 100))
-                        self.faceResults.text! += "\(emotion): \(percent)%\n"
-                    }
-                } else {
-                    self.faceResults.text = "No faces found"
-                }
-                
-                // Get label annotations
-                let labelAnnotations: JSON = responses["labelAnnotations"]
-                let numLabels: Int = labelAnnotations.count
-                var labels: Array<String> = []
-                if numLabels > 0 {
-                    var labelResultsText:String = "Labels found: "
-                    for index in 0..<numLabels {
-                        let label = labelAnnotations[index]["description"].stringValue
-                        labels.append(label)
-                    }
-                    for label in labels {
-                        // if it's not the last item add a comma
-                        if labels[labels.count - 1] != label {
-                            labelResultsText += "\(label), "
+                        var params = ROGoogleTranslateParams()
+                        if labels.count > 0{
+                            params.text = labels[0]
+                            translator.translate(params: params) { (result) in
+                                params.text = result
+                                translator.getDetail(params: params){ (detailResult) in
+                                    if detailResult.animalType.count > 1 && !self.canceled{
+                                        DispatchQueue.main.async {
+                                            self.detailResut = detailResult
+                                            self.detailResut.image = self.animalImage.image!
+                                            self.delegate!.gerResultData(detailResut: self.detailResut)
+                                            self.dismiss(animated: true, completion: nil)
+                                        }
+                                    }
+                                    else{
+                                        DispatchQueue.main.async {[weak self] in
+                                            self?.labelResults.text = "No labels found"
+                                        }
+                                    }
+                                    
+                                }
+                            }
                         } else {
-                            labelResultsText += "\(label)"
+                            DispatchQueue.main.async {
+                                self.labelResults.text = "Sorry, we currently only offer animal identification service for Victoria wildlife."
+                                UIView.animate(withDuration: 0.2, animations: {self.labelResults.isHidden = false})
+                            }
                         }
                     }
-                    self.labelResults.text = labelResultsText
-                } else {
-                    self.labelResults.text = "No labels found"
-                }
+                    else {
+                        DispatchQueue.main.async {
+                            self.labelResults.text = "It doesn't look like an animal. Please try again."
+                        }
+                    }
             }
-        })
-        
+
     }
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 // Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
-            spinner.startAnimating()
-            faceResults.isHidden = true
             labelResults.isHidden = true
-            
+            self.animalImage.image = pickedImage
+            let blankView = UIView()
+            blankView.frame.size = CGSize(width: 200, height: 200)
+            blankView.center = view.center
+            let gradient = CAGradientLayer(layer: blankView.layer)
+            let pink = UIColor(red: 196/255.0, green: 70/255.0, blue: 107/255.0, alpha: 1.0)
+            let clear = UIColor.white.withAlphaComponent(0).cgColor
+            gradient.colors = [clear,pink.cgColor,clear]
+            gradient.locations = [0.0,0.75,1.0]
+            gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradient.endPoint = CGPoint(x: 1.0, y: 0.0)
+            gradient.frame = blankView.bounds
+            blankView.layer.insertSublayer(gradient, at: 0)
+            view.addSubview(blankView)
+            let gadientAnimation = CABasicAnimation(keyPath: "locations")
+            gadientAnimation.fromValue = [0.0,0.0,0.25]
+            gadientAnimation.toValue = [0.75,1.0,1.0]
+            gadientAnimation.duration = 3.0
+            gadientAnimation.autoreverses = true
+            gadientAnimation.repeatCount = Float.infinity
+            gradient.add(gadientAnimation, forKey: nil)
             // Base64 encode the image and create the request
             let binaryImageData = base64EncodeImage(pickedImage)
             createRequest(with: binaryImageData)
         }
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -229,37 +327,14 @@ extension ViewController {
     func createRequest(with imageBase64: String) {
         // Create our request URL
         
-        var request = URLRequest(url: googleURL)
+        var request = URLRequest(url: baiduAiURL)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(Bundle.main.bundleIdentifier ?? "", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+        request.addValue("application/x-www-form-urlencoded",forHTTPHeaderField: "Content-Type")
+        let imageString = "image= " + imageBase64.addingPercentEncoding(withAllowedCharacters:
+            .alphanumerics)! + "&baike_num= 5"
+
         
-        // Build our API request
-        let jsonRequest = [
-            "requests": [
-                "image": [
-                    "content": imageBase64
-                ],
-                "features": [
-                    [
-                        "type": "LABEL_DETECTION",
-                        "maxResults": 10
-                    ],
-                    [
-                        "type": "FACE_DETECTION",
-                        "maxResults": 10
-                    ]
-                ]
-            ]
-        ]
-        let jsonObject = JSON(jsonRequest)
-        
-        // Serialize the JSON
-        guard let data = try? jsonObject.rawData() else {
-            return
-        }
-        
-        request.httpBody = data
+        request.httpBody = imageString.data(using: .utf8)
         
         // Run the request on a background thread
         DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
@@ -280,6 +355,7 @@ extension ViewController {
         task.resume()
     }
 }
+
 
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.

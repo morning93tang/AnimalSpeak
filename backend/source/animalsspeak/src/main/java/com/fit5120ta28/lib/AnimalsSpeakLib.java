@@ -1,6 +1,7 @@
 package com.fit5120ta28.lib;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
@@ -37,7 +38,10 @@ public class AnimalsSpeakLib {
 		return hexString.toString();
 	}
 
-	
+	public String formFileName(String animal) {
+		
+		return "datasets/"+animal+".csv";
+	}
 	public String cookieGenerate(String usr,String pass)
 	{
 		return usr + pass + System.currentTimeMillis();
@@ -56,14 +60,20 @@ public class AnimalsSpeakLib {
 		List<Double[]> temp3 = new ArrayList<Double[]>();
 		temp3 = calculateOverLapPoints(temp1,temp2);
 		System.out.println(temp3.size());
-		System.out.println(temp3.get(1300)[0]);
-		System.out.println(temp3.get(1300)[1]);
-		System.out.println(temp3.get(1301)[0]);
-		System.out.println(temp3.get(1301)[1]);
+	
 		return temp3;
 	}
 	
 	public List<Double[]> getLocationArray(String file) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {
+			//missList.add(file);
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			System.out.println(file+" loaded!");
+		}
+		
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		
@@ -74,7 +84,7 @@ public class AnimalsSpeakLib {
 		    String line = null;
 		  
 		    while((line=reader.readLine())!=null){
-		       if(count<=1) {
+		       if(count<=2) {
 		    	   count++;
 		    	   continue;
 		       }
@@ -114,11 +124,14 @@ public class AnimalsSpeakLib {
 		System.out.println(sp2.size());
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
+		List<Double> checkPool = new ArrayList<Double>();
 		//System.out.println(sp1.size());
 		//System.out.println(sp2.size());
 		for(int i = 0; i < sp1.size(); i++) {
 			//double avg = 0d;
+			//System.out.println("outer:"+i);
 			for(int j = 0; j < sp2.size(); j++) {
+				//System.out.println("inner:"+j);
 				double x = Math.pow((sp1.get(i)[0] - sp2.get(j)[0]),2);
 				double y = Math.pow((sp1.get(i)[1] - sp2.get(j)[1]),2);
 				double dis = Math.sqrt(x+y);
@@ -126,15 +139,29 @@ public class AnimalsSpeakLib {
 				//System.out.println(y);
 				//System.out.println(dis);
 				//avg = avg+dis;
-				if(dis<0.2) {
-					pointArr = new Double[2];
-					pointArr[0] = sp1.get(i)[0];
-					pointArr[1] = sp1.get(i)[1];
-					rs.add(pointArr);
-					pointArr = new Double[2];
-					pointArr[0] = sp2.get(j)[0];
-					pointArr[1] = sp2.get(j)[1];
-					rs.add(pointArr);
+				if(dis<0.5) {
+					
+					if(validCheckPool(sp1.get(i)[0],sp1.get(i)[1],checkPool)) {
+						continue;
+					}else {
+						pointArr = new Double[2];
+						pointArr[0] = sp1.get(i)[0];
+						pointArr[1] = sp1.get(i)[1];
+						checkPool.add(pointArr[0]);
+						checkPool.add(pointArr[1]);
+						rs.add(pointArr);
+					}
+					if(validCheckPool(sp2.get(j)[0],sp2.get(j)[1],checkPool)) {
+						continue;
+					}else {
+						pointArr = new Double[2];
+						pointArr[0] = sp2.get(j)[0];
+						pointArr[1] = sp2.get(j)[1];
+						checkPool.add(pointArr[0]);
+						checkPool.add(pointArr[1]);
+						rs.add(pointArr);
+					}
+					
 				}
 			}
 			//avg = avg/sp2.size();
@@ -143,6 +170,15 @@ public class AnimalsSpeakLib {
 		return rs;
 		
 		
+	}
+	
+	public boolean validCheckPool(double x,double y,List<Double> li) {
+		for(int i = 0; i< li.size();i=i+2) {
+			if(li.get(i)==x && li.get(i+1)==y) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	
