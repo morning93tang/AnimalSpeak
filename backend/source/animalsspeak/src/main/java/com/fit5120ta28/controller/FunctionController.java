@@ -43,7 +43,7 @@ public class FunctionController {
 	@RequestMapping(value="/restapi/ios",method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin//(origins = "http://localhost:8080")
-    public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=true)String other) throws Exception {
+    public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=false)String other) throws Exception {
 		System.out.println("requestString is:"+requestString);
 		ObjectMapper mapper = new ObjectMapper(); 
 		TypeReference<HashMap<String,String>> typeRef = new TypeReference<HashMap<String,String>>() {};

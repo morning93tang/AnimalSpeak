@@ -225,7 +225,7 @@ public class AnimalsSpeakLib {
 			   reader.close();
 			   for(int k=0;k<pointList.size();k++) {
 				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<2) {
-					   aroundList.add(fileNameList.get(i));
+					   aroundList.add(fileNameList.get(i).split("\\.")[0]);
 					   break;
 				   }
 			   }

@@ -51,8 +51,8 @@ public class AnimalsspeakApplicationTests {
 		
 		rs1.put("lat", "-37.57158726");
 		rs1.put("lon", "149.8374922");
-		//rs= FunctionController.getAroundAnimalsByLatLon(rs1);
-		rs= FunctionController.getAllAnimalsName();
+		rs= FunctionController.getAroundAnimalsByLatLon(rs1);
+		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);
 	}
