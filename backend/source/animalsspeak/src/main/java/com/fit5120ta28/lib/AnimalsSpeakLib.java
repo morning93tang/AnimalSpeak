@@ -13,6 +13,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+
 @Service
 public class AnimalsSpeakLib {
 	
@@ -50,21 +52,21 @@ public class AnimalsSpeakLib {
 	}
 	
 	
-	public List<Double[]> filterSpeciLocation() throws Exception {
-		List<Double[]> temp1 = new ArrayList<Double[]>();
-		temp1 = getLocationArray("datasets/Koala.csv");
-		//System.out.println(temp1.get(50)[0]);
-		//System.out.println(temp1.get(50)[1]);
-		System.out.println(temp1.size());
-		List<Double[]> temp2 = new ArrayList<Double[]>();
-		temp2 = getLocationArray("datasets/Red Kangroo.csv");
-		System.out.println(temp2.size());  
-		List<Double[]> temp3 = new ArrayList<Double[]>();
-		temp3 = calculateOverLapPoints(temp1,temp2);
-		System.out.println(temp3.size());
-	
-		return temp3;
-	}
+//	public List<Double[]> filterSpeciLocation() throws Exception {
+//		List<Double[]> temp1 = new ArrayList<Double[]>();
+//		temp1 = getLocationArray("datasets/Koala.csv");
+//		//System.out.println(temp1.get(50)[0]);
+//		//System.out.println(temp1.get(50)[1]);
+//		System.out.println(temp1.size());
+//		List<Double[]> temp2 = new ArrayList<Double[]>();
+//		temp2 = getLocationArray("datasets/Red Kangroo.csv");
+//		System.out.println(temp2.size());  
+//		List<Double[]> temp3 = new ArrayList<Double[]>();
+//		temp3 = calculateOverLapPoints(temp1,temp2);
+//		System.out.println(temp3.size());
+//	
+//		return temp3;
+//	}
 	
 	public List<Double[]> getLocationArray(String file) {
 		File checkName=new File(file);
@@ -119,6 +121,61 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	public List<Double[]> getLocationArrayByDis(String file,double x,double y) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {
+			//missList.add(file);
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			System.out.println(file+" loaded!");
+		}
+		
+		List<Double[]> rs = new ArrayList<Double[]>();
+		Double[] pointArr;
+		
+		int count = 0;
+		try {
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(file));
+			BufferedReader reader = new BufferedReader(isr);
+		    String line = null;
+		  
+		    while((line=reader.readLine())!=null){
+		       if(count<=2) {
+		    	   count++;
+		    	   continue;
+		       }
+		       String item[] = line.split(",");
+		       //System.out.println(item.length);
+		       if(item.length!=2) {
+		    	   continue;
+		       }
+		       pointArr = new Double[2];
+
+			   if(item[0].equalsIgnoreCase("end")) {
+				   break;
+		       }
+			   pointArr[0] = Double.parseDouble(item[0]);
+		       pointArr[1] = Double.parseDouble(item[1]);
+		       //System.out.println(item[0]);
+		       if(calculateTwoPointsDis(x,y,pointArr[0],pointArr[1])<0.5d) {
+		    	   rs.add(pointArr);
+			       count++;
+		       }
+		       
+		      
+		   }
+		   
+		   //System.out.println(count);
+		   reader.close();
+		 
+		  } catch (Exception e) {
+			  System.out.println(count);
+		      e.printStackTrace();
+		  }
+		
+		return rs;
+	}
 	
 	public List<Double[]> calculateOverLapPoints(List<Double[]> sp1,List<Double[]> sp2){
 		System.out.println("-----------------------------");
@@ -241,8 +298,9 @@ public class AnimalsSpeakLib {
 		
 		
 		System.out.println(aroundList);
-		
-		
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(aroundList); 
+		rs.put("response", jsonArray);
 		
 		
 		
@@ -274,6 +332,15 @@ public class AnimalsSpeakLib {
 			
 		}
 		return fileNameList;
+	}
+	
+	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p){
+		Map<String,String> rs = new HashMap<String,String>();
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(getLocationArrayByDis(ani,p[0],p[1])); 
+		rs.put("response", jsonArray);
+		
+		return rs;
 	}
 	
 }

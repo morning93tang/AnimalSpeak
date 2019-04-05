@@ -108,6 +108,19 @@ public class FunctionController {
 		return rs;
 	}
 	
+	public Map<String,String> getAroundAnimalLocationByName(Map<String,String> data){
+		Map<String,String> rs = new HashMap<String,String>();
+		String animal = "datasets/"+data.get("animal")+".csv";
+		double lat = Double.parseDouble(data.get("lat"));
+		double lon = Double.parseDouble(data.get("lon"));
+		Double[] dob = new Double[2];
+		dob[0] = lat;
+		dob[1] = lon;
+		rs = AnimalsSpeakLib.getAroundAnimalLocationByName(animal,dob);
+		System.out.println(rs);
+		return rs;
+	}
+	
 	public Map<String,String> filterSpeciLocation(Map<String,List<String>> data) throws Exception{
 		Map<String,String> rs = new HashMap<String,String>();
 		List<Double[]> tempRs = new ArrayList<Double[]>();
