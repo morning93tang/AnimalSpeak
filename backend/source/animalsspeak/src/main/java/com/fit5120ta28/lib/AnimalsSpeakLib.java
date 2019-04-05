@@ -1,6 +1,7 @@
 package com.fit5120ta28.lib;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
@@ -64,6 +65,15 @@ public class AnimalsSpeakLib {
 	}
 	
 	public List<Double[]> getLocationArray(String file) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {
+			//missList.add(file);
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			System.out.println(file+" loaded!");
+		}
+		
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		

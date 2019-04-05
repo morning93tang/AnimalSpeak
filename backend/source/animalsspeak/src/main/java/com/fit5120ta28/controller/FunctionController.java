@@ -103,26 +103,59 @@ public class FunctionController {
 	
 	public Map<String,String> filterSpeciLocation(Map<String,List<String>> data) throws Exception{
 		Map<String,String> rs = new HashMap<String,String>();
+		List<Double[]> tempRs = new ArrayList<Double[]>();
 		List<Double[]> result = new ArrayList<Double[]>();
+		List<String> missList = new ArrayList<String>();
+		List<String> missListRs = new ArrayList<String>();
 		System.out.println(data.get("animals"));
 		List<String> animals = new ArrayList<String>(data.get("animals"));
 		
 		for(int i=0; i< animals.size();i++) {
 			if(i==0) {
-				result = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(0)));
+				tempRs = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(0)));
+				if(tempRs!=null) {
+					result = tempRs;
+				}else {
+					System.out.println("pass null file");
+					missList.add(animals.get(i));
+					continue;
+				}
+				
 				System.out.println("init done");
 			}else {
-				List<Double[]> temp = new ArrayList<Double[]>();
-				temp = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(i)));
-				result = AnimalsSpeakLib.calculateOverLapPoints(result,temp);
+				List<Double[]> follow = new ArrayList<Double[]>();
+				tempRs = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(i)));
+				if(tempRs!=null) {
+					follow = tempRs;
+					
+				}else {
+					System.out.println("pass null file");
+					missList.add(animals.get(i));
+					continue;
+				}
+				if(result.size()==0) {
+					result = tempRs;
+				}else {
+					result = AnimalsSpeakLib.calculateOverLapPoints(result,follow);
+				}
+				
 				System.out.println("follow done");
 			}
-			//System.out.println("results size:"+rs.size());
+			System.out.println("results size:"+result.size());
 			//result = deduplicate3(result);
 		}
+		
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(result);
 		rs.put("response", jsonArray);
+//		for(int z = 0;z<missList.size();z++) {
+//			String[] str1 = missList.get(z).split("/");
+//			String[] str2 = str1[1].split("\\.");
+//			missListRs.add(str2[0]);
+//		}
+		jsonArray = gson.toJson(missList); 
+		rs.put("miss", jsonArray);
+		System.out.println(rs);
 		return rs;
 	}
 	

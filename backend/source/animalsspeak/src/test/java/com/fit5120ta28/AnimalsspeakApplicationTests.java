@@ -34,6 +34,11 @@ public class AnimalsspeakApplicationTests {
 
 	@Autowired
 	FunctionMapper FunctionMapper;
+	@Autowired
+	FunctionController FunctionController;
+	
+	List<String> missList = new ArrayList<String>();
+	List<String> missListRs = new ArrayList<String>();
 	
 	@Test
 	public void contextLoads() throws Exception {
@@ -41,6 +46,15 @@ public class AnimalsspeakApplicationTests {
 		//deduplicate3();
 		csvTest1();
 		//testsearchAnimalListByString();
+		Map<String,String> rs = new HashMap<String,String>();
+		Map<String,List<String>> rs1 = new HashMap<String,List<String>>();
+		List<String> rs2 = new ArrayList<String>();
+		rs2.add("red kangaroo");
+		rs2.add("koala2");
+		rs2.add("dingo");
+		rs1.put("animals", rs2);
+		rs= FunctionController.filterSpeciLocation(rs1);
+		//System.out.println(missList);
 	}
 	
 	public void test2(){
@@ -70,22 +84,43 @@ public class AnimalsspeakApplicationTests {
 	
 	public void csvTest1() throws Exception {
 		List<Double[]> result = new ArrayList<Double[]>();
+		List<Double[]> tempRs = new ArrayList<Double[]>();
 		//List<Double[]> temp1 = new ArrayList<Double[]>();
 		List<String> animals = new ArrayList<String>();
 		animals.add("koala");
 		animals.add("red kangaroo");
 		animals.add("dingo");
-		animals.add("Galah");
-		animals.add("little penguin");
+//		
+//		animals.add("Galah");
+//		animals.add("little penguin");
 		
 		for(int i=0; i< animals.size();i++) {
 			if(i==0) {
-				result = getLocationArray(formFileName(animals.get(0)));
+				tempRs = getLocationArray(formFileName(animals.get(0)));
+				if(tempRs!=null) {
+					result = tempRs;
+				}else {
+					System.out.println("pass null file");
+					continue;
+				}
+				
 				System.out.println("init done");
 			}else {
-				List<Double[]> temp = new ArrayList<Double[]>();
-				temp = getLocationArray(formFileName(animals.get(i)));
-				result = calculateOverLapPoints(result,temp);
+				List<Double[]> follow = new ArrayList<Double[]>();
+				tempRs = getLocationArray(formFileName(animals.get(i)));
+				if(tempRs!=null) {
+					follow = tempRs;
+					
+				}else {
+					System.out.println("pass null file");
+					continue;
+				}
+				if(result.size()==0) {
+					result = tempRs;
+				}else {
+					result = calculateOverLapPoints(result,follow);
+				}
+				
 				System.out.println("follow done");
 			}
 			System.out.println("results size:"+result.size());
@@ -108,6 +143,12 @@ public class AnimalsspeakApplicationTests {
 		
 		String jsonArray = gson.toJson(result);
 		System.out.println(jsonArray);
+		for(int z = 0;z<missList.size();z++) {
+			String[] str1 = missList.get(z).split("/");
+			String[] str2 = str1[1].split("\\.");
+			missListRs.add(str2[0]);
+		}
+		System.out.println(missListRs);
 	}
 	
 	public String formFileName(String animal) {
@@ -193,6 +234,16 @@ public class AnimalsspeakApplicationTests {
 	
 	
 	public List<Double[]> getLocationArray(String file) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {
+			missList.add(file);
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			System.out.println(file+" loaded!");
+		}
+			
+		
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		
@@ -231,6 +282,9 @@ public class AnimalsspeakApplicationTests {
 		  } catch (Exception e) {
 			  System.out.println(count);
 		      e.printStackTrace();
+		      //missList.add(file);
+		      //System.out.println("cannot find file:"+file);
+		      //return null;
 		  }
 		System.out.println("load csv done");
 		return rs;
@@ -258,7 +312,7 @@ public class AnimalsspeakApplicationTests {
 				//System.out.println(y);
 				//System.out.println(dis);
 				//avg = avg+dis;
-				if(dis<0.2) {
+				if(dis<0.5) {
 					
 					if(validCheckPool(sp1.get(i)[0],sp1.get(i)[1],checkPool)) {
 						continue;
