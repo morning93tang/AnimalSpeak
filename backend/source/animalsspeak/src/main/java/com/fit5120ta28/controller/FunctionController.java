@@ -59,7 +59,7 @@ public class FunctionController {
 				tempList = mapper.readValue(other, typeRefList);
 				return filterSpeciLocation(tempList);
 			case 3:
-				temp = mapper.readValue(other, typeRef);
+				//temp = mapper.readValue(other, typeRef);
 				return getAllAnimalsName();
 			case 4:
 				temp = mapper.readValue(other, typeRef);
