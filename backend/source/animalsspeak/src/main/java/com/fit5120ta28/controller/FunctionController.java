@@ -100,13 +100,20 @@ public class FunctionController {
 		return rs;
 	}
 	
+	public Map<String,String> getAroundAnimalsByLatLon(Map<String,String> data){
+		Map<String,String> rs = new HashMap<String,String>();
+		double lat = Double.parseDouble(data.get("lat"));
+		double lon = Double.parseDouble(data.get("lon"));
+		rs = AnimalsSpeakLib.calculateAroundAnimals(lat,lon);
+		return rs;
+	}
 	
 	public Map<String,String> filterSpeciLocation(Map<String,List<String>> data) throws Exception{
 		Map<String,String> rs = new HashMap<String,String>();
 		List<Double[]> tempRs = new ArrayList<Double[]>();
 		List<Double[]> result = new ArrayList<Double[]>();
 		List<String> missList = new ArrayList<String>();
-		List<String> missListRs = new ArrayList<String>();
+		//List<String> missListRs = new ArrayList<String>();
 		System.out.println(data.get("animals"));
 		List<String> animals = new ArrayList<String>(data.get("animals"));
 		

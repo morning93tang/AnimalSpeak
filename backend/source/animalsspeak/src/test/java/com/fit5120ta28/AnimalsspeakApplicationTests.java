@@ -44,16 +44,16 @@ public class AnimalsspeakApplicationTests {
 	public void contextLoads() throws Exception {
 		System.out.println("start!!!!!!");
 		//deduplicate3();
-		csvTest1();
+		//csvTest1();
 		//testsearchAnimalListByString();
 		Map<String,String> rs = new HashMap<String,String>();
-		Map<String,List<String>> rs1 = new HashMap<String,List<String>>();
-		List<String> rs2 = new ArrayList<String>();
-		rs2.add("red kangaroo");
-		rs2.add("koala2");
-		rs2.add("dingo");
-		rs1.put("animals", rs2);
-		rs= FunctionController.filterSpeciLocation(rs1);
+		Map<String,String> rs1 = new HashMap<String,String>();
+		
+		rs1.put("lat", "-37.57158726");
+		rs1.put("lon", "149.8374922");
+		//rs= FunctionController.getAroundAnimalsByLatLon(rs1);
+		rs= FunctionController.getAllAnimalsName();
+		
 		//System.out.println(missList);
 	}
 	

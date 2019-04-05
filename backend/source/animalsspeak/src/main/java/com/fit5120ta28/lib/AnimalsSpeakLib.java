@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -181,7 +183,97 @@ public class AnimalsSpeakLib {
 		return false;
 	}
 	
+	public Map<String,String> calculateAroundAnimals(double lat,double lon){
+		Map<String,String> rs = new HashMap<String,String>();
+		String path = "datasets/";
+		List<String> fileNameList = getFiles(path);
+		List<String> aroundList = new ArrayList<String>();
+		for(int i = 0 ; i < fileNameList.size();i++) {
+			File checkName=new File(path+fileNameList.get(i));
+			int count = 0;
+			Double[] pointArr;
+			List<Double[]> pointList = new ArrayList<Double[]>();
+			try {
+				InputStreamReader isr = new InputStreamReader(new FileInputStream(checkName));
+				BufferedReader reader = new BufferedReader(isr);
+			    String line = null;
+			  
+			    while((line=reader.readLine())!=null){
+			       if(count<=2) {
+			    	   count++;
+			    	   continue;
+			       }
+			       String item[] = line.split(",");
+			       //System.out.println(item.length);
+			       if(item.length!=2) {
+			    	   continue;
+			       }
+			       pointArr = new Double[2];
+
+				   if(item[0].equalsIgnoreCase("end")) {
+					   break;
+			       }
+				   pointArr[0] = Double.parseDouble(item[0]);
+			       pointArr[1] = Double.parseDouble(item[1]);
+			       //System.out.println(item[0]);
+			       pointList.add(pointArr);
+			       count++;
+			      
+			   }
+			   
+			   //System.out.println(count);
+			   reader.close();
+			   for(int k=0;k<pointList.size();k++) {
+				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<2) {
+					   aroundList.add(fileNameList.get(i));
+					   break;
+				   }
+			   }
+			   
+			   
+			  } catch (Exception e) {
+				  
+			      e.printStackTrace();
+			  }
+			
+		}
+		
+		
+		
+		System.out.println(aroundList);
+		
+		
+		
+		
+		
+		return rs;
+	}
 	
+	private double calculateTwoPointsDis(double lat,double lon,double itlat,double itlon) {
+		double x = Math.pow((lat - itlat),2);
+		double y = Math.pow((lon - itlon),2);
+		double dis = Math.sqrt(x+y);
+		
+		return dis;
+	}
 	
+	private static List<String> getFiles(String path) {
+		List<String> fileNameList = new ArrayList<String>();
+		File file = new File(path);
+		File[] array = file.listFiles();
+		
+		for(int i = 0 ; i< array.length;i++) {
+			if(array[i].isFile()) {
+				//System.out.println("^^^^^"+array[i].getName());
+				//System.out.println("#####"+array[i]);
+				//System.out.println("*****"+array[i].getPath());
+				fileNameList.add(array[i].getName());
+			}else if(array[i].isDirectory()) {
+				getFiles(array[i].getName());
+			}
+			
+		}
+		return fileNameList;
+	}
 	
 }
