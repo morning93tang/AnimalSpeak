@@ -53,11 +53,16 @@ public class AnimalsspeakApplicationTests {
 		rs3.add("red kangaroo");
 		rs3.add("koala");
 		rs3.add("dingo234");
-//		rs1.put("animal","australian Funnel-Web Spider");
-//		rs1.put("lat", "-37.57158726");
-//		rs1.put("lon", "149.8374922");
-		rs1.put("animal", "red fox");
-		rs= FunctionController.getAnimalVoiceUrlByName(rs1);
+		//rs1.put("animal","australian Funnel-Web Spider");
+		rs.put("lat", "-36.952687");
+		rs.put("lon", "145.863221");
+		rs1.put("lat", "-36.952687");
+		rs1.put("lon", "145.863221");
+		rs1.put("animal", "Swamp Antechinus");
+		//Yellow-footed Antechinus
+		rs= FunctionController.getAroundAnimalsByLatLon(rs);
+		rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		
 		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);
