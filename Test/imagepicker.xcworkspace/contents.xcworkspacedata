@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Google-Maps-iOS-Utils">
+      <Group
+         location = "group:Heatmap"
+         name = "Heatmap">
+         <FileRef
+            location = "group:GMUGradient.h">
+         </FileRef>
+         <FileRef
+            location = "group:GMUWeightedLatLng.m">
+         </FileRef>
+         <FileRef
+            location = "group:GMUHeatmapTileLayer.h">
+         </FileRef>
+         <FileRef
+            location = "group:GMUWeightedLatLng.h">
+         </FileRef>
+         <FileRef
+            location = "group:GMUGradient.m">
+         </FileRef>
+         <FileRef
+            location = "group:GMUHeatmapTileLayer.m">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
       location = "group:imagepicker.xcodeproj">
    </FileRef>
