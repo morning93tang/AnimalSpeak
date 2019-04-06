@@ -73,6 +73,9 @@ public class FunctionController {
 			case 7:
 				temp = mapper.readValue(other, typeRef);
 				return getAroundAnimalLocationByName(temp);
+			case 8:
+				temp = mapper.readValue(other, typeRef);
+				return getAnimalVoiceUrlByName(temp);
 			default:
 				return test2();
 				
