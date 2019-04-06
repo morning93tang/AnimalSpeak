@@ -111,6 +111,7 @@ public class FunctionController {
 		double lat = Double.parseDouble(data.get("lat"));
 		double lon = Double.parseDouble(data.get("lon"));
 		rs = AnimalsSpeakLib.calculateAroundAnimals(lat,lon);
+		System.out.println(rs);
 		return rs;
 	}
 	
@@ -190,7 +191,7 @@ public class FunctionController {
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
 		rs.put("response", jsonArray);
-		System.out.println(jsonArray);
+		System.out.println(rs);
 		return rs;
 	}
 	
@@ -199,7 +200,7 @@ public class FunctionController {
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass(data.get("className")));
 		rs.put("response", jsonArray);
-		System.out.println(jsonArray);
+		System.out.println(rs);
 		return rs;
 	}
 	
@@ -209,7 +210,16 @@ public class FunctionController {
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(FunctionMapper.searchAnimalListByString(str));
 		rs.put("response", jsonArray);
-		System.out.println(jsonArray);
+		System.out.println(rs);
+		return rs;
+	}
+	
+	public Map<String,String> getAnimalVoiceUrlByName(Map<String,String> data){
+		Map<String,String> rs = new HashMap<String,String>();
+		String ani = data.get("animal");
+		String rsUrl = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
+		rs.put("response", rsUrl);
+		System.out.println(rs);
 		return rs;
 	}
 	

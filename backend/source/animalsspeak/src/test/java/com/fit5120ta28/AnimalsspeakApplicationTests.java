@@ -50,10 +50,14 @@ public class AnimalsspeakApplicationTests {
 		Map<String,String> rs1 = new HashMap<String,String>();
 		Map<String,List<String>> rs2 = new HashMap<String,List<String>>();
 		List<String> rs3 = new ArrayList<String>();
-		rs1.put("animal","australian Funnel-Web Spider");
-		rs1.put("lat", "-37.57158726");
-		rs1.put("lon", "149.8374922");
-		rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		rs3.add("red kangaroo");
+		rs3.add("koala");
+		rs3.add("dingo234");
+//		rs1.put("animal","australian Funnel-Web Spider");
+//		rs1.put("lat", "-37.57158726");
+//		rs1.put("lon", "149.8374922");
+		rs1.put("animal", "red fox");
+		rs= FunctionController.getAnimalVoiceUrlByName(rs1);
 		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);

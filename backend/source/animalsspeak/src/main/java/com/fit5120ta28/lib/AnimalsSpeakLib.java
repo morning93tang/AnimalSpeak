@@ -343,4 +343,23 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	public String getAnimalVoiceUrlByName(String ani){
+		Map<String,String> rs = new HashMap<String,String>();
+		String name = "Animal Sound/"+ani;
+		
+		File checkName_mp3=new File(name+".mp3");
+		File checkName_wav=new File(name+".wav");
+		if(checkName_mp3.exists()) {
+			return name+".mp3";
+		}else {
+			if(checkName_wav.exists()) {
+				return name+".wav";
+			}else {
+				return "null";
+			}
+		}
+
+	}
+	
+	
 }
