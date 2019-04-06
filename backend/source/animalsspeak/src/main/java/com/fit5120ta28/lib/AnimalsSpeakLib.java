@@ -158,7 +158,7 @@ public class AnimalsSpeakLib {
 			   pointArr[0] = Double.parseDouble(item[0]);
 		       pointArr[1] = Double.parseDouble(item[1]);
 		       //System.out.println(item[0]);
-		       if(calculateTwoPointsDis(x,y,pointArr[0],pointArr[1])<0.5d) {
+		       if(calculateTwoPointsDis(x,y,pointArr[0],pointArr[1])<1d) {
 		    	   rs.add(pointArr);
 			       count++;
 		       }
@@ -281,7 +281,8 @@ public class AnimalsSpeakLib {
 			   //System.out.println(count);
 			   reader.close();
 			   for(int k=0;k<pointList.size();k++) {
-				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<2) {
+				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<1d) {
+					   //System.out.println("pointList:"+k+"||"+pointList.get(k)[0]+","+pointList.get(k)[1]);
 					   aroundList.add(fileNameList.get(i).split("\\.")[0]);
 					   break;
 				   }
