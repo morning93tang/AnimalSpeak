@@ -48,6 +48,8 @@ public class AnimalsspeakApplicationTests {
 		//testsearchAnimalListByString();
 		Map<String,String> rs = new HashMap<String,String>();
 		Map<String,String> rs1 = new HashMap<String,String>();
+		Map<String,List<String>> rs2 = new HashMap<String,List<String>>();
+		List<String> rs3 = new ArrayList<String>();
 		rs1.put("animal","australian Funnel-Web Spider");
 		rs1.put("lat", "-37.57158726");
 		rs1.put("lon", "149.8374922");
