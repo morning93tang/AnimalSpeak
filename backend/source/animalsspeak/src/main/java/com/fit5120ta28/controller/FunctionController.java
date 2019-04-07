@@ -10,14 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.coyote.Response;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -38,7 +43,8 @@ public class FunctionController {
 	FunctionMapper FunctionMapper;
 	@Autowired
 	AnimalsSpeakLib AnimalsSpeakLib;
-
+	@Autowired  
+    ResourceLoader loader;  
 	
 	@RequestMapping(value="/restapi/ios",method = RequestMethod.POST)
     @ResponseBody
@@ -226,4 +232,26 @@ public class FunctionController {
 		return rs;
 	}
 	
+	// download file form server  
+    @GetMapping("/getVoice")  
+    public ResponseEntity<byte[]> getFile(@RequestParam("id") String id) throws IOException {  
+        // specify file path  
+    	String ani = id;
+		//String rsUrl = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
+		
+        String filePath = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
+        System.out.println(filePath);
+        if(filePath.equalsIgnoreCase("null")) {
+        	return null;
+        }else {
+        	byte[] body = IOUtils.toByteArray(loader.getResource("file:" + filePath).getInputStream());  
+            String fileName = filePath.substring(filePath.lastIndexOf('/')+1, filePath.length());  
+            HttpHeaders headers=new HttpHeaders();  
+            headers.add("Content-Disposition", "attachment;filename="+fileName);  
+      
+            return new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);  
+        }
+        
+    }  
+
 }

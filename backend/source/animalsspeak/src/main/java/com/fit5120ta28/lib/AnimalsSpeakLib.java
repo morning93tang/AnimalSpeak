@@ -346,7 +346,7 @@ public class AnimalsSpeakLib {
 	
 	public String getAnimalVoiceUrlByName(String ani){
 		Map<String,String> rs = new HashMap<String,String>();
-		String name = "Animal Sound/"+ani;
+		String name = "AnimalSound/"+ani;
 		
 		File checkName_mp3=new File(name+".mp3");
 		File checkName_wav=new File(name+".wav");
