@@ -11,7 +11,7 @@
 	<packaging>jar</packaging>
 	<groupId>com.fit5120ta28</groupId>
 	<artifactId>animalsspeak</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2</version>
 	<name>animalsspeak</name>
 	<description>IE project</description>
 
