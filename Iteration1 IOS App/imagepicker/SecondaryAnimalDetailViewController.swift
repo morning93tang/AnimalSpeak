@@ -81,8 +81,6 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         let translator = ROGoogleTranslate()
         var params = ROGoogleTranslateParams()
         params.text = self.animalName
-        translator.translate(params: params) { (result) in
-            params.text = result
             translator.getDetail(params: params){ (detailResult) in
                 if detailResult.animalType.count > 1 {
                     DispatchQueue.main.async {
@@ -96,18 +94,35 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
                                 self.activityIndicator.stopAnimating()
                                 self.activityIndicator.isHidden = true
                                 self.gerResultData()
+                                super.viewDidLoad()
                             }
                         }
                     }
                 }
                 else{
-                    
+                    translator.getimage(params: params){ (detailResult) in
+                        if detailResult.count > 1 {
+                            DispatchQueue.main.async {
+                                Alamofire.request(detailResult).responseImage { response in
+                                    debugPrint(response)
+                                    debugPrint(response.result)
+                                    if let image = response.result.value {
+                                        self.animalImgaeView.contentMode = .scaleAspectFill
+                                        self.animalImgaeView.image = image
+                                        self.activityIndicator.stopAnimating()
+                                        self.activityIndicator.isHidden = true
+                                        self.gerResultData()
+                                        self.descriptionTextBox.text = "Sorry,we currently do not have any detail imfromation about this animal."
+                                        super.viewDidLoad()
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                super.viewDidLoad()
-                
-            }
-            
         }
+        
+                
     }
     
     func gerResultData() {
