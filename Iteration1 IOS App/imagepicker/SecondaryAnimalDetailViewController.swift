@@ -36,7 +36,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
     private var gradientColors = [UIColor.blue, UIColor.red]
     private var gradientStartPoints = [0.2, 1.0] as? [NSNumber]
     @IBAction func playSoundInstance(_ sender: Any) {
-            self.audioPlayer.play()
+        self.audioPlayer.play()
     }
     
     override func viewDidLoad() {
@@ -103,7 +103,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
                 else{
                     
                 }
-        super.viewDidLoad()
+                super.viewDidLoad()
                 
             }
             
@@ -241,19 +241,19 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
             }
         }
     }
-            
-            
-            
-            /*
-             // MARK: - Navigation
-             
-             // In a storyboard-based application, you will often want to do a little preparation before navigation
-             override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-             // Get the new view controller using segue.destination.
-             // Pass the selected object to the new view controller.
-             }
-             */
-            
+    
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension SecondaryAnimalDetailViewController: CLLocationManagerDelegate {

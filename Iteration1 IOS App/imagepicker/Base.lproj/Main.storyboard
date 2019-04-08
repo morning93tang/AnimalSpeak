@@ -234,7 +234,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="cw4-eu-mif">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="icons8-search.png" id="f4K-32-tLw">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="searchIcon" id="f4K-32-tLw">
                             <color key="tintColor" red="0.92909008260000003" green="0.68000543120000001" blue="0.25867402550000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="LTi-0Y-40e" kind="show" identifier="searchSegue" id="T12-H4-8b7"/>
@@ -808,9 +808,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cameraIcon" width="32" height="32"/>
+        <image name="cameraIcon" width="39" height="39"/>
         <image name="icons8-play_filled.png" width="75" height="75"/>
-        <image name="icons8-search.png" width="32" height="32"/>
         <image name="mapIcon" width="30" height="30"/>
+        <image name="searchIcon" width="37.5" height="37.5"/>
     </resources>
 </document>

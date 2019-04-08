@@ -15,7 +15,6 @@
 		1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */; };
 		1BFC2E931BF1AA7300885EBB /* imagepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E921BF1AA7300885EBB /* imagepickerTests.swift */; };
 		1BFC2E9E1BF1AA7300885EBB /* imagepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E9D1BF1AA7300885EBB /* imagepickerUITests.swift */; };
-		BE3BB829225A0678005544DD /* icons8-search.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3BB828225A0678005544DD /* icons8-search.png */; };
 		BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3BB82A225A0970005544DD /* icons8-play_filled.png */; };
 		BE3BB82F225A719D005544DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB82E225A719D005544DD /* SearchViewController.swift */; };
 		BE3BB831225A74D1005544DD /* animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB830225A74D1005544DD /* animal.swift */; };
@@ -70,7 +69,6 @@
 		1BFC2E9F1BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
-		BE3BB828225A0678005544DD /* icons8-search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-search.png"; sourceTree = "<group>"; };
 		BE3BB82A225A0970005544DD /* icons8-play_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-play_filled.png"; sourceTree = "<group>"; };
 		BE3BB82E225A719D005544DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 		1BFC2E7C1BF1AA7300885EBB /* imagepicker */ = {
 			isa = PBXGroup;
 			children = (
-				BE3BB828225A0678005544DD /* icons8-search.png */,
 				BE3BB82A225A0970005544DD /* icons8-play_filled.png */,
 				BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */,
 				BE79B8992257E97F008EAF9C /* police_stations.json */,
@@ -348,7 +345,6 @@
 				BE79B89A2257E97F008EAF9C /* police_stations.json in Resources */,
 				BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */,
 				1BFC2E851BF1AA7300885EBB /* Assets.xcassets in Resources */,
-				BE3BB829225A0678005544DD /* icons8-search.png in Resources */,
 				BEE502F3225396B800D753FE /* icon1.png in Resources */,
 				1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */,
 			);
