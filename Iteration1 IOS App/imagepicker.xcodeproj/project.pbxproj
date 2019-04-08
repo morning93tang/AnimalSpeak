@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19BEAA07F7E1AC786619B59C /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */; };
 		1BB2EE991C359A9C0066BECE /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB2EE981C359A9C0066BECE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1BFC2E7E1BF1AA7300885EBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */; };
 		1BFC2E801BF1AA7300885EBB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */; };
@@ -68,6 +69,7 @@
 		1BFC2E9F1BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
+		8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3BB82A225A0970005544DD /* icons8-play_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-play_filled.png"; sourceTree = "<group>"; };
 		BE3BB82E225A719D005544DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			files = (
 				1BB2EE991C359A9C0066BECE /* SwiftyJSON.framework in Frameworks */,
 				DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */,
+				19BEAA07F7E1AC786619B59C /* Pods_imagepicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +145,7 @@
 				1BFC2E9C1BF1AA7300885EBB /* imagepickerUITests */,
 				1BFC2E7B1BF1AA7300885EBB /* Products */,
 				BE5828B94D8C2B8600046DBC /* Pods */,
+				C98069B286957C6B2EB85FC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +229,14 @@
 				BEB3FCC02257ABC8004DFA6B /* GMUWeightedLatLng.m */,
 			);
 			path = "Google-Maps-iOS-Utils";
+			sourceTree = "<group>";
+		};
+		C98069B286957C6B2EB85FC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
