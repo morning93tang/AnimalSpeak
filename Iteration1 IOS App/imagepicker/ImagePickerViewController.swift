@@ -75,6 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let alertController = UIAlertController(title: nil, message: "Upload a photo.", preferredStyle: .actionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.uploadButton.isEnabled = true
         }
         alertController.addAction(cancelAction)
         

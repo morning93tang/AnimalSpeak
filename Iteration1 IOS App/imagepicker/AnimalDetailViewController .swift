@@ -24,7 +24,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 5.0
     private var gradientColors = [UIColor.blue, UIColor.red]
-    private var gradientStartPoints = [0.2, 1.0] as? [NSNumber]
+    private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -70,7 +70,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         heatmapLayer.map = mapView
         heatmapLayer.radius = 40
         heatmapLayer.opacity = 0.6
-        heatmapLayer.gradient = GMUGradient(colors: gradientColors,startPoints: gradientStartPoints!,colorMapSize: 256)
+        heatmapLayer.gradient = GMUGradient(colors: gradientColors,startPoints: gradientStartPoints,colorMapSize: 256)
         emptyView.addSubview(mapView)
         self.view.layoutIfNeeded()
         self.phtotImageView.contentMode = .scaleAspectFill
@@ -171,7 +171,6 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         var listToAdd = [GMUWeightedLatLng]()
         self.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             if result != nil{
-                print(result)
                 if let list = result!["response"] as? String{
                     print(list)
                     if let data = list.data(using: .utf8) {

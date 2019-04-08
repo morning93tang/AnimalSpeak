@@ -29,7 +29,6 @@
 		BEB3FCCB2257AC76004DFA6B /* GQTPointQuadTree.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB3FCC52257AC76004DFA6B /* GQTPointQuadTree.m */; };
 		BEB3FCCC2257AC76004DFA6B /* GQTPointQuadTreeChild.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB3FCC62257AC76004DFA6B /* GQTPointQuadTreeChild.m */; };
 		BEE502EB22510DB700D753FE /* ROGoogleTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE502EA22510DB700D753FE /* ROGoogleTranslate.swift */; };
-		BEE502F3225396B800D753FE /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = BEE502F2225396B700D753FE /* icon1.png */; };
 		BEF01227224C446600456638 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF01226224C446600456638 /* TabBarController.swift */; };
 		BEF01229224C8A6B00456638 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF01228224C8A6B00456638 /* MapViewController.swift */; };
 		DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
@@ -92,7 +91,6 @@
 		BEB3FCC92257AC76004DFA6B /* GQTBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTBounds.h; sourceTree = "<group>"; };
 		BEB3FCCA2257AC76004DFA6B /* GQTPointQuadTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQTPointQuadTreeItem.h; sourceTree = "<group>"; };
 		BEE502EA22510DB700D753FE /* ROGoogleTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROGoogleTranslate.swift; sourceTree = "<group>"; };
-		BEE502F2225396B700D753FE /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
 		BEF01226224C446600456638 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BEF01228224C8A6B00456638 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,11 +165,10 @@
 				1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */,
 				BEB3FCB02257982A004DFA6B /* SearchTableViewController.swift */,
 				BEB3FCAC22579799004DFA6B /* AnimalCollectionViewCell.swift */,
-				BEE502F2225396B700D753FE /* icon1.png */,
 				BEB3FCAE225797A5004DFA6B /* AnimalDetailViewController .swift */,
-				1BFC2E811BF1AA7300885EBB /* Main.storyboard */,
 				1BFC2E841BF1AA7300885EBB /* Assets.xcassets */,
 				1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */,
+				1BFC2E811BF1AA7300885EBB /* Main.storyboard */,
 				1BFC2E891BF1AA7300885EBB /* Info.plist */,
 				BEF01226224C446600456638 /* TabBarController.swift */,
 				BEF01228224C8A6B00456638 /* MapViewController.swift */,
@@ -345,7 +342,6 @@
 				BE79B89A2257E97F008EAF9C /* police_stations.json in Resources */,
 				BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */,
 				1BFC2E851BF1AA7300885EBB /* Assets.xcassets in Resources */,
-				BEE502F3225396B800D753FE /* icon1.png in Resources */,
 				1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,6 +610,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77X54GL6C9;
@@ -639,6 +636,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77X54GL6C9;

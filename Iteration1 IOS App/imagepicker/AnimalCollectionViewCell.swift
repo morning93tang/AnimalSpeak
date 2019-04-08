@@ -20,6 +20,7 @@ class AnimalCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.animalIconImageView.layoutIfNeeded()
+        self.animalIconImageView.backgroundColor = UIColor.black
         self.animalIconImageView.layer.borderWidth = 1
         self.animalIconImageView.layer.masksToBounds = false
         self.animalIconImageView.layer.borderColor = UIColor.black.cgColor
@@ -33,7 +34,7 @@ class AnimalCollectionViewCell: UICollectionViewCell {
         didSet{
             if self.isSelected
             {
-                self.animalIconImageView.layer.opacity = 0.5
+                self.animalIconImageView.layer.opacity = 0.4
             }
             else
             {

@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" modalPresentationStyle="overFullScreen" id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
@@ -21,22 +21,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DBk-ay-Fyz">
-                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="la" translatesAutoresizingMaskIntoConstraints="NO" id="uo9-wU-mbg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DBk-ay-Fyz" secondAttribute="trailing" id="AQd-6I-YHq"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="DBk-ay-Fyz" secondAttribute="bottom" id="LqW-au-RcU"/>
-                            <constraint firstItem="DBk-ay-Fyz" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="O1w-3v-j4y"/>
-                            <constraint firstItem="DBk-ay-Fyz" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="YVQ-yF-G1x"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="uo9-wU-mbg" secondAttribute="bottom" id="2KO-YJ-ene"/>
+                            <constraint firstItem="uo9-wU-mbg" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="HYZ-Rf-HZF"/>
+                            <constraint firstAttribute="trailing" secondItem="uo9-wU-mbg" secondAttribute="trailing" id="yXS-Gg-2Pp"/>
+                            <constraint firstItem="uo9-wU-mbg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ygD-ua-dbZ"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="la" width="16" height="16"/>
+    </resources>
 </document>

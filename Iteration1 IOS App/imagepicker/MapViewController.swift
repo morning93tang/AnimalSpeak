@@ -143,13 +143,11 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         cell.animalIconImageView.image = nil
         let name = cell.number.text!
         if self.urlList.count != 0 && self.animalIcons.count != 0{
-            print(self.urlList[name])
             let urlRequest = URLRequest(url: URL(string: self.urlList[name]!)!)
             DispatchQueue.global().async {
                 
                 if let cachedAvatarImage = self.imageCache.image(for: urlRequest, withIdentifier: name)
                 {
-                    print(cachedAvatarImage)
                     DispatchQueue.main.async {
                         cell.animalIconImageView.contentMode = .scaleAspectFill
                         cell.animalIconImageView.image = cachedAvatarImage
@@ -199,6 +197,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                 let lat = String(self.currentLocation!.coordinate.latitude)
                 let lng = String(self.currentLocation!.coordinate.longitude)
                 var listToAdd = [GMUWeightedLatLng]()
+                
                 if showSearchResult{
                     self.sendRequestToServer(methodId: 2,request: ["animals":[self.animalIcons[indexPath.row]]] ){ (result) in
                         if result != nil{
@@ -211,7 +210,6 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                                             let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
                                             listToAdd.append(coords)
                                         }
-                                        print(listToAdd)
                                         DispatchQueue.main.async {
                                             self.heatmapLayer.weightedData = listToAdd
                                             //self.addHeatmap()
@@ -237,7 +235,6 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                                             let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
                                             listToAdd.append(coords)
                                         }
-                                        print(listToAdd)
                                         DispatchQueue.main.async {
                                             self.heatmapLayer.weightedData = listToAdd
                                             //self.addHeatmap()
@@ -274,7 +271,6 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         if identifier == "detailAnimaSegue" {
             let destVC : SecondaryAnimalDetailViewController = segue.destination as! SecondaryAnimalDetailViewController
             if self.currentSelectedIcon != nil{
-                print(self.animalIcons[self.currentSelectedIcon!.row])
                 destVC.animalName = self.animalIcons[self.currentSelectedIcon!.row]
             }
         }
@@ -341,9 +337,6 @@ extension MapViewController: CLLocationManagerDelegate {
                 }
                 self.currentLocation = location
             }
-            
-            print("Location: \(location)")
-            
             let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                                   longitude: location.coordinate.longitude,
                                                   zoom: zoomLevel)
@@ -401,11 +394,8 @@ extension MapViewController: CLLocationManagerDelegate {
                 if let alamoError = response.result.error {
                     let alamoCode = alamoError._code
                     let statusCode = (response.response?.statusCode)!
-                    print(alamoCode)
-                    print(statusCode)
                 } else { //no errors
                     let statusCode = (response.response?.statusCode)! //example : 200print(value)
-                    print(statusCode)
                     if let value = response.result.value {
                         let responseDict = value as? NSDictionary
                         //                                if let resultValue = responseDict!["response"] as? String
@@ -428,7 +418,6 @@ extension MapViewController: CLLocationManagerDelegate {
             queryList.append(item.name)
             self.animalIcons = queryList
         }
-        print(queryList)
         var listToAdd = [GMUWeightedLatLng]()
         if self.currentLocation != nil{
             self.activityIndicatior.isHidden = false
