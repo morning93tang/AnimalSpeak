@@ -42,10 +42,12 @@ public class AnimalsSpeakLib {
 		return hexString.toString();
 	}
 
+	//construct file name	
 	public String formFileName(String animal) {
-		
 		return "datasets/"+animal+".csv";
 	}
+	
+	//generate a template cookie
 	public String cookieGenerate(String usr,String pass)
 	{
 		return usr + pass + System.currentTimeMillis();
@@ -68,6 +70,7 @@ public class AnimalsSpeakLib {
 //		return temp3;
 //	}
 	
+	//read csv file via IO 
 	public List<Double[]> getLocationArray(String file) {
 		File checkName=new File(file);
 		if(!checkName.exists()) {
@@ -121,6 +124,7 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	//get animal location array depends on a point
 	public List<Double[]> getLocationArrayByDis(String file,double x,double y) {
 		File checkName=new File(file);
 		if(!checkName.exists()) {
@@ -177,6 +181,7 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	//the mathematical calculation about the overlap points
 	public List<Double[]> calculateOverLapPoints(List<Double[]> sp1,List<Double[]> sp2){
 		System.out.println("-----------------------------");
 		System.out.println(sp1.size());
@@ -308,6 +313,7 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	//return the distance of two points
 	private double calculateTwoPointsDis(double lat,double lon,double itlat,double itlon) {
 		double x = Math.pow((lat - itlat),2);
 		double y = Math.pow((lon - itlon),2);
@@ -316,6 +322,7 @@ public class AnimalsSpeakLib {
 		return dis;
 	}
 	
+	//get all filesName via path
 	private static List<String> getFiles(String path) {
 		List<String> fileNameList = new ArrayList<String>();
 		File file = new File(path);
@@ -335,6 +342,7 @@ public class AnimalsSpeakLib {
 		return fileNameList;
 	}
 	
+	//get animal location by name
 	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p){
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
@@ -344,6 +352,8 @@ public class AnimalsSpeakLib {
 		return rs;
 	}
 	
+	
+	//return animal voice url if it exists
 	public String getAnimalVoiceUrlByName(String ani){
 		Map<String,String> rs = new HashMap<String,String>();
 		String name = "AnimalSound/"+ani;
