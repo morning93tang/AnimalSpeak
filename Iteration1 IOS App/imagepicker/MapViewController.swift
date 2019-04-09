@@ -412,6 +412,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func gerResultData(selctedanimalList: [animal]) {
+        self.currentSelectedIcon = nil
         self.showSearchResult = true
         var queryList = [String]()
         for item in selctedanimalList{
