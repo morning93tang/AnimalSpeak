@@ -46,6 +46,12 @@ public class FunctionController {
 	@Autowired  
     ResourceLoader loader;  
 	
+	/*Main API entrance
+	 * 
+	 * accept request and process it then send response back
+	 * 
+	 * 
+	 * */
 	@RequestMapping(value="/restapi/ios",method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin//(origins = "http://localhost:8080")
@@ -115,6 +121,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//calculate the distance between user location and around animals and filter them
 	public Map<String,String> getAroundAnimalsByLatLon(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
 		double lat = Double.parseDouble(data.get("lat"));
@@ -124,6 +131,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//get certain animal location within a distance
 	public Map<String,String> getAroundAnimalLocationByName(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
 		String animal = "datasets/"+data.get("animal")+".csv";
@@ -137,6 +145,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	////calculate the overlap area of two animals
 	public Map<String,String> filterSpeciLocation(Map<String,List<String>> data) throws Exception{
 		Map<String,String> rs = new HashMap<String,String>();
 		List<Double[]> tempRs = new ArrayList<Double[]>();
@@ -195,7 +204,8 @@ public class FunctionController {
 		return rs;
 	}
 	
-	public Map<String,String> getAllAnimalsName(){
+	//return all animals name in the database
+	public Map<String,String> getAllAnimalsName(){	
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
@@ -204,6 +214,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//return all animals name for a certain class
 	public Map<String,String> getAnimalsNameByClass(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
@@ -213,6 +224,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//search Animals Name via a query
 	public Map<String,String> searchAnimalListByString(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
 		String str = "%"+data.get("query")+"%";
@@ -232,6 +244,7 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//GET METHOD, get animal voice file from the server.
 	// download file form server  
     @GetMapping("/getVoice")  
     public ResponseEntity<byte[]> getFile(@RequestParam("id") String id) throws IOException {  
