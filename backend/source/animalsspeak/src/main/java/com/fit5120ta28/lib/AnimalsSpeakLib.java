@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 @Service
 public class AnimalsSpeakLib {
 	
+	private static double AROUNDDIS = 0.2d;
+	private static double OVERLAPTHRESHOLD = 0.3d;
 	
 	//String to hash md5
 	public String crypt(String str) {
@@ -54,22 +56,6 @@ public class AnimalsSpeakLib {
 	}
 	
 	
-//	public List<Double[]> filterSpeciLocation() throws Exception {
-//		List<Double[]> temp1 = new ArrayList<Double[]>();
-//		temp1 = getLocationArray("datasets/Koala.csv");
-//		//System.out.println(temp1.get(50)[0]);
-//		//System.out.println(temp1.get(50)[1]);
-//		System.out.println(temp1.size());
-//		List<Double[]> temp2 = new ArrayList<Double[]>();
-//		temp2 = getLocationArray("datasets/Red Kangroo.csv");
-//		System.out.println(temp2.size());  
-//		List<Double[]> temp3 = new ArrayList<Double[]>();
-//		temp3 = calculateOverLapPoints(temp1,temp2);
-//		System.out.println(temp3.size());
-//	
-//		return temp3;
-//	}
-	
 	//read csv file via IO 
 	public List<Double[]> getLocationArray(String file) {
 		File checkName=new File(file);
@@ -86,22 +72,30 @@ public class AnimalsSpeakLib {
 		
 		int count = 0;
 		try {
+			//define the input stream
 			InputStreamReader isr = new InputStreamReader(new FileInputStream(file));
+			//define the reader
 			BufferedReader reader = new BufferedReader(isr);
 		    String line = null;
 		  
+		    //iterate the line in the csv file
 		    while((line=reader.readLine())!=null){
+		    	
+		       //skip first two rows
 		       if(count<=2) {
 		    	   count++;
 		    	   continue;
 		       }
+		       //split data via ,
 		       String item[] = line.split(",");
-		       //System.out.println(item.length);
+		    
+		       //check if it is the valid row
 		       if(item.length!=2) {
 		    	   continue;
 		       }
 		       pointArr = new Double[2];
-
+		       
+		       //reach the end, out of loop
 			   if(item[0].equalsIgnoreCase("end")) {
 				   break;
 		       }
@@ -113,7 +107,7 @@ public class AnimalsSpeakLib {
 		      
 		   }
 		   
-		   //System.out.println(count);
+		   //close reader
 		   reader.close();
 		 
 		  } catch (Exception e) {
@@ -127,11 +121,12 @@ public class AnimalsSpeakLib {
 	//get animal location array depends on a point
 	public List<Double[]> getLocationArrayByDis(String file,double x,double y) {
 		File checkName=new File(file);
-		if(!checkName.exists()) {
-			//missList.add(file);
+		if(!checkName.exists()) {//check if the file exists
+			//not exist
 			System.out.println("cannot find file:"+file);
 			return null;
 		}else {
+			//exist
 			System.out.println(file+" loaded!");
 		}
 		
@@ -140,6 +135,7 @@ public class AnimalsSpeakLib {
 		
 		int count = 0;
 		try {
+			//read files
 			InputStreamReader isr = new InputStreamReader(new FileInputStream(file));
 			BufferedReader reader = new BufferedReader(isr);
 		    String line = null;
@@ -162,7 +158,8 @@ public class AnimalsSpeakLib {
 			   pointArr[0] = Double.parseDouble(item[0]);
 		       pointArr[1] = Double.parseDouble(item[1]);
 		       //System.out.println(item[0]);
-		       if(calculateTwoPointsDis(x,y,pointArr[0],pointArr[1])<1d) {
+		       //calculate the distance and check if in the certain range.
+		       if(calculateTwoPointsDis(x,y,pointArr[0],pointArr[1])<AROUNDDIS) {
 		    	   rs.add(pointArr);
 			       count++;
 		       }
@@ -183,28 +180,22 @@ public class AnimalsSpeakLib {
 	
 	//the mathematical calculation about the overlap points
 	public List<Double[]> calculateOverLapPoints(List<Double[]> sp1,List<Double[]> sp2){
-		System.out.println("-----------------------------");
-		System.out.println(sp1.size());
-		System.out.println(sp2.size());
+		
 		List<Double[]> rs = new ArrayList<Double[]>();
 		Double[] pointArr;
 		List<Double> checkPool = new ArrayList<Double>();
-		//System.out.println(sp1.size());
-		//System.out.println(sp2.size());
+	
 		for(int i = 0; i < sp1.size(); i++) {
-			//double avg = 0d;
-			//System.out.println("outer:"+i);
+			
 			for(int j = 0; j < sp2.size(); j++) {
-				//System.out.println("inner:"+j);
+				
+				//calculate distance between two points
 				double x = Math.pow((sp1.get(i)[0] - sp2.get(j)[0]),2);
 				double y = Math.pow((sp1.get(i)[1] - sp2.get(j)[1]),2);
 				double dis = Math.sqrt(x+y);
-				//System.out.println(x);
-				//System.out.println(y);
-				//System.out.println(dis);
-				//avg = avg+dis;
-				if(dis<0.5) {
-					
+			
+				if(dis<OVERLAPTHRESHOLD) {
+					//filter the duplicated location points
 					if(validCheckPool(sp1.get(i)[0],sp1.get(i)[1],checkPool)) {
 						continue;
 					}else {
@@ -228,28 +219,32 @@ public class AnimalsSpeakLib {
 					
 				}
 			}
-			//avg = avg/sp2.size();
-			//System.out.println(avg);
+			
 		}
 		return rs;
 		
 		
 	}
 	
+	//iterate the pool to check if there is a duplicated location point.
 	public boolean validCheckPool(double x,double y,List<Double> li) {
 		for(int i = 0; i< li.size();i=i+2) {
 			if(li.get(i)==x && li.get(i+1)==y) {
+				//find duplicated
 				return true;
 			}
 		}
 		return false;
 	}
 	
+	
+	
 	public Map<String,String> calculateAroundAnimals(double lat,double lon){
 		Map<String,String> rs = new HashMap<String,String>();
 		String path = "datasets/";
 		List<String> fileNameList = getFiles(path);
 		List<String> aroundList = new ArrayList<String>();
+		//iterate all animals dataset to calcuate the distance between them and the user location
 		for(int i = 0 ; i < fileNameList.size();i++) {
 			File checkName=new File(path+fileNameList.get(i));
 			int count = 0;
@@ -286,8 +281,9 @@ public class AnimalsSpeakLib {
 			   //System.out.println(count);
 			   reader.close();
 			   for(int k=0;k<pointList.size();k++) {
-				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<1d) {
-					   //System.out.println("pointList:"+k+"||"+pointList.get(k)[0]+","+pointList.get(k)[1]);
+				   //compare the distance between the animal location and user location
+				   if(calculateTwoPointsDis(lat,lon,pointList.get(k)[0],pointList.get(k)[1])<AROUNDDIS) {
+					   //if within the location, add the animal name string into aroundlist.
 					   aroundList.add(fileNameList.get(i).split("\\.")[0]);
 					   break;
 				   }
@@ -307,9 +303,7 @@ public class AnimalsSpeakLib {
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(aroundList); 
 		rs.put("response", jsonArray);
-		
-		
-		
+
 		return rs;
 	}
 	
@@ -326,13 +320,11 @@ public class AnimalsSpeakLib {
 	private static List<String> getFiles(String path) {
 		List<String> fileNameList = new ArrayList<String>();
 		File file = new File(path);
+		//list files in a dictionary
 		File[] array = file.listFiles();
-		
 		for(int i = 0 ; i< array.length;i++) {
 			if(array[i].isFile()) {
-				//System.out.println("^^^^^"+array[i].getName());
-				//System.out.println("#####"+array[i]);
-				//System.out.println("*****"+array[i].getPath());
+				//add filenames to a list
 				fileNameList.add(array[i].getName());
 			}else if(array[i].isDirectory()) {
 				getFiles(array[i].getName());
@@ -360,9 +352,11 @@ public class AnimalsSpeakLib {
 		
 		File checkName_mp3=new File(name+".mp3");
 		File checkName_wav=new File(name+".wav");
+		//check if the mp3 file exist
 		if(checkName_mp3.exists()) {
 			return name+".mp3";
 		}else {
+			//check if the wav file exist
 			if(checkName_wav.exists()) {
 				return name+".wav";
 			}else {
