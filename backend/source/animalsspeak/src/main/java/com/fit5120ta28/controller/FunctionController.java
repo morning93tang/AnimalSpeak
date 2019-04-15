@@ -86,7 +86,9 @@ public class FunctionController {
 			case 7:
 				temp = mapper.readValue(other, typeRef);
 				return getAroundAnimalLocationByName(temp);
-		
+			case 8:
+				temp = mapper.readValue(other, typeRef);
+				return getAnimalFactByName(temp);
 			default:
 				return test2();
 				
@@ -258,7 +260,19 @@ public class FunctionController {
 		return rs;
 	}
 	
+	public Map<String,String> getAnimalFactByName(Map<String,String> data){
+		
+		Map<String,String> rs = new HashMap<String,String>();
+		String name = data.get("animal");
+		System.out.println(name);
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(FunctionMapper.getFactsByAnimalName(name));
+		rs.put("response", jsonArray);
+		System.out.println(rs);
+		return rs;
+		
 	
+	}
 	
 	
 	//GET METHOD, get animal voice file from the server.

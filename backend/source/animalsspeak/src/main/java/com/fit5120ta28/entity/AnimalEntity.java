@@ -9,6 +9,7 @@ public class AnimalEntity implements Serializable{
 	private String name;
 	private Long classId;
 	private String className;
+	private String facts;
 	
 	public AnimalEntity(){
 		super();
@@ -52,6 +53,16 @@ public class AnimalEntity implements Serializable{
 
 	public void setClassName(String className) {
 		this.className = className;
+	}
+
+
+	public String getFacts() {
+		return facts;
+	}
+
+
+	public void setFacts(String facts) {
+		this.facts = facts;
 	}
 	
 	
