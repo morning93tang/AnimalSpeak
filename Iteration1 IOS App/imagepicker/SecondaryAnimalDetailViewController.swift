@@ -13,6 +13,7 @@ import GooglePlaces
 import GoogleMaps
 import SwiftyJSON
 
+/// Modify from the detail view cotroller
 class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -81,50 +82,53 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         let translator = ROGoogleTranslate()
         var params = ROGoogleTranslateParams()
         params.text = self.animalName
-            translator.getDetail(params: params){ (detailResult) in
-                if detailResult.animalType.count > 1 {
-                    DispatchQueue.main.async {
-                        self.descriptionTextBox.text = detailResult.distribution
-                        Alamofire.request(detailResult.imageURL).responseImage { response in
-                            debugPrint(response)
-                            debugPrint(response.result)
-                            if let image = response.result.value {
-                                self.animalImgaeView.contentMode = .scaleAspectFill
-                                self.animalImgaeView.image = image
-                                self.activityIndicator.stopAnimating()
-                                self.activityIndicator.isHidden = true
-                                self.gerResultData()
-                                super.viewDidLoad()
-                            }
+        translator.getDetail(params: params){ (detailResult) in
+            if detailResult.animalType.count > 1 {
+                DispatchQueue.main.async {
+                    self.descriptionTextBox.text = detailResult.distribution
+                    Alamofire.request(detailResult.imageURL).responseImage { response in
+                        debugPrint(response)
+                        debugPrint(response.result)
+                        if let image = response.result.value {
+                            self.animalImgaeView.contentMode = .scaleAspectFill
+                            self.animalImgaeView.image = image
+                            self.activityIndicator.stopAnimating()
+                            self.activityIndicator.isHidden = true
+                            self.gerResultData()
+                            super.viewDidLoad()
                         }
                     }
                 }
-                else{
-                    translator.getimage(params: params){ (detailResult) in
-                        if detailResult.count > 1 {
-                            DispatchQueue.main.async {
-                                Alamofire.request(detailResult).responseImage { response in
-                                    debugPrint(response)
-                                    debugPrint(response.result)
-                                    if let image = response.result.value {
-                                        self.animalImgaeView.contentMode = .scaleAspectFill
-                                        self.animalImgaeView.image = image
-                                        self.activityIndicator.stopAnimating()
-                                        self.activityIndicator.isHidden = true
-                                        self.gerResultData()
-                                        self.descriptionTextBox.text = "Sorry,we currently do not have any detail imfromation about this animal."
-                                        super.viewDidLoad()
-                                    }
+            }
+            else{
+                translator.getimage(params: params){ (detailResult) in
+                    if detailResult.count > 1 {
+                        DispatchQueue.main.async {
+                            Alamofire.request(detailResult).responseImage { response in
+                                debugPrint(response)
+                                debugPrint(response.result)
+                                if let image = response.result.value {
+                                    self.animalImgaeView.contentMode = .scaleAspectFill
+                                    self.animalImgaeView.image = image
+                                    self.activityIndicator.stopAnimating()
+                                    self.activityIndicator.isHidden = true
+                                    self.gerResultData()
+                                    self.descriptionTextBox.text = "Sorry,we currently do not have any detail imfromation about this animal."
+                                    super.viewDidLoad()
                                 }
                             }
                         }
                     }
                 }
+            }
         }
         
-                
+        
     }
     
+    
+    
+    /// Get animal deteail form server
     func gerResultData() {
         self.loadSound(animalName: self.animalName)
         heatmapLayer.map = nil
@@ -159,11 +163,17 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         
     }
     
+    /// Initialize the AVplayer with the audio file
+    ///
+    /// - Parameter url: Full path to the file
     func playUsingAVPlayer(url: URL) {
         player = AVPlayer(url: url)
         player?.play()
     }
     
+    /// Initialize the AVplayer with the audio file
+    ///
+    /// - Parameter url: Full path to the file
     func playRemoteFile(url:String) {
         guard let url = URL(string: url) else {
             print("Invalid URL")
@@ -172,6 +182,9 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         playUsingAVPlayer(url:url)
     }
     
+    /// Load the audio file from server user file name
+    ///
+    /// - Parameter animalName: animalName
     func loadSound(animalName:String){
         self.playIcon.isHidden = true
         self.playButton.isHidden = true
@@ -215,6 +228,12 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         }
     }
     
+    /// Send request to the server
+    ///
+    /// - Parameters:
+    ///   - methodId: methodId
+    ///   - request: query
+    ///   - callback: callback description
     func sendRequestToServer(methodId:Int,request:NSDictionary, callback:@escaping (_ :NSDictionary?) -> ()){
         let url: String = "http://35.201.22.21:8081//restapi/ios"
         var jsonString = ""

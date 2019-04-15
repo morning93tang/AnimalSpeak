@@ -8,11 +8,17 @@
 
 import UIKit
 
+/// NSObject reperesent animals in searching list
 class animal: NSObject {
     let name: String
-    //let image: UIImage?
     let element: Element
     
+    /// Class of an animal
+    ///
+    /// - Mammal: Only return mammal
+    /// - Birds: Only return birds
+    /// - Reptile: Only return reptile
+    /// - All: present all animals
     enum Element: String {
         case Mammal
         case Birds
@@ -20,9 +26,13 @@ class animal: NSObject {
         case All
     }
     
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - name: (Required fild) Animal's name
+    ///   - element: (required fild) Animal's class
     init(name: String, element: Element) {
         self.name = name
-        //self.image = UIImage(named: name)
         self.element = element
         super.init()
     }

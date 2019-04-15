@@ -1,6 +1,8 @@
-//
+//  
 //  SearchTableViewController.swift
 //  imagepicker
+//
+//  This class is for testing(It2).
 //
 //  Created by 唐茂宁 on 5/4/19.
 //  Copyright © 2019 Sara Robinson. All rights reserved.

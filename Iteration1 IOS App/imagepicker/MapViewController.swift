@@ -15,6 +15,7 @@ import AlamofireImage
 
 //
 
+/// Displaying heat map
 class MapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,GMSMapViewDelegate,searchListDelegate{
     
     var showSearchResult = false
@@ -54,6 +55,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     @IBOutlet weak var activityIndicatior: UIActivityIndicatorView!
     
+    /// Initial the view
     override func viewDidLoad() {
 
         self.detailButton.isEnabled = false
@@ -95,6 +97,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         //        mapView.isHidden = true
     }
     
+    /// Add a heat map as overlayer to the map view
     func addHeatmap()  {
         var list = [GMUWeightedLatLng]()
         do {
@@ -123,16 +126,19 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     
+    /// Define the number of section in collection view
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    /// Define the number of cell will be shown in the colletion view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return animalIcons.count
     }
     
     
     
+    /// Asks your data source object for the cell that corresponds to the specified item in the collection view.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:AnimalCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "animalIconCell", for: indexPath) as! AnimalCollectionViewCell
         cell.number.text = self.animalIcons[indexPath.row]
@@ -170,6 +176,8 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         return cell
     }
     
+    /// Asks the delegate for the size of the specified item’s cell.
+    ///
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let collection = self.animalIconCollectionView{
             let hight = collection.bounds.height
@@ -183,6 +191,11 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     
+    /// Perform change on the map when cell in collection view has been selection
+    ///
+    /// - Parameters:
+    ///   - collectionView: Current instance of collection view
+    ///   - indexPath: Index of selected cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
@@ -253,6 +266,9 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
     }
     
+    /// Check user location permission after view loaded
+    ///
+    /// - Parameter animated: Update view with animation
     override func viewWillAppear(_ animated: Bool) {
         if CLLocationManager.authorizationStatus() == .denied{
             mapView.settings.myLocationButton = false
@@ -263,6 +279,11 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         
     }
     
+    /// Notifies the view controller that a segue is about to be performed.
+    ///
+    /// - Parameters:
+    ///   - segue: segue
+    ///   - sender: sender description
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             assertionFailure("Segue had no identifier")
@@ -296,6 +317,11 @@ extension MapViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     
+    /// Tells the delegate that new location data is available.
+    ///
+    /// - Parameters:
+    ///   - manager: manager instance
+    ///   - locations: locations description
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location:CLLocation = locations.last{
             if self.currentLocation == nil || location.coordinate.latitude != self.currentLocation!.coordinate.latitude{
@@ -392,10 +418,8 @@ extension MapViewController: CLLocationManagerDelegate {
             switch response.result {
             case .success:
                 if let alamoError = response.result.error {
-                    let alamoCode = alamoError._code
-                    let statusCode = (response.response?.statusCode)!
+                    
                 } else { //no errors
-                    let statusCode = (response.response?.statusCode)! //example : 200print(value)
                     if let value = response.result.value {
                         let responseDict = value as? NSDictionary
                         //                                if let resultValue = responseDict!["response"] as? String
@@ -411,6 +435,9 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
+    /// Get detail result of an animal and displaying them on the screen
+    ///
+    /// - Parameter selctedanimalList: List of selected animals.
     func gerResultData(selctedanimalList: [animal]) {
         self.currentSelectedIcon = nil
         self.showSearchResult = true
@@ -419,12 +446,9 @@ extension MapViewController: CLLocationManagerDelegate {
             queryList.append(item.name)
             self.animalIcons = queryList
         }
-        var listToAdd = [GMUWeightedLatLng]()
         if self.currentLocation != nil{
             self.activityIndicatior.isHidden = false
             let userLocation = self.currentLocation!.coordinate
-            let lat = "\(userLocation.latitude)"
-            let lng = "\(userLocation.longitude)"
             var params = ROGoogleTranslateParams()
             let translator = ROGoogleTranslate()
             //self.animalIcons = iconlist
@@ -486,7 +510,7 @@ extension MapViewController: CLLocationManagerDelegate {
     
     
     
-    
+
     extension Double {
         
         /// Rounds the double to decimal places value
@@ -501,6 +525,7 @@ extension MapViewController: CLLocationManagerDelegate {
         
     }
     
+// MARK: - Add animation for displaying UIView
     extension UIView {
         func fadeIn(duration: TimeInterval = 1.0, delay: TimeInterval = 0.0, completion: @escaping ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
             UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {

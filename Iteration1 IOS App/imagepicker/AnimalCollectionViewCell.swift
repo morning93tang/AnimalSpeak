@@ -5,6 +5,7 @@
 //  Created by 唐茂宁 on 4/4/19.
 //  Copyright © 2019 Sara Robinson. All rights reserved.
 //
+//  Reuseable cllection view cell of animal icons on the top of the map.
 
 import UIKit
 import Alamofire
@@ -12,11 +13,12 @@ import AlamofireImage
 class AnimalCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var number: UILabel!
-
+    
     @IBOutlet weak var animalIconImageView: UIImageView!
     
     let imageCache = AutoPurgingImageCache()
     
+    /// Initialize the cell
     override func layoutSubviews() {
         super.layoutSubviews()
         self.animalIconImageView.layoutIfNeeded()
@@ -30,6 +32,7 @@ class AnimalCollectionViewCell: UICollectionViewCell {
         
     }
     
+    /// Inform the collection view the cell is selected or not.
     override var isSelected: Bool{
         didSet{
             if self.isSelected
@@ -38,7 +41,7 @@ class AnimalCollectionViewCell: UICollectionViewCell {
             }
             else
             {
-                 self.animalIconImageView.layer.opacity = 1
+                self.animalIconImageView.layer.opacity = 1
             }
         }
     }

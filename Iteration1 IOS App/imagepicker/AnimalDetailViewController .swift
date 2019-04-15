@@ -14,6 +14,7 @@ import GoogleMaps
 import SwiftyJSON
 
 
+/// Class for displaying animal's detail imfomation
 class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapViewDelegate {
     var audioPlayer:AVAudioPlayer!
     var derailResult = DetailResult()
@@ -42,11 +43,12 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     
     @IBOutlet weak var nameLabe: UILabel!
     var player: AVPlayer?
-
+    
     @IBAction func playSoundInstance(_ sender: Any) {
-            self.audioPlayer.play()
+        self.audioPlayer.play()
     }
     
+    /// Initializ the view
     override func viewDidLoad() {
         self.playButton.isHidden = true
         self.playIcon.isHidden = true
@@ -90,38 +92,39 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.phtotImageView.alpha = 1
         self.activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         self.activityIndicator.color = UIColor.black
-//        if UIApplication.shared.statusBarOrientation.isLandscape {
-//            let height = UIScreen.main.bounds.size.height
-//            self.scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
-//        }
-//        let originalString = "http://35.201.22.21:8081/getVoice id=Red Fox"
-//        let escapedString =  Foundation.URL(string: originalString)
-//        Alamofire.request("http://35.201.22.21:8081/getVoice?id=Red Fox",method:.get, encoding: URLEncoding.default).response { response in
-//            print(response)
-//        }
+        //        if UIApplication.shared.statusBarOrientation.isLandscape {
+        //            let height = UIScreen.main.bounds.size.height
+        //            self.scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
+        //        }
+        //        let originalString = "http://35.201.22.21:8081/getVoice id=Red Fox"
+        //        let escapedString =  Foundation.URL(string: originalString)
+        //        Alamofire.request("http://35.201.22.21:8081/getVoice?id=Red Fox",method:.get, encoding: URLEncoding.default).response { response in
+        //            print(response)
+        //        }
         
-//        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//
-//        let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
-//
-//        if FileManager().fileExists(atPath: destinationUrl.path)
-//        {
-//            completion(destinationUrl.path, nil)
-//        }
+        //        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        //
+        //        let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
+        //
+        //        if FileManager().fileExists(atPath: destinationUrl.path)
+        //        {
+        //            completion(destinationUrl.path, nil)
+        //        }
         
-//        ROGoogleTranslate.loadFileAsync(url: escapedString!){
-//            (completion:String?,error:Error?)  in
-//                print(completion)
-//                self.preparePlayer(urlString:completion!,filrExtension:"wav")
-//                let url = URL(fileURLWithPath: completion!)
-//                self.playUsingAVPlayer(url: url)
-
-//
-//        }
+        //        ROGoogleTranslate.loadFileAsync(url: escapedString!){
+        //            (completion:String?,error:Error?)  in
+        //                print(completion)
+        //                self.preparePlayer(urlString:completion!,filrExtension:"wav")
+        //                let url = URL(fileURLWithPath: completion!)
+        //                self.playUsingAVPlayer(url: url)
+        
+        //
+        //        }
         super.viewDidLoad()
     }
     
     
+    /// Adjust the view according to the screen size
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if size.width > 479 {
             self.scrollView.setContentOffset(CGPoint(x: 0, y: size.height), animated: true)
@@ -131,7 +134,8 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    /// Get detailResult form segue.
     func gerResultData(detailResut: DetailResult) {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
@@ -140,31 +144,31 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.derailResult = detailResut
         //DispatchQueue.main.async {
         //UIDevice.current.identifierForVendor?.uuidString
-            self.nameLabe.text = self.derailResult.displayTitle
-            self.descriptionTextView.text = self.derailResult.distribution
-            self.iconImageView.contentMode = .scaleAspectFill
-            self.iconImageView.image = self.derailResult.image!
-            Alamofire.request(self.derailResult.imageURL).responseImage { response in
-                debugPrint(response)
-                debugPrint(response.result)
-                if let image = response.result.value {
-                    self.phtotImageView.contentMode = .scaleAspectFill
-                    self.phtotImageView.image = image
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
-                    self.phtotImageView.alpha = 1
-                }
-//                let sender = ROGoogleTranslate()
-//                sender.sendRequestToServer(methodId: 8, request: ["animal":self.derailResult.displayTitle],callback: { result in
-//                    if let urlString = result!["response"] as? String {
-//                        let pathExtention = String(urlString.suffix(3))
-//                        print(pathExtention)
-//                        self.playRemoteFile(url:urlString)
-//                    }
-//
-//                })
-//
+        self.nameLabe.text = self.derailResult.displayTitle
+        self.descriptionTextView.text = self.derailResult.distribution
+        self.iconImageView.contentMode = .scaleAspectFill
+        self.iconImageView.image = self.derailResult.image!
+        Alamofire.request(self.derailResult.imageURL).responseImage { response in
+            debugPrint(response)
+            debugPrint(response.result)
+            if let image = response.result.value {
+                self.phtotImageView.contentMode = .scaleAspectFill
+                self.phtotImageView.image = image
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                self.phtotImageView.alpha = 1
             }
+            //                let sender = ROGoogleTranslate()
+            //                sender.sendRequestToServer(methodId: 8, request: ["animal":self.derailResult.displayTitle],callback: { result in
+            //                    if let urlString = result!["response"] as? String {
+            //                        let pathExtention = String(urlString.suffix(3))
+            //                        print(pathExtention)
+            //                        self.playRemoteFile(url:urlString)
+            //                    }
+            //
+            //                })
+            //
+        }
         self.loadSound(animalName: derailResult.displayTitle)
         heatmapLayer.map = nil
         let name = self.derailResult.displayTitle
@@ -193,9 +197,10 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
             }
             
         }
-
+        
     }
     
+    /// Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ImageRecSegue"
         {
@@ -205,24 +210,27 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         }
     }
     
-//    func play(url:NSURL) {
-//        print("playing \(url)")
-//
-//        do {
-//            self.player = try AVAudioPlayer(contentsOf: url as URL)
-//            player.prepareToPlay()
-//            player.volume = 1.0
-//            player.play()
-//        } catch let error as NSError {
-//            //self.player = nil
-//            print(error.localizedDescription)
-//        } catch {
-//            print("AVAudioPlayer init failed")
-//        }
-//
-//    }
+    //    func play(url:NSURL) {
+    //        print("playing \(url)")
+    //
+    //        do {
+    //            self.player = try AVAudioPlayer(contentsOf: url as URL)
+    //            player.prepareToPlay()
+    //            player.volume = 1.0
+    //            player.play()
+    //        } catch let error as NSError {
+    //            //self.player = nil
+    //            print(error.localizedDescription)
+    //        } catch {
+    //            print("AVAudioPlayer init failed")
+    //        }
+    //
+    //    }
     
     
+    /// Play animal sounde
+    ///
+    /// - Parameter url: Full path to the file
     func playUsingAVPlayer(url: URL) {
         player = AVPlayer(url: url)
         player?.play()
@@ -236,6 +244,9 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         playUsingAVPlayer(url:url)
     }
     
+    /// Load file from server
+    ///
+    /// - Parameter animalName: Name of the animal
     func loadSound(animalName:String){
         self.playIcon.isHidden = true
         self.playButton.isHidden = true
@@ -258,10 +269,10 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
             if let localURL = response.destinationURL {
                 
                 print(localURL)
-                    do {
+                do {
                     print(localURL.absoluteURL)
                     self.audioPlayer = try AVAudioPlayer(contentsOf:localURL.absoluteURL )//(URL:NSURL(string:urlString))
-//                    guard let player = self.audioPlayer else { return }
+                    //                    guard let player = self.audioPlayer else { return }
                     self.audioPlayer.prepareToPlay()
                     self.playButton.isHidden = false
                     self.playIcon.isHidden = false
@@ -279,7 +290,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         }
     }
     
-    
+    //    Handle Http request to the Server
     func sendRequestToServer(methodId:Int,request:NSDictionary, callback:@escaping (_ :NSDictionary?) -> ()){
         let url: String = "http://35.201.22.21:8081/restapi/ios"
         var jsonString = ""
@@ -323,84 +334,84 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     }
     
     
-
     
-//    func preparePlayer(urlString:String,filrExtension:String){
-//        
-//        do {
-////            audioPlayer = try AVAudioPlayer(contentsOf: )//(URL:NSURL(string:urlString))
-//            guard let player = audioPlayer else { return }
-//            player.prepareToPlay()
-//            player.play()
-//            
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//
-//    }
     
-//    func downloadFile(URLstring:String) {
-//
-//        if let audioUrl = URL(string: URLstring) {
-//
-//            // then lets create your document folder url
-//            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//
-//            // lets create your destination file url
-//            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-//            print(destinationUrl)
-//
-//            // to check if it exists before downloading it
-//            if FileManager.default.fileExists(atPath: destinationUrl.path) {
-//                print("The file already exists at path")
-//
-//                // if the file doesn't exist
-//            } else {
-//
-//                // you can use NSURLSession.sharedSession to download the data asynchronously
-//                URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
-//                    guard let location = location, error == nil else { return }
-//                    do {
-//                        // after downloading your file you need to move it to your destination url
-//                        try FileManager.default.moveItem(at: location, to: destinationUrl)
-//                        print("File moved to documents folder")
-//                    } catch let error as NSError {
-//                        print(error.localizedDescription)
-//                    }
-//                }).resume()
-//            }
-//        }
-//
-//    }
-//
-//    func playdownload(URLstring:String) {
-//
-//        if let audioUrl = URL(string: URLstring) {
-//
-//            // then lets create your document folder url
-//            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//
-//            // lets create your destination file url
-//            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-//
-//            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-//
-//            do {
-//                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-//                guard let player = audioPlayer else { return }
-//                player.prepareToPlay()
-//                player.play()
-//            } catch let error {
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-//    }
-//
+    //    func preparePlayer(urlString:String,filrExtension:String){
+    //
+    //        do {
+    ////            audioPlayer = try AVAudioPlayer(contentsOf: )//(URL:NSURL(string:urlString))
+    //            guard let player = audioPlayer else { return }
+    //            player.prepareToPlay()
+    //            player.play()
+    //
+    //        } catch let error {
+    //            print(error.localizedDescription)
+    //        }
+    //
+    //    }
+    
+    //    func downloadFile(URLstring:String) {
+    //
+    //        if let audioUrl = URL(string: URLstring) {
+    //
+    //            // then lets create your document folder url
+    //            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    //
+    //            // lets create your destination file url
+    //            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+    //            print(destinationUrl)
+    //
+    //            // to check if it exists before downloading it
+    //            if FileManager.default.fileExists(atPath: destinationUrl.path) {
+    //                print("The file already exists at path")
+    //
+    //                // if the file doesn't exist
+    //            } else {
+    //
+    //                // you can use NSURLSession.sharedSession to download the data asynchronously
+    //                URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+    //                    guard let location = location, error == nil else { return }
+    //                    do {
+    //                        // after downloading your file you need to move it to your destination url
+    //                        try FileManager.default.moveItem(at: location, to: destinationUrl)
+    //                        print("File moved to documents folder")
+    //                    } catch let error as NSError {
+    //                        print(error.localizedDescription)
+    //                    }
+    //                }).resume()
+    //            }
+    //        }
+    //
+    //    }
+    //
+    //    func playdownload(URLstring:String) {
+    //
+    //        if let audioUrl = URL(string: URLstring) {
+    //
+    //            // then lets create your document folder url
+    //            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    //
+    //            // lets create your destination file url
+    //            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+    //
+    //            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+    //
+    //            do {
+    //                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+    //                guard let player = audioPlayer else { return }
+    //                player.prepareToPlay()
+    //                player.play()
+    //            } catch let error {
+    //                print(error.localizedDescription)
+    //            }
+    //        }
+    //
+    //    }
+    //
     
 }
 
-
+// Core location manager for handeling user location.
 extension AnimalDetailViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
@@ -453,7 +464,7 @@ extension AnimalDetailViewController: CLLocationManagerDelegate {
     
     
 }
-    
-    
-    
-    
+
+
+
+

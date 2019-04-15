@@ -58,6 +58,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
+    /// Pick image in photo library
     func pickAnImage(){
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = false
@@ -65,12 +66,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    /// Show alarm
+    ///
+    /// - Parameters:
+    ///   - title: title description
+    ///   - message: message description
     func displayMessage(_ title: String,_ message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
+    /// Use carmara to take a picture
     func camara(){
         let alertController = UIAlertController(title: nil, message: "Upload a photo.", preferredStyle: .actionSheet)
         
@@ -119,6 +126,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    /// Initialize the view
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.delegate = self
@@ -140,11 +148,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    /// Sent to the view controller when the app receives a memory warning.
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    /// Tells the delegate that the user selected an item in the tab bar.
+    ///
+    /// - Parameters:
+    ///   - tabBarController: tabBarController description
+    ///   - viewController: viewController description
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == 1 {
@@ -152,6 +166,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    /// Metches strings user regular expression
+    ///
+    /// - Parameters:
+    ///   - regex: regular expression applied
+    ///   - text: text to matchtes
+    /// - Returns: metches result
     func matches(for regex: String, in text: String) -> [String] {
         
         do {

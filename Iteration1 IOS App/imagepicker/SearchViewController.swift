@@ -9,8 +9,11 @@
 import UIKit
 import SwiftyJSON
 
+/// Delegate for sent back a animal list for search resut.
 protocol searchListDelegate {
     func gerResultData(selctedanimalList: [animal]) }
+
+/// View controller for displaying search bar and search result list
 class SearchViewController: UIViewController {
     
 
@@ -29,6 +32,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    /// Initialize the view with default data by dispalying all animals.
     override func viewDidLoad() {
         var params = ROGoogleTranslateParams()
         let translator = ROGoogleTranslate()
@@ -73,6 +77,9 @@ class SearchViewController: UIViewController {
         
     }
     }
+    
+    
+    /// Updating the layout of current screen
     private func addConstraints(){
         
         NSLayoutConstraint(item: tableView,
@@ -107,6 +114,7 @@ class SearchViewController: UIViewController {
         
     }
     
+    /// Configure the search bar with the filer
     func configureSearchController() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -121,6 +129,9 @@ class SearchViewController: UIViewController {
         searchController.searchBar.delegate = self
     }
     
+    /// Filter the search result base on the user selection
+    ///
+    /// - Parameter searchBar: Current search bar instance
     func filterSearchController(_ searchBar: UISearchBar) {
         guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] else { return }
         let selectedElement = animal.Element(rawValue: scopeString) ?? .All
@@ -138,7 +149,12 @@ class SearchViewController: UIViewController {
     
 }
 
+
+// MARK: - <#UITableViewDelegate#>
+// Display the serach result in the table view.
 extension SearchViewController : UITableViewDelegate{
+    /// Allow user to select a table cell, and tick the cell after selection
+    ///
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
@@ -176,6 +192,7 @@ extension SearchViewController : UITableViewDelegate{
         }
     }
     
+    /// Define the height of sections(0)
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        if self.searchController.isActive {
 //
@@ -188,15 +205,24 @@ extension SearchViewController : UITableViewDelegate{
  }
 }
 
+// MARK: - UITableViewDataSource
+// Push data to table view.
 extension SearchViewController : UITableViewDataSource {
     
     
+    /// Define the number of sections in table view.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.isActive ? filteredAnimalList.count : animalList.count
         
     }
 
     
+    /// Initialize cells in table view
+    ///
+    /// - Parameters:
+    ///   - tableView: current instance of table view
+    ///   - indexPath: index of the cell
+    /// - Returns: table cell to be shown
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseCellIdentifier, for: indexPath)
         let ani = searchController.isActive ? filteredAnimalList[indexPath.row] : animalList[indexPath.row]
@@ -239,6 +265,8 @@ extension SearchViewController : UITableViewDataSource {
     
 }
 
+// MARK: - UISearchResultsUpdating
+// Updating the search result
 extension SearchViewController : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -247,6 +275,8 @@ extension SearchViewController : UISearchResultsUpdating {
     
 }
 
+// MARK: - UISearchBarDelegate
+// Initialize the search bar.
 extension SearchViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {

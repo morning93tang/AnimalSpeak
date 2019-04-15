@@ -9,12 +9,20 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+
+/// Utility class for sending request to google
 public struct ROGoogleTranslateParams {
     
     public init() {
         
     }
     
+    /// Defind the lauguage of response
+    ///
+    /// - Parameters:
+    ///   - source: source language
+    ///   - target: target language
+    ///   - text: query
     public init(source:String, target:String, text:String) {
         self.source = source
         self.target = target
@@ -26,6 +34,7 @@ public struct ROGoogleTranslateParams {
     public var text = "Hallo"
 }
 
+/// Data structure for storing the response
 public struct DetailResult {
     
     public init() {
@@ -130,6 +139,11 @@ open class ROGoogleTranslate {
         }
     }
     
+    /// Get image from sercer
+    ///
+    /// - Parameters:
+    ///   - params: Animal name
+    ///   - callback: Image
     open func getimage(params:ROGoogleTranslateParams, callback:@escaping (_ translatedText:String) -> ()) {
         
         guard apiKey != "" else {
@@ -182,6 +196,11 @@ open class ROGoogleTranslate {
     }
     
     
+    /// Get detail information of an animal
+    ///
+    /// - Parameters:
+    ///   - params: animal name
+    ///   - callback: detatil information in form of DerailResult structure
     open func getDetail(params:ROGoogleTranslateParams, callback:@escaping (_ detailResult:DetailResult) -> ()) {
         
         let query = params.text.components(separatedBy: " ")
@@ -233,6 +252,12 @@ open class ROGoogleTranslate {
         }
     }
     
+    /// Send request to database server
+    ///
+    /// - Parameters:
+    ///   - methodId: methodId(Int)
+    ///   - request: query(String)
+    ///   - callback: callback description(String)
     public func sendRequestToServer(methodId:Int,request:NSDictionary, callback:@escaping (_ :NSDictionary?) -> ()){
         let url: String = "http://35.201.22.21:8081/restapi/ios"
         var jsonString = ""
