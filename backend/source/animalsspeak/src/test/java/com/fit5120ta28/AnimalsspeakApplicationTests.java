@@ -51,17 +51,16 @@ public class AnimalsspeakApplicationTests {
 		Map<String,List<String>> rs2 = new HashMap<String,List<String>>();
 		List<String> rs3 = new ArrayList<String>();
 		rs3.add("red kangaroo");
-		rs3.add("koala");
-		rs3.add("dingo234");
-		//rs1.put("animal","australian Funnel-Web Spider");
-		rs.put("lat", "-36.952687");
-		rs.put("lon", "145.863221");
-		rs1.put("lat", "-36.952687");
-		rs1.put("lon", "145.863221");
-		rs1.put("animal", "Swamp Antechinus");
+		
+		rs2.put("animals",rs3);
+//		rs.put("lat", "-36.952687");
+//		rs.put("lon", "145.863221");
+//		rs1.put("lat", "-36.952687");
+//		rs1.put("lon", "145.863221");
+//		rs1.put("animal", "Swamp Antechinus");
 		//Yellow-footed Antechinus
-		rs= FunctionController.getAroundAnimalsByLatLon(rs);
-		rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		rs= FunctionController.filterSpeciLocation(rs2);
+		//rs= FunctionController.getAroundAnimalLocationByName(rs1);
 		
 		//rs= FunctionController.getAllAnimalsName();
 		

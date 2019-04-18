@@ -1,9 +1,9 @@
 package com.fit5120ta28.entity;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
 
 public class TestEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

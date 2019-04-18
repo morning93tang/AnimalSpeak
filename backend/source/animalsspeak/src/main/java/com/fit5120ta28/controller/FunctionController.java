@@ -3,24 +3,25 @@ package com.fit5120ta28.controller;
 import java.io.IOException;
 import java.util.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fit5120ta28.entity.*;
@@ -28,7 +29,10 @@ import com.fit5120ta28.mapper.*;
 import com.fit5120ta28.lib.*;
 import com.google.gson.Gson;
 
-
+/*
+ * This class receive the API request
+ * 
+ * */
 @Controller
 public class FunctionController {
 
@@ -38,19 +42,28 @@ public class FunctionController {
 	FunctionMapper FunctionMapper;
 	@Autowired
 	AnimalsSpeakLib AnimalsSpeakLib;
-
+	@Autowired  
+    ResourceLoader loader;  
 	
+	/*Main API entrance
+	 * 
+	 * accept request and process it then send response back
+	 * 
+	 * 
+	 * */
 	@RequestMapping(value="/restapi/ios",method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin//(origins = "http://localhost:8080")
     public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=false)String other) throws Exception {
 		System.out.println("requestString is:"+requestString);
+		//put the parameter input into the map
 		ObjectMapper mapper = new ObjectMapper(); 
 		TypeReference<HashMap<String,String>> typeRef = new TypeReference<HashMap<String,String>>() {};
 		TypeReference<HashMap<String,List<String>>> typeRefList = new TypeReference<HashMap<String,List<String>>>() {};
 		Map<String,String> temp = new HashMap<String,String>();
 		Map<String,List<String>> tempList = new HashMap<String,List<String>>();
 		
+		//distribute the function by the methodId
 		switch(functionid){
 			case 1:
 				temp = mapper.readValue(other, typeRef);
@@ -73,9 +86,7 @@ public class FunctionController {
 			case 7:
 				temp = mapper.readValue(other, typeRef);
 				return getAroundAnimalLocationByName(temp);
-			case 8:
-				temp = mapper.readValue(other, typeRef);
-				return getAnimalVoiceUrlByName(temp);
+		
 			default:
 				return test2();
 				
@@ -85,6 +96,7 @@ public class FunctionController {
 		
     }
 	
+	//test use function
 	public Map<String,String> test1(Map<String,String> data) {
 		Map<String,String> rs = new HashMap<String,String>();
 		TestEntity te = FunctionMapper.test1((long) 1);
@@ -100,7 +112,7 @@ public class FunctionController {
 		return rs;
 	}
 	
-	
+	//test use function
 	public Map<String,String> test2() {
 		Map<String,String> rs = new HashMap<String,String>();
 		
@@ -109,28 +121,41 @@ public class FunctionController {
 		return rs;
 	}
 	
+	//calculate the distance between user location and around animals and filter them
 	public Map<String,String> getAroundAnimalsByLatLon(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
+		
+		//define lat and long
 		double lat = Double.parseDouble(data.get("lat"));
 		double lon = Double.parseDouble(data.get("lon"));
+		
+		//invoke calculation function
 		rs = AnimalsSpeakLib.calculateAroundAnimals(lat,lon);
 		System.out.println(rs);
 		return rs;
 	}
 	
+	//get certain animal location within a distance
 	public Map<String,String> getAroundAnimalLocationByName(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
+		
+		//form the file path string
 		String animal = "datasets/"+data.get("animal")+".csv";
+		
+		//define lat and long
 		double lat = Double.parseDouble(data.get("lat"));
 		double lon = Double.parseDouble(data.get("lon"));
 		Double[] dob = new Double[2];
 		dob[0] = lat;
 		dob[1] = lon;
+		
+		//invoke function to get certain around animals
 		rs = AnimalsSpeakLib.getAroundAnimalLocationByName(animal,dob);
 		System.out.println(rs);
 		return rs;
 	}
 	
+	//calculate the overlap area of two animals
 	public Map<String,String> filterSpeciLocation(Map<String,List<String>> data) throws Exception{
 		Map<String,String> rs = new HashMap<String,String>();
 		List<Double[]> tempRs = new ArrayList<Double[]>();
@@ -138,34 +163,43 @@ public class FunctionController {
 		List<String> missList = new ArrayList<String>();
 		//List<String> missListRs = new ArrayList<String>();
 		System.out.println(data.get("animals"));
+		//get animals list from the input
 		List<String> animals = new ArrayList<String>(data.get("animals"));
 		
+		//iterate animals list
 		for(int i=0; i< animals.size();i++) {
+			//if it is the first file, do not merge, just use it.
 			if(i==0) {
+				//read csv file from IO stream
 				tempRs = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(0)));
-				if(tempRs!=null) {
+				//check if the response is null
+				if(tempRs!=null) {//not null
 					result = tempRs;
-				}else {
+				}else {//null
 					System.out.println("pass null file");
 					missList.add(animals.get(i));
 					continue;
 				}
 				
 				System.out.println("init done");
-			}else {
+			}else {//merge the following animal habitats into the previous locations
+
 				List<Double[]> follow = new ArrayList<Double[]>();
+				//read csv file from IO stream
 				tempRs = AnimalsSpeakLib.getLocationArray(AnimalsSpeakLib.formFileName(animals.get(i)));
 				if(tempRs!=null) {
 					follow = tempRs;
-					
 				}else {
 					System.out.println("pass null file");
+					//put unfound animals into a list
 					missList.add(animals.get(i));
 					continue;
 				}
 				if(result.size()==0) {
+					//put this one directly into the result in case the first animal name in the iteration does not exist
 					result = tempRs;
 				}else {
+					//calculate overlapping
 					result = AnimalsSpeakLib.calculateOverLapPoints(result,follow);
 				}
 				
@@ -176,54 +210,77 @@ public class FunctionController {
 		}
 		
 		Gson gson = new Gson();
+		//construct response into JSON 
 		String jsonArray = gson.toJson(result);
 		rs.put("response", jsonArray);
-//		for(int z = 0;z<missList.size();z++) {
-//			String[] str1 = missList.get(z).split("/");
-//			String[] str2 = str1[1].split("\\.");
-//			missListRs.add(str2[0]);
-//		}
 		jsonArray = gson.toJson(missList); 
 		rs.put("miss", jsonArray);
 		System.out.println(rs);
 		return rs;
 	}
 	
-	public Map<String,String> getAllAnimalsName(){
+	//return all animals name in the database
+	public Map<String,String> getAllAnimalsName(){	
 		Map<String,String> rs = new HashMap<String,String>();
+		//construct response into JSON 
 		Gson gson = new Gson();
+		
+		//invoke the function that get all animals name
 		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
 		rs.put("response", jsonArray);
 		System.out.println(rs);
 		return rs;
 	}
 	
+	//return all animals name for a certain class
 	public Map<String,String> getAnimalsNameByClass(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
+		//construct response into JSON 
 		Gson gson = new Gson();
+		//invoke the function that get all animals name in a certain class
 		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass(data.get("className")));
 		rs.put("response", jsonArray);
 		System.out.println(rs);
 		return rs;
 	}
 	
+	//search Animals Name via a query
 	public Map<String,String> searchAnimalListByString(Map<String,String> data){
 		Map<String,String> rs = new HashMap<String,String>();
+		//form the query will be used in the SQL
 		String str = "%"+data.get("query")+"%";
+		//construct response into JSON 
 		Gson gson = new Gson();
+		//invoke the function that will search the query
 		String jsonArray = gson.toJson(FunctionMapper.searchAnimalListByString(str));
 		rs.put("response", jsonArray);
 		System.out.println(rs);
 		return rs;
 	}
 	
-	public Map<String,String> getAnimalVoiceUrlByName(Map<String,String> data){
-		Map<String,String> rs = new HashMap<String,String>();
-		String ani = data.get("animal");
-		String rsUrl = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
-		rs.put("response", rsUrl);
-		System.out.println(rs);
-		return rs;
-	}
 	
+	
+	
+	//GET METHOD, get animal voice file from the server.
+	// download file form server  
+    @GetMapping("/getVoice")  
+    public ResponseEntity<byte[]> getFile(@RequestParam("id") String id) throws IOException {  
+        // specify file path  
+    	String ani = id;
+    	// get the filePath
+        String filePath = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
+        System.out.println(filePath);
+        if(filePath.equalsIgnoreCase("null")) {//no found file
+        	return null;
+        }else {//found file
+        	//construct response 
+        	byte[] body = IOUtils.toByteArray(loader.getResource("file:" + filePath).getInputStream());  
+            String fileName = filePath.substring(filePath.lastIndexOf('/')+1, filePath.length());  
+            HttpHeaders headers=new HttpHeaders();
+            headers.add("Content-Disposition", "attachment;filename="+fileName);  
+            return new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);  
+        }
+        
+    }  
+
 }
