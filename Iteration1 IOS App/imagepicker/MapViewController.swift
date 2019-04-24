@@ -212,49 +212,53 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                 var listToAdd = [GMUWeightedLatLng]()
                 
                 if showSearchResult{
-                    self.sendRequestToServer(methodId: 2,request: ["animals":[self.animalIcons[indexPath.row]]] ){ (result) in
-                        if result != nil{
-                            if let list = result!["response"] as? String{
-                                if let data = list.data(using: .utf8) {
-                                    if let json = try? JSON(data: data) {
-                                        for latlong in json.arrayValue {
-                                            let lat = latlong[0].doubleValue.roundTo(places: 4)
-                                            let lng = latlong[1].doubleValue.roundTo(places: 4)
-                                            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
-                                            listToAdd.append(coords)
+                    DispatchQueue.global().async {
+                        self.sendRequestToServer(methodId: 2,request: ["animals":[self.animalIcons[indexPath.row]]] ){ (result) in
+                            if result != nil{
+                                if let list = result!["response"] as? String{
+                                    if let data = list.data(using: .utf8) {
+                                        if let json = try? JSON(data: data) {
+                                            for latlong in json.arrayValue {
+                                                let lat = latlong[0].doubleValue.roundTo(places: 4)
+                                                let lng = latlong[1].doubleValue.roundTo(places: 4)
+                                                let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
+                                                listToAdd.append(coords)
+                                            }
+                                            DispatchQueue.main.async {
+                                                self.heatmapLayer.weightedData = listToAdd
+                                                //self.addHeatmap()
+                                                self.heatmapLayer.map = self.mapView
+                                                self.activityIndicatior.isHidden = true
+                                            }
+                                            
                                         }
-                                        DispatchQueue.main.async {
-                                            self.heatmapLayer.weightedData = listToAdd
-                                            //self.addHeatmap()
-                                            self.heatmapLayer.map = self.mapView
-                                            self.activityIndicatior.isHidden = true
-                                        }
-                                        
                                     }
                                 }
                             }
+                            
                         }
-                        
                     }
                 }else{
-                    self.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
-                        if result != nil{
-                            if let list = result!["response"] as? String{
-                                if let data = list.data(using: .utf8) {
-                                    if let json = try? JSON(data: data) {
-                                        for latlong in json.arrayValue {
-                                            let lat = latlong[0].doubleValue.roundTo(places: 4)
-                                            let lng = latlong[1].doubleValue.roundTo(places: 4)
-                                            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
-                                            listToAdd.append(coords)
+                    DispatchQueue.global().async {
+                        self.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
+                            if result != nil{
+                                if let list = result!["response"] as? String{
+                                    if let data = list.data(using: .utf8) {
+                                        if let json = try? JSON(data: data) {
+                                            for latlong in json.arrayValue {
+                                                let lat = latlong[0].doubleValue.roundTo(places: 4)
+                                                let lng = latlong[1].doubleValue.roundTo(places: 4)
+                                                let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
+                                                listToAdd.append(coords)
+                                            }
+                                            DispatchQueue.main.async {
+                                                self.heatmapLayer.weightedData = listToAdd
+                                                //self.addHeatmap()
+                                                self.heatmapLayer.map = self.mapView
+                                                self.activityIndicatior.isHidden = true
+                                            }
+                                            
                                         }
-                                        DispatchQueue.main.async {
-                                            self.heatmapLayer.weightedData = listToAdd
-                                            //self.addHeatmap()
-                                            self.heatmapLayer.map = self.mapView
-                                            self.activityIndicatior.isHidden = true
-                                        }
-                                        
                                     }
                                 }
                             }

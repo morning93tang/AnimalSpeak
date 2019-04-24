@@ -94,8 +94,8 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
                             self.animalImgaeView.image = image
                             self.activityIndicator.stopAnimating()
                             self.activityIndicator.isHidden = true
-                            self.gerResultData()
                             super.viewDidLoad()
+                            self.gerResultData()
                         }
                     }
                 }
@@ -135,25 +135,27 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         let name = self.animalName
         var listToAdd = [GMUWeightedLatLng]()
         self.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
-            if result != nil{
-                print(result)
-                if let list = result!["response"] as? String{
-                    print(list)
-                    if let data = list.data(using: .utf8) {
-                        if let json = try? JSON(data: data) {
-                            for latlong in json.arrayValue {
-                                let lat = latlong[0].doubleValue.roundTo(places: 4)
-                                let lng = latlong[1].doubleValue.roundTo(places: 4)
-                                let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
-                                listToAdd.append(coords)
+            DispatchQueue.global().async {
+                if result != nil{
+
+                    if let list = result!["response"] as? String{
+                        print(list)
+                        if let data = list.data(using: .utf8) {
+                            if let json = try? JSON(data: data) {
+                                for latlong in json.arrayValue {
+                                    let lat = latlong[0].doubleValue.roundTo(places: 4)
+                                    let lng = latlong[1].doubleValue.roundTo(places: 4)
+                                    let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
+                                    listToAdd.append(coords)
+                                }
+                                DispatchQueue.main.async {
+                                    self.heatmapLayer.weightedData = listToAdd
+                                    //self.addHeatmap()
+                                    print("finish")
+                                    self.heatmapLayer.map = self.mapView
+                                }
+                                
                             }
-                            print(listToAdd)
-                            DispatchQueue.main.async {
-                                self.heatmapLayer.weightedData = listToAdd
-                                //self.addHeatmap()
-                                self.heatmapLayer.map = self.mapView
-                            }
-                            
                         }
                     }
                 }
