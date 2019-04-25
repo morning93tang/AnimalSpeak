@@ -59,7 +59,7 @@ public class AnimalsspeakApplicationTests {
 //		rs1.put("lon", "145.863221");
 //		rs1.put("animal", "Swamp Antechinus");
 		//Yellow-footed Antechinus
-		rs= FunctionController.filterSpeciLocation(rs2);
+		rs= FunctionController.getRandomQuizOfSelectSound();
 		//rs= FunctionController.getAroundAnimalLocationByName(rs1);
 		
 		//rs= FunctionController.getAllAnimalsName();

@@ -86,7 +86,9 @@ public class FunctionController {
 			case 7:
 				temp = mapper.readValue(other, typeRef);
 				return getAroundAnimalLocationByName(temp);
-		
+			case 8:
+				return getRandomQuizOfSelectSound();
+				
 			default:
 				return test2();
 				
@@ -262,8 +264,18 @@ public class FunctionController {
 	public Map<String,String> getRandomQuizOfSelectSound()
 	{
 		Map<String,String> rs = new HashMap<String,String>();
+		//generate an animal sound name(id) as the correct answer
+		String getAnswerSoundId = AnimalsSpeakLib.getRandomSoundUrl();
 		
+		//generate a three-option answer list
+		List<String> answerList = AnimalsSpeakLib.generateAnswerList(getAnswerSoundId);
 		
+		//construct response into JSON 
+		Gson gson = new Gson();
+		String jsonArray = gson.toJson(answerList);
+		rs.put("response", jsonArray);
+		rs.put("answer", getAnswerSoundId);
+		System.out.println(rs);
 		return rs;
 		
 	}

@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Service;
 
@@ -347,7 +349,6 @@ public class AnimalsSpeakLib {
 	
 	//return animal voice url if it exists
 	public String getAnimalVoiceUrlByName(String ani){
-//		Map<String,String> rs = new HashMap<String,String>();
 		String name = "AnimalSound/"+ani;
 		
 		File checkName_mp3=new File(name+".mp3");
@@ -365,6 +366,71 @@ public class AnimalsSpeakLib {
 		}
 
 	}
+	
+	//return a random sound url for the quiz use
+	public String getRandomSoundUrl(){
+		//define sound files path
+		String soundFolder = "AnimalSound/";
+		
+		//put all sound files into a list
+		List<String> soundFileList = getFiles(soundFolder);
+		
+		//get a random int as index
+		int index = getRandomIntFromRange(0,soundFileList.size()-1);
+		
+		//get Random sound file name
+		String seedSound = soundFileList.get(index);
+		String seedSoundPureName = seedSound.split("\\.")[0];
+		System.out.println(seedSoundPureName);
+		
+		return seedSoundPureName;
+		
+	}
+	
+	//get a random integer from the range
+	public int getRandomIntFromRange(int min,int max) {
+		int randomNum = ThreadLocalRandom.current().nextInt(min, max + 1);
+		return randomNum;
+	}
+	
+	//generate Answer List used by the quiz
+	public List<String> generateAnswerList(String answer) {
+		String datasetPath = "datasets/";
+		
+		//put all dataset filename into a list
+		List<String> fileList = getFiles(datasetPath);
+		
+		//a list that stores three options
+		List<String> optionList = new ArrayList<String>();
+		//add answer to the list
+		optionList.add(answer);
+		
+		//get 3 options into the list , prevent duplicated answer
+		while(optionList.size()!=3) {
+			String candidateAnswer = fileList.get(getRandomIntFromRange(0,fileList.size()-1)).split("\\.")[0];
+			if(!checkStringinList(candidateAnswer,optionList)) {
+				optionList.add(candidateAnswer);
+			}
+		}
+		//shuffle the answers in random order
+		Collections.shuffle(optionList);
+		//System.out.println(optionList);
+		return optionList;
+	}
+	
+	//check if the string already in a list
+	private boolean checkStringinList(String target,List<String> pool){
+		for(String str : pool) {
+			if(str.equalsIgnoreCase(target)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
+	
 	
 	
 }
