@@ -258,7 +258,15 @@ public class FunctionController {
 		return rs;
 	}
 	
-	
+	//return the quiz information,quiz type:choose sound
+	public Map<String,String> getRandomQuizOfSelectSound()
+	{
+		Map<String,String> rs = new HashMap<String,String>();
+		
+		
+		return rs;
+		
+	}
 	
 	
 	//GET METHOD, get animal voice file from the server.
