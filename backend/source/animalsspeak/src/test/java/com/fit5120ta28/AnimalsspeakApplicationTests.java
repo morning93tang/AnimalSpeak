@@ -7,6 +7,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.google.gson.Gson;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,6 +44,7 @@ public class AnimalsspeakApplicationTests {
 	
 	List<String> missList = new ArrayList<String>();
 	List<String> missListRs = new ArrayList<String>();
+	public static final String DEST = "target/hello_world.pdf";
 	
 	@Test
 	public void contextLoads() throws Exception {
@@ -59,13 +65,35 @@ public class AnimalsspeakApplicationTests {
 //		rs1.put("lon", "145.863221");
 //		rs1.put("animal", "Swamp Antechinus");
 		//Yellow-footed Antechinus
-		rs= FunctionController.getRandomQuizOfSelectSound();
+		//FunctionController.generateReport();
 		//rs= FunctionController.getAroundAnimalLocationByName(rs1);
 		
 		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);
+		System.out.println("write0");
+		File file = new File(DEST);
+
+        file.getParentFile().mkdirs();
+
+        createPdf(DEST);
 	}
+	
+	public void createPdf(String dest) throws IOException {
+		System.out.println("write1");
+        //Initialize PDF writer
+        PdfWriter writer = new PdfWriter(dest);
+        //Initialize PDF document
+        PdfDocument pdf = new PdfDocument(writer);
+        // Initialize document
+        Document document = new Document(pdf);
+        //Add paragraph to the document
+        document.add(new Paragraph("Hello World!"));
+        //Close document
+        
+        document.close();
+
+    }
 	
 	public void test2(){
 		Map<String,String> rs = new HashMap<String,String>();

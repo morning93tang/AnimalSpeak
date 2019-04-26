@@ -1,5 +1,7 @@
 package com.fit5120ta28.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -28,6 +30,12 @@ import com.fit5120ta28.entity.*;
 import com.fit5120ta28.mapper.*;
 import com.fit5120ta28.lib.*;
 import com.google.gson.Gson;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.font.FontProvider;
 
 /*
  * This class receive the API request
@@ -72,7 +80,6 @@ public class FunctionController {
 				tempList = mapper.readValue(other, typeRefList);
 				return filterSpeciLocation(tempList);
 			case 3:
-				//temp = mapper.readValue(other, typeRef);
 				return getAllAnimalsName();
 			case 4:
 				temp = mapper.readValue(other, typeRef);
@@ -302,5 +309,28 @@ public class FunctionController {
         }
         
     }  
+    
+    public void generateReport() throws IOException {
+    	String html = "<p>abcdedf</p>";
+        FileOutputStream fileOutputStream = new FileOutputStream("a.pdf");
+        fileOutputStream.write(convert(html));
+        fileOutputStream.close();
+    }
+    public byte[] convert(String html) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ConverterProperties props = new ConverterProperties();
+        FontProvider fp = new FontProvider(); // 提供解析用的字体
+        PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H", false);
+        fp.addStandardPdfFonts(); // 添加标准字体库、无中文
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        fp.addDirectory(classLoader.getResource("fonts").getPath()); // 自定义字体路径、解决中文,可先用绝对路径测试。
+        props.setFontProvider(fp);
+        // props.setBaseUri(baseResource); // 设置html资源的相对路径
+        HtmlConverter.convertToPdf(html, outputStream, props); // 无法灵活设置页边距等
+        byte[] result = outputStream.toByteArray();
+        outputStream.close();
+        return result;
+    }
+    
 
 }
