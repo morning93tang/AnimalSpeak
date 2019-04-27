@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -95,7 +96,9 @@ public class FunctionController {
 				return getAroundAnimalLocationByName(temp);
 			case 8:
 				return getRandomQuizOfSelectSound();
-				
+			case 9:
+				temp = mapper.readValue(other, typeRef);
+				return generateReportPdf(temp);
 			default:
 				return test2();
 				
@@ -310,27 +313,32 @@ public class FunctionController {
         
     }  
     
-    public void generateReport() throws IOException {
-    	String html = "<p>abcdedf</p>";
-        FileOutputStream fileOutputStream = new FileOutputStream("a.pdf");
-        fileOutputStream.write(convert(html));
-        fileOutputStream.close();
-    }
-    public byte[] convert(String html) throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ConverterProperties props = new ConverterProperties();
-        FontProvider fp = new FontProvider(); // 提供解析用的字体
-        PdfFont font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H", false);
-        fp.addStandardPdfFonts(); // 添加标准字体库、无中文
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        fp.addDirectory(classLoader.getResource("fonts").getPath()); // 自定义字体路径、解决中文,可先用绝对路径测试。
-        props.setFontProvider(fp);
-        // props.setBaseUri(baseResource); // 设置html资源的相对路径
-        HtmlConverter.convertToPdf(html, outputStream, props); // 无法灵活设置页边距等
-        byte[] result = outputStream.toByteArray();
-        outputStream.close();
-        return result;
+    public Map<String,String> generateReportPdf(Map<String,String> data){
+    	Map<String,String> rs = new HashMap<String,String>();
+    	rs.put("response", "hello_world");
+    	System.out.println(rs);
+		return rs;
+    
     }
     
-
+    @GetMapping("/getReport")  
+    public ResponseEntity<byte[]> getReport(@RequestParam("id") String id) throws IOException {  
+    
+    	// get the filePath
+        String filePath = "reportPdf/"+id+".pdf";
+        System.out.println(filePath);
+        if(filePath.equalsIgnoreCase("null")) {//no found file
+        	return null;
+        }else {//found file
+        	//construct response 
+        	byte[] body = IOUtils.toByteArray(loader.getResource("file:" + filePath).getInputStream());  
+            String fileName = filePath.substring(filePath.lastIndexOf('/')+1, filePath.length());  
+            HttpHeaders headers=new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("application/pdf"));
+            //headers.add("Content-Disposition", "attachment;filename="+fileName);  
+            headers.add("content-disposition", "inline;filename=" + fileName);
+            return new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);  
+        }
+        
+    }  
 }

@@ -44,7 +44,7 @@ public class AnimalsspeakApplicationTests {
 	
 	List<String> missList = new ArrayList<String>();
 	List<String> missListRs = new ArrayList<String>();
-	public static final String DEST = "target/hello_world.pdf";
+	public static final String DEST = "reportPdf/hello_world.pdf";
 	
 	@Test
 	public void contextLoads() throws Exception {
@@ -59,24 +59,24 @@ public class AnimalsspeakApplicationTests {
 		rs3.add("red kangaroo");
 		
 		rs2.put("animals",rs3);
-//		rs.put("lat", "-36.952687");
+		rs1.put("lat", "-36.952687");
 //		rs.put("lon", "145.863221");
 //		rs1.put("lat", "-36.952687");
 //		rs1.put("lon", "145.863221");
 //		rs1.put("animal", "Swamp Antechinus");
 		//Yellow-footed Antechinus
-		//FunctionController.generateReport();
-		//rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		//FunctionController.getRandomQuizOfSelectSound();
+		rs= FunctionController.generateReportPdf(rs1);
 		
 		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);
-		System.out.println("write0");
-		File file = new File(DEST);
-
-        file.getParentFile().mkdirs();
-
-        createPdf(DEST);
+//		System.out.println("write0");
+//		File file = new File(DEST);
+//
+//        file.getParentFile().mkdirs();
+//
+//        createPdf(DEST);
 	}
 	
 	public void createPdf(String dest) throws IOException {
