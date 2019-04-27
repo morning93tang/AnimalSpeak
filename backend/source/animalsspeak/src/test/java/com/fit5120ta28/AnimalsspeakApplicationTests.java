@@ -59,24 +59,24 @@ public class AnimalsspeakApplicationTests {
 		rs3.add("red kangaroo");
 		
 		rs2.put("animals",rs3);
-//		rs.put("lat", "-36.952687");
+		rs1.put("lat", "-36.952687");
 //		rs.put("lon", "145.863221");
 //		rs1.put("lat", "-36.952687");
 //		rs1.put("lon", "145.863221");
 //		rs1.put("animal", "Swamp Antechinus");
 		//Yellow-footed Antechinus
 		//FunctionController.getRandomQuizOfSelectSound();
-		//rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		rs= FunctionController.generateReportPdf(rs1);
 		
 		//rs= FunctionController.getAllAnimalsName();
 		
 		//System.out.println(missList);
 //		System.out.println("write0");
-		File file = new File(DEST);
-
-        file.getParentFile().mkdirs();
-
-        createPdf(DEST);
+//		File file = new File(DEST);
+//
+//        file.getParentFile().mkdirs();
+//
+//        createPdf(DEST);
 	}
 	
 	public void createPdf(String dest) throws IOException {

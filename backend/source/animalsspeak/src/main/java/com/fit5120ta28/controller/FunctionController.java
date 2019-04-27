@@ -316,6 +316,7 @@ public class FunctionController {
     public Map<String,String> generateReportPdf(Map<String,String> data){
     	Map<String,String> rs = new HashMap<String,String>();
     	rs.put("response", "hello_world");
+    	System.out.println(rs);
 		return rs;
     
     }
