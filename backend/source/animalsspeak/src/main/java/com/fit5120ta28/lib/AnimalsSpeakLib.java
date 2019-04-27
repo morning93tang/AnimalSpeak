@@ -406,7 +406,7 @@ public class AnimalsSpeakLib {
 		optionList.add(answer);
 		
 		//get 3 options into the list , prevent duplicated answer
-		while(optionList.size()!=3) {
+		while(optionList.size()!=4) {
 			String candidateAnswer = fileList.get(getRandomIntFromRange(0,fileList.size()-1)).split("\\.")[0];
 			if(!checkStringinList(candidateAnswer,optionList)) {
 				optionList.add(candidateAnswer);
