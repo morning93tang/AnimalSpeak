@@ -1,27 +1,47 @@
 package com.fit5120ta28.lib;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.DeviceCmyk;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+//import com.itextpdf.layout.element.List;
+//import com.itextpdf.layout.element.ListItem;
+import com.itextpdf.layout.element.Paragraph;
+//import com.itextpdf.layout.element.Tab;
+//import com.itextpdf.layout.element.TabStop;
+//import com.itextpdf.layout.property.TabAlignment;
+
 
 @Service
 public class AnimalsSpeakLib {
 	
 	private static double AROUNDDIS = 0.2d;
 	private static double OVERLAPTHRESHOLD = 0.3d;
+	public static final String REPORTDEST = "reportPdf/";
+	public static final String INJUREDDEST = "injured/";
+	
+	
 	
 	//String to hash md5
 	public String crypt(String str) {
@@ -428,9 +448,215 @@ public class AnimalsSpeakLib {
 		return false;
 	}
 	
+	//convert binary base64 string to the image and save it on the server
+	public void convertBase64toImg() {
+		String base64String = "abc";
+		//split the base64 string to get further information
+        String[] strings = base64String.split(",");
+        String extension;
+        switch (strings[0]) {//check image's extension
+            case "data:image/jpeg;base64":
+                extension = "jpeg";
+                break;
+            case "data:image/png;base64":
+                extension = "png";
+                break;
+            default://should write cases for more images types
+                extension = "jpg";
+                break;
+        }
+        //convert base64 string to binary data
+        byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
+        String path = "injuried/test_image." + extension;
+        File file = new File(path);
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+            outputStream.write(data);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+	}
 	
 	
+	//generate a pdf file for reporting injured animals
+	public String generatePdfTemplate(Map<String,String> data) throws IOException {
+		String fileName = System.currentTimeMillis()+getRandomString(8);
+		String fullName = REPORTDEST+fileName+".pdf";
+		System.out.println(fullName);
+		File file = new File(fullName);
+		
+		file.getParentFile().mkdirs();
+		
+		createPdf(fullName,data);
+		return fileName;
+	}
 	
 	
+	private void createPdf(String dest,Map<String,String> data) throws IOException {
+		//default width: 595.0, height: 842.0
+		String logoPath = "resource/prologo.png";
+        PdfWriter writer = new PdfWriter(dest);
+        //Initialize PDF document
+        PdfDocument pdf = new PdfDocument(writer);
+        // Initialize document
+        Document document = new Document(pdf);
+        //Add paragraph to the document
+        // Create a PdfFont
+
+        PdfFont fontTitle = PdfFontFactory.createFont(StandardFonts.TIMES_ROMAN);
+        
+
+        // Add a title
+        Paragraph title = new Paragraph("Injury Report")
+        		.setFont(fontTitle)
+        		.setFontSize(27)
+        		.setFixedPosition(225, 765, 450);
+        document.add(title);
+        
+        PdfCanvas canvas = new PdfCanvas(pdf.getFirstPage());
+        Color magentaColor = new DeviceCmyk(0.f, 1.f, 0.f, 0.f);
+        canvas.setStrokeColor(magentaColor)
+                .moveTo(36, 735)
+                .lineTo(215,735)
+                .closePathStroke();
+        
+        Paragraph re_info = new Paragraph("Reporter Information")
+        		.setFont(fontTitle)
+        		.setFontSize(12)
+        		.setFixedPosition(245, 726, 450);
+        document.add(re_info);
+        
+        canvas.setStrokeColor(magentaColor)
+        .moveTo(377, 735)
+        .lineTo(556,735)
+        .closePathStroke();
+        
+        //add logo
+        Image logo = new Image(ImageDataFactory.create(logoPath))
+        		.scaleAbsolute(70f, 70f)
+        		.setFixedPosition(510, 756);
+        document.add(logo);
+        
+        //add information
+        Paragraph username = new Paragraph("Reporter Name: "+data.get("userName"))
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 700, 556);
+        document.add(username);
+        
+        Paragraph email = new Paragraph("Email: "+data.get("email"))
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 680, 556);
+        document.add(email);
+        
+        int offset = 0;
+        int wraplen = 103;
+        String userMsg = "Message: "+ data.get("msg");
+  
+        offset = ((userMsg.length()-1)/wraplen)*20;
+        Paragraph comment = new Paragraph(userMsg)
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 660-offset, 520);
+        document.add(comment);
+     
+        System.out.println(offset);
+        canvas.setStrokeColor(magentaColor)
+                .moveTo(36, 645-offset)
+                .lineTo(215,645-offset)
+                .closePathStroke();
+        
+        Paragraph an_info = new Paragraph("Animal Information")
+        		.setFont(fontTitle)
+        		.setFontSize(12)
+        		.setFixedPosition(248, 636-offset, 450);
+        document.add(an_info);
+        
+        canvas.setStrokeColor(magentaColor)
+        .moveTo(377, 645-offset)
+        .lineTo(556, 645-offset)
+        .closePathStroke();
+        
+        
+        Paragraph animalname = new Paragraph("Animal Name: "+data.get("animal"))
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 610-offset, 556);
+        document.add(animalname);
+        
+        Paragraph animalClass = new Paragraph("Animal Class: "+data.get("className"))
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 590-offset, 556);
+        document.add(animalClass);
+
+        Paragraph animalLoc = new Paragraph("Animal Location: Latitude ("+data.get("lat")+") , Longitude ("+data.get("lon")+")")
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 570-offset, 556);
+        document.add(animalLoc);
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    	Date date = new Date();
+        Paragraph reportDate = new Paragraph("Report Time: "+dateFormat.format(date))
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 550-offset, 556);
+        document.add(reportDate);
+        
+        Paragraph animalImg = new Paragraph("Animal Image:")
+        		.setFont(fontTitle)
+        		.setFontSize(14)
+        		.setFixedPosition(36, 530-offset, 556);
+        document.add(animalImg);
+        
+        String injuredImg = "resource/2ee60004d0af06177b12.jpg"; 
+        Image img = new Image(ImageDataFactory.create(injuredImg));
+        //resize the image
+        float[] newsize = new float[2]; 
+        newsize = calculateNewSizeOfImg(img.getImageWidth(),img.getImageHeight(),523f,530-offset-36);
+        img.scaleAbsolute(newsize[0], newsize[1]);
+        img.setFixedPosition(36, 510-offset-newsize[1]);
+        document.add(img);
+        //Close document
+
+        document.close();
+
+
+    }
+	
+	private float[] calculateNewSizeOfImg(float imageWidth, float imageHeight,float restWidth,float restHeight) {
+		float[] newsize = new float[2]; 
+		float ratio = imageWidth/imageHeight;
+		if(imageWidth>restWidth) {
+			newsize[0] = restWidth;
+			newsize[1] = restWidth/ratio;
+			if(newsize[1]>restHeight) {
+				newsize[1] = restHeight;
+				newsize[0] = restHeight*ratio;
+			}
+		}else if(imageHeight>restHeight) {
+			newsize[1] = restHeight;
+			newsize[0] = restHeight*ratio;
+			if(newsize[0]>restWidth) {
+				newsize[0] = restWidth;
+				newsize[1] = restWidth/ratio;
+			}
+		}
+		return newsize;
+	}
+
+	private String getRandomString(int length){
+	     String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	     Random random=new Random();
+	     StringBuffer sb=new StringBuffer();
+	     for(int i=0;i<length;i++){
+	       int number=random.nextInt(62);
+	       sb.append(str.charAt(number));
+	     }
+	     return sb.toString();
+	 }
 	
 }

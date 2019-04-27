@@ -13,25 +13,20 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.bind.DatatypeConverter;
+
 import com.fit5120ta28.controller.FunctionController;
 import com.fit5120ta28.mapper.FunctionMapper;
+import com.fit5120ta28.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,6 +36,9 @@ public class AnimalsspeakApplicationTests {
 	FunctionMapper FunctionMapper;
 	@Autowired
 	FunctionController FunctionController;
+	@Autowired
+	SendEmail SendEmail;
+	
 	
 	List<String> missList = new ArrayList<String>();
 	List<String> missListRs = new ArrayList<String>();
@@ -52,23 +50,31 @@ public class AnimalsspeakApplicationTests {
 		//deduplicate3();
 		//csvTest1();
 		//testsearchAnimalListByString();
-		Map<String,String> rs = new HashMap<String,String>();
+//		Map<String,String> rs = new HashMap<String,String>();
 		Map<String,String> rs1 = new HashMap<String,String>();
 		Map<String,List<String>> rs2 = new HashMap<String,List<String>>();
 		List<String> rs3 = new ArrayList<String>();
 		rs3.add("red kangaroo");
 		
 		rs2.put("animals",rs3);
-		rs1.put("lat", "-36.952687");
+		rs1.put("file", "1556358949813QyxtUM5j");
+		rs1.put("ccAddress", "769991835@qq.com");
+		
 //		rs.put("lon", "145.863221");
 //		rs1.put("lat", "-36.952687");
 //		rs1.put("lon", "145.863221");
+//		rs1.put("className", "abcdefgh");
 //		rs1.put("animal", "Swamp Antechinus");
+//		rs1.put("userName", "TIANYI YUAN");
+//		rs1.put("email", "769991835@qq.com");
+//		rs1.put("msg", "this is a goooooodddd dog!");
 		//Yellow-footed Antechinus
 		//FunctionController.getRandomQuizOfSelectSound();
-		rs= FunctionController.generateReportPdf(rs1);
-		
-		//rs= FunctionController.getAllAnimalsName();
+//		rs= FunctionController.sendEmailOfReport(rs1);
+		//System.out.println(rs.get("response"));
+		//SendEmail.send(rs.get("response"));
+		//SendEmail.ccMail(rs.get("response"),"769991835@qq.com");
+//		rs= FunctionController.generateReportPdf(rs1);
 		
 		//System.out.println(missList);
 //		System.out.println("write0");
@@ -77,6 +83,35 @@ public class AnimalsspeakApplicationTests {
 //        file.getParentFile().mkdirs();
 //
 //        createPdf(DEST);
+		//convertBase64toImg();
+	}
+	
+	public void convertBase64toImg() {
+		String base64String = "abc";
+        String[] strings = base64String.split(",");
+        String extension;
+        switch (strings[0]) {//check image's extension
+            case "data:image/jpeg;base64":
+                extension = "jpeg";
+                break;
+            case "data:image/png;base64":
+                extension = "png";
+                break;
+            default://should write cases for more images types
+                extension = "jpg";
+                break;
+        }
+        //convert base64 string to binary data
+        byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
+        String path = "injuried/test_image." + extension;
+        File file = new File(path);
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+            outputStream.write(data);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
 	}
 	
 	public void createPdf(String dest) throws IOException {

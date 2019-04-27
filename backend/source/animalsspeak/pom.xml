@@ -61,7 +61,14 @@
 			<version>7.1.4</version>
 			<type>pom</type>
 		</dependency>
-		
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+	    </dependency>
+	    <dependency>
+		    <groupId>com.sendgrid</groupId>
+		    <artifactId>sendgrid-java</artifactId>
+	    </dependency>
 	</dependencies>
 
 	<build>

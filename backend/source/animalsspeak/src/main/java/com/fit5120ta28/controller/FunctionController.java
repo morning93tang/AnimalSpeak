@@ -1,7 +1,7 @@
 package com.fit5120ta28.controller;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -30,13 +30,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fit5120ta28.entity.*;
 import com.fit5120ta28.mapper.*;
 import com.fit5120ta28.lib.*;
+import com.fit5120ta28.util.*;
 import com.google.gson.Gson;
-import com.itextpdf.html2pdf.ConverterProperties;
-import com.itextpdf.html2pdf.HtmlConverter;
-import com.itextpdf.io.source.ByteArrayOutputStream;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.font.FontProvider;
+//import com.itextpdf.html2pdf.ConverterProperties;
+//import com.itextpdf.html2pdf.HtmlConverter;
+//import com.itextpdf.io.source.ByteArrayOutputStream;
+//import com.itextpdf.kernel.font.PdfFont;
+//import com.itextpdf.kernel.font.PdfFontFactory;
+//import com.itextpdf.layout.font.FontProvider;
 
 /*
  * This class receive the API request
@@ -53,7 +54,8 @@ public class FunctionController {
 	AnimalsSpeakLib AnimalsSpeakLib;
 	@Autowired  
     ResourceLoader loader;  
-	
+	@Autowired
+	SendEmail SendEmail;
 	/*Main API entrance
 	 * 
 	 * accept request and process it then send response back
@@ -99,6 +101,9 @@ public class FunctionController {
 			case 9:
 				temp = mapper.readValue(other, typeRef);
 				return generateReportPdf(temp);
+			case 10:
+				temp = mapper.readValue(other, typeRef);
+				return sendEmailOfReport(temp);
 			default:
 				return test2();
 				
@@ -313,11 +318,31 @@ public class FunctionController {
         
     }  
     
-    public Map<String,String> generateReportPdf(Map<String,String> data){
+    /*
+     * accept report information and use them to generate a pdf report
+     * */
+    public Map<String,String> generateReportPdf(Map<String,String> data) throws IOException{
     	Map<String,String> rs = new HashMap<String,String>();
-    	rs.put("response", "hello_world");
+    	//define pdf file name
+    	String fileName = AnimalsSpeakLib.generatePdfTemplate(data);
+    
+    	rs.put("response", fileName);
     	System.out.println(rs);
 		return rs;
+    
+    }
+    
+    //send Email to both government rescue dept. and to the reporter
+    public Map<String,String> sendEmailOfReport(Map<String,String> data) throws IOException{
+    	Map<String,String> rs = new HashMap<String,String>();
+    	String pdfName = data.get("file");
+    	String ccEmailAddress = data.get("ccAddress");
+    	int mainSend = SendEmail.send(pdfName);
+    	int ccSend = SendEmail.ccMail(pdfName,ccEmailAddress);
+    	
+    	rs.put("response", "government status:"+mainSend+"|cc status:"+ccSend);
+    	System.out.println(rs);
+		return data;
     
     }
     
