@@ -19,14 +19,14 @@ public class SendEmail {
 	private static final String GOV = "tyua0003@student.monash.edu";
 	private String apiKey;
 	public SendEmail() throws IOException {
-		System.out.println("SendEmail init");
+		
 		File file = new File("sendgridApi");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fileReader);
 		apiKey = reader.readLine();
 		reader.close();
 		fileReader.close();
-
+		System.out.println("SendEmail init key:"+apiKey);
 	}
 	
 	public int send(String pdf) throws IOException {
