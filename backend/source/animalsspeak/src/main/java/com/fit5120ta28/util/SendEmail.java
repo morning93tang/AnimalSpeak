@@ -20,7 +20,7 @@ public class SendEmail {
 	private String apiKey;
 	public SendEmail() throws IOException {
 		
-		File file = new File("sendgridApi");
+		File file = new File("sendgridAPI");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fileReader);
 		apiKey = reader.readLine();
