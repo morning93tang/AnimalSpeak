@@ -67,4 +67,12 @@ public interface FunctionMapper {
     })
 	List<AnimalEntity> searchAnimalListByString(String query);
 	
+	@Select("select animalsId,name,class from animals left join animal_class on animals.classId=animal_class.classId WHERE name = #{query};")
+	@Results({
+        @Result(property = "animalsId",  column = "animalsId"),
+        @Result(property = "name", column = "name"),
+        @Result(property = "classId", column = "classId"),
+        @Result(property = "className", column = "class")
+    })
+	AnimalEntity getAnimalClassByName(String query);
 }

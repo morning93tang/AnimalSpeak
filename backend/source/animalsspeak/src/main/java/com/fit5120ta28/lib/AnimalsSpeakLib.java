@@ -11,8 +11,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.bind.DatatypeConverter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fit5120ta28.mapper.FunctionMapper;
 import com.google.gson.Gson;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -41,7 +43,8 @@ public class AnimalsSpeakLib {
 	public static final String REPORTDEST = "reportPdf/";
 	public static final String INJUREDDEST = "injured/";
 	
-	
+	@Autowired
+	FunctionMapper FunctionMapper;
 	
 	//String to hash md5
 	public String crypt(String str) {
@@ -598,6 +601,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 610-offset, 556);
         document.add(animalname);
         
+        
         Paragraph animalClass = new Paragraph("Animal Class: "+data.get("className"))
         		.setFont(fontTitle)
         		.setFontSize(14)
@@ -732,7 +736,14 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 610-offset, 556);
         document.add(animalname);
         
-        Paragraph animalClass = new Paragraph("Animal Class: "+data.get("className"))
+        String animalClassName;
+        if(FunctionMapper.getAnimalClassByName(data.get("animal"))!=null) {
+        	animalClassName = FunctionMapper.getAnimalClassByName(data.get("animal")).getClassName();
+        }else {
+        	animalClassName = "Unknown";
+        }
+        System.out.println(animalClassName);
+        Paragraph animalClass = new Paragraph("Animal Class: " + animalClassName)
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 590-offset, 556);
