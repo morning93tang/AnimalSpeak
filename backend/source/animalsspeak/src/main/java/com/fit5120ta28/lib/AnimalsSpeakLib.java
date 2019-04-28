@@ -624,7 +624,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 530-offset, 556);
         document.add(animalImg);
         
-        String injuredImg = "injured/sZOWg3pj5c.jpeg"; 
+        String injuredImg = "resource/2ee60004d0af06177b12.jpg"; 
         Image img = new Image(ImageDataFactory.create(injuredImg));
         //resize the image
         float[] newsize = new float[2]; 
@@ -791,6 +791,9 @@ public class AnimalsSpeakLib {
 				newsize[0] = restWidth;
 				newsize[1] = restWidth/ratio;
 			}
+		}else {
+			newsize[0] = imageWidth;
+			newsize[1] = imageHeight;
 		}
 		return newsize;
 	}
