@@ -2,3 +2,4 @@
 APIdoc/~$api.xlsx
 backend/source/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
 *.log
+backend/source/animalsspeak/sendgridApi
