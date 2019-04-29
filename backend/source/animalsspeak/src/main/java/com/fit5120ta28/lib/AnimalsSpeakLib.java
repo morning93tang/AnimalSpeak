@@ -324,7 +324,7 @@ public class AnimalsSpeakLib {
 		
 		
 		
-		System.out.println(aroundList);
+//		System.out.println(aroundList);
 		Gson gson = new Gson();
 		String jsonArray = gson.toJson(aroundList); 
 		rs.put("response", jsonArray);
@@ -404,7 +404,7 @@ public class AnimalsSpeakLib {
 		//get Random sound file name
 		String seedSound = soundFileList.get(index);
 		String seedSoundPureName = seedSound.split("\\.")[0];
-		System.out.println(seedSoundPureName);
+//		System.out.println(seedSoundPureName);
 		
 		return seedSoundPureName;
 		
@@ -489,7 +489,7 @@ public class AnimalsSpeakLib {
 	public String generatePdfTemplate(Map<String,String> data) throws IOException {
 		String fileName = System.currentTimeMillis()+getRandomString(8);
 		String fullName = REPORTDEST+fileName+".pdf";
-		System.out.println(fullName);
+//		System.out.println(fullName);
 		File file = new File(fullName);
 		
 		file.getParentFile().mkdirs();
@@ -561,7 +561,7 @@ public class AnimalsSpeakLib {
         int offset = 0;
         int wraplen = 60;
         String userMsg = "Message: "+ data.get("msg");
-        System.out.println(data.get("msg").length());
+//        System.out.println(data.get("msg").length());
         offset = ((userMsg.length()-1)/wraplen)*20;
         Paragraph comment = new Paragraph(userMsg)
         		.setFont(fontTitle)
@@ -569,7 +569,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 660-offset, 520);
         document.add(comment);
      
-        System.out.println(offset);
+//        System.out.println(offset);
         canvas.setStrokeColor(magentaColor)
                 .moveTo(36, 645-offset)
                 .lineTo(215,645-offset)
@@ -599,7 +599,7 @@ public class AnimalsSpeakLib {
         }else {
         	animalClassName = "Unknown";
         }
-        System.out.println(animalClassName);
+//        System.out.println(animalClassName);
         Paragraph animalClass = new Paragraph("Animal Class: " + animalClassName)
         		.setFont(fontTitle)
         		.setFontSize(14)
@@ -633,7 +633,7 @@ public class AnimalsSpeakLib {
         document.add(animalImg);
        
         String injuredImg = convertBase64toImg(data.get("img")); 
-        System.out.println(injuredImg);
+//        System.out.println(injuredImg);
         Image img = new Image(ImageDataFactory.create(injuredImg));
         //resize the image
         float[] newsize = new float[2]; 
@@ -642,13 +642,13 @@ public class AnimalsSpeakLib {
         img.setFixedPosition(36, 490-offset-newsize[1]);
         document.add(img);
         //Close document
-        System.out.println(data.get("userName"));
-        System.out.println(data.get("msg"));
-        System.out.println(data.get("email"));
-        System.out.println(data.get("className"));
-        System.out.println(data.get("lat"));
-        System.out.println(data.get("lon"));
-        System.out.println(data.get("img"));
+//        System.out.println(data.get("userName"));
+//        System.out.println(data.get("msg"));
+//        System.out.println(data.get("email"));
+//        System.out.println(data.get("className"));
+//        System.out.println(data.get("lat"));
+//        System.out.println(data.get("lon"));
+//        System.out.println(data.get("img"));
         document.close();
 
 
