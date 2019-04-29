@@ -11,10 +11,21 @@ class TabBarController: UITabBarController,UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.delegate = self
         // Do any additional setup after loading the view.
     }
     
+    
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        if tabBarIndex == 0 {
+            CBToast.showToast(message: "Select an animal icon to check its distribution in 5KMs.", aLocationStr: "bottom", aShowTime: 3.0)
+        }else{
+            CBToast.showToast(message: "Select an animal icon to check its distribution in 5KMs.", aLocationStr: "bottom", aShowTime: 0.0)
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

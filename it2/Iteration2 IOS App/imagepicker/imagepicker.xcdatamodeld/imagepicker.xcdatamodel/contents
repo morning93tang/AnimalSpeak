@@ -13,12 +13,17 @@
     </entity>
     <entity name="ListItem" representedClassName=".ListItem" syncable="YES">
         <attribute name="animalName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="found" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="imagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="belongsToCheckList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CheckList" inverseName="hasItems" inverseEntity="CheckList" syncable="YES"/>
     </entity>
+    <entity name="Record" representedClassName="Record" syncable="YES" codeGenerationType="class">
+        <attribute name="record" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CheckList" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="ListItem" positionX="-54" positionY="27" width="128" height="105"/>
+        <element name="ListItem" positionX="-54" positionY="27" width="128" height="120"/>
+        <element name="Record" positionX="-54" positionY="54" width="128" height="60"/>
     </elements>
 </model>

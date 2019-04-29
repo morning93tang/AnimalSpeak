@@ -124,6 +124,47 @@ class CheckListTableViewController: UITableViewController,CLLocationManagerDeleg
         print("Location Manager failed with the following error: \(error)")
     }
     
+    func updateData(animalName:String){
+//        var checkList = CheckList()
+//        var index = 0
+//        if let checkList = self.checkLists.first(where: { $0.tittle == self.enabledList}){
+//            index = self.checkLists.index(of:checkList)!
+//        }
+        
+        if let checkList = self.checkLists.first(where: { $0.tittle == self.enabledList}){
+            let fouded = Int(checkList.fouded!)
+            if let items = checkList.hasItems?.allObjects as? [ListItem]{
+                let needUpdate = items.first(where: { $0.animalName == animalName})?.found
+                if !needUpdate!{
+                    items.first(where: { $0.animalName == animalName})?.found = true
+                    checkList.fouded = String(fouded! + 1)
+                    saveData()
+                    CBToast.showToast(message: "\(animalName) has been ticked in \(checkList.tittle!) checkList." as NSString, aLocationStr: "bottom", aShowTime: 3.0)
+                }
+            }
+            
+//            let indexPath = IndexPath(row:index, section: 0)
+//            tableView.reloadRows(at: [indexPath], with: .top)
+        }else{
+            CBToast.showToast(message: "This function will only be activate when in the area of a national park that included in the checklists." as NSString, aLocationStr: "bottom", aShowTime: 5.0)
+        }
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListItem")
+//        fetchRequest.predicate = NSPredicate(format: "belongsToCheckList.tittle = %@", self.enabledList)
+//        do {
+//            let tempList = try managedObjectContext.fetch(fetchRequest) as! [ListItem]
+//
+//            if tempList.count != 0 {
+//                var managedObject = tempList[0]
+//                managedObject.setValue(true, forKey: "found")
+//                saveData()
+//            }
+//        }
+//        catch{
+//            fatalError("Failed to fetch icon: \(error)")
+//        }
+//        self.checkLists.first(where: { $0.tittle == self.enabledList})?.hasItems. = value
+    }
+    
     
     /// Creat 5 default animals and animal iocns when application is run at the first time.
     func insertData(){
@@ -358,6 +399,7 @@ class CheckListTableViewController: UITableViewController,CLLocationManagerDeleg
                                     let item = NSEntityDescription.insertNewObject(forEntityName: "ListItem", into: self.managedObjectContext) as! ListItem
                                     item.animalName = name.stringValue
                                     item.unique = false
+                                    item.found = false
                                     checkList.addToHasItems(item)
                                 }
                                 checkList.total = String(checkList.hasItems!.count)

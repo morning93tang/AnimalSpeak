@@ -12,16 +12,18 @@ import AVFoundation
 import GooglePlaces
 import GoogleMaps
 import SwiftyJSON
+import CoreData
 
 
 /// Class for displaying animal's detail imfomation
 class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapViewDelegate {
+    private var managedObjectContext: NSManagedObjectContext
     var positionScroll:CGFloat = 0
     var audioPlayer:AVAudioPlayer!
-    var derailResult = [DetailResult]()
+    var derailResult = DetailResult()
     var locationManager = CLLocationManager()
     var frame = CGRect(x:0,y:0,width:0,height:0)
-    private var heatmapLayer: GMUHeatmapTileLayer!
+    var heatmapLayer: GMUHeatmapTileLayer!
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
@@ -29,6 +31,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     private var gradientColors = [UIColor.blue, UIColor.red]
     private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     
+    @IBOutlet weak var similarityIndexLabel: UILabel!
     @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -42,6 +45,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var phtotImageView: UIImageView!
     
+    @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var iconImageView: UIImageView!
     
@@ -52,13 +56,23 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.audioPlayer.play()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedObjectContext = (appDelegate?.persistentContainer.viewContext)!
+        super.init(coder: aDecoder)!
+    }
+    
     /// Initializ the view
     override func viewDidLoad() {
+        self.confirmButton.layer.cornerRadius = 8
         self.playButton.isHidden = true
         self.playIcon.isHidden = true
         self.playButton.layer.cornerRadius = 5
         self.playButton.clipsToBounds = true
-        scrollView.delegate = self
+        self.similarityIndexLabel.layer.cornerRadius = 5
+        self.similarityIndexLabel.clipsToBounds = true
+        //self.similarityIndexLabel.isHidden = true
+//        scrollView.delegate = self
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
@@ -97,40 +111,16 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.phtotImageView.alpha = 1
         self.activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         self.activityIndicator.color = UIColor.black
-        self.pageControl.isHidden = true
-        super.viewDidLoad()
-    }
-    
-    
-    /// Adjust the view according to the screen size
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if size.width > 479 {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: size.height), animated: true)
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    /// Get detailResult form segue.
-    func gerResultData(detailResut: [DetailResult]) {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         self.phtotImageView.alpha = 0.5
         self.phtotImageView.image = nil
-        self.derailResult = detailResut
-        self.pageControl.layer.cornerRadius = 8.0
-        self.pageControl.numberOfPages = detailResut.count
-        //        self.pageControl.frame.width = self.pageControl.frame.width + CGFloat(4.0)
-        self.pageControl.isHidden = false
-        //DispatchQueue.main.async {
-        //UIDevice.current.identifierForVendor?.uuidString
-        self.nameLabe.text = self.derailResult[0].displayTitle
-        self.descriptionTextView.text = self.derailResult[0].distribution
+        self.nameLabe.text = self.derailResult.displayTitle
+        self.descriptionTextView.text = self.derailResult.distribution
         self.iconImageView.contentMode = .scaleAspectFill
-        self.iconImageView.image = self.derailResult[0].image!
-        Alamofire.request(self.derailResult[0].imageURL).responseImage { response in
+        self.iconImageView.image = self.derailResult.image
+        self.similarityIndexLabel.text = "Similarity: \(self.derailResult.matchingIndex)%"
+        Alamofire.request(self.derailResult.imageURL).responseImage { response in
             if let image = response.result.value {
                 self.phtotImageView.contentMode = .scaleAspectFill
                 self.phtotImageView.image = image
@@ -139,9 +129,9 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
                 self.phtotImageView.alpha = 1
             }
         }
-        self.loadSound(animalName: derailResult[0].displayTitle)
+        self.loadSound(animalName: derailResult.displayTitle)
         heatmapLayer.map = nil
-        let name = self.derailResult[0].displayTitle
+        let name = self.derailResult.displayTitle
         let worker = ROGoogleTranslate()
         worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             DispatchQueue.global().async {
@@ -150,8 +140,61 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
                 }
             }
         }
+//        self.pageControl.isHidden = true
+        super.viewDidLoad()
+    }
+    
+    
+    /// Adjust the view according to the screen size
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        if size.width > 479 {
+//            self.scrollView.setContentOffset(CGPoint(x: 0, y: size.height), animated: true)
+//        }
+//    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    /// Get detailResult form segue.
+    func gerResultData(detailResut: [DetailResult]) {
+//        self.activityIndicator.isHidden = false
+//        self.activityIndicator.startAnimating()
+//        self.phtotImageView.alpha = 0.5
+//        self.phtotImageView.image = nil
+//        self.derailResult = detailResut
+//        self.pageControl.layer.cornerRadius = 8.0
+//        self.pageControl.numberOfPages = detailResut.count
+//        //        self.pageControl.frame.width = self.pageControl.frame.width + CGFloat(4.0)
+//        self.pageControl.isHidden = false
+//        //DispatchQueue.main.async {
+//        //UIDevice.current.identifierForVendor?.uuidString
+//        self.nameLabe.text = self.derailResult[0].displayTitle
+//        self.descriptionTextView.text = self.derailResult[0].distribution
+//        self.iconImageView.contentMode = .scaleAspectFill
+//        self.iconImageView.image = self.derailResult[0].image!
+//        Alamofire.request(self.derailResult[0].imageURL).responseImage { response in
+//            if let image = response.result.value {
+//                self.phtotImageView.contentMode = .scaleAspectFill
+//                self.phtotImageView.image = image
+//                self.activityIndicator.stopAnimating()
+//                self.activityIndicator.isHidden = true
+//                self.phtotImageView.alpha = 1
+//            }
+//        }
+//        self.loadSound(animalName: derailResult[0].displayTitle)
+//        heatmapLayer.map = nil
+//        let name = self.derailResult[0].displayTitle
+//        let worker = ROGoogleTranslate()
+//        worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
+//            DispatchQueue.global().async {
+//                if result != nil{
+//                    self.updateMap(result: result!)
+//                }
+//            }
+//        }
         
-        for index in 1..<detailResut.count{
+//        for index in 1..<detailResut.count{
 //            frame.origin.x = UIScreen.main.bounds.width * CGFloat(index)
 //            frame.size = self.activityIndicator.frame.size
 //            let indicator = UIActivityIndicatorView(frame:frame)
@@ -210,10 +253,17 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
             //                    }
             //                }
             //            }
-        }
-        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * CGFloat(detailResut.count)), height: scrollView.contentSize.height)
+//        }
+//        scrollView.contentSize = CGSize(width: (UIScreen.main.bounds.width * CGFloat(detailResut.count)), height: scrollView.contentSize.height)
+//
         
-        
+    }
+    @IBAction func confrimButtoAction(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let tabBar: UITabBarController = appDelegate.window!.rootViewController as! UITabBarController
+        let thirdTab = tabBar.viewControllers![2] as! UINavigationController
+        let checkListTableViewController = thirdTab.viewControllers.first as! CheckListTableViewController
+        checkListTableViewController.updateData(animalName: self.nameLabe.text!)
     }
     
     func updateMap(result:NSDictionary){
@@ -356,25 +406,25 @@ extension AnimalDetailViewController: CLLocationManagerDelegate {
     
 }
 
-extension AnimalDetailViewController : UIScrollViewDelegate{
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        positionScroll = self.scrollView.contentOffset.x
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.scrollView.contentOffset.x > self.positionScroll || self.scrollView.contentOffset.x < self.positionScroll{
-            self.scrollView.isPagingEnabled = true
-        }else{
-            self.scrollView.isPagingEnabled = false
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageNumber = scrollView.contentOffset.x / UIScreen.main.bounds.width
-        print(pageNumber)
-        self.pageControl.currentPage = Int(pageNumber)
-    }
-}
+//extension AnimalDetailViewController : UIScrollViewDelegate{
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        positionScroll = self.scrollView.contentOffset.x
+//    }
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if self.scrollView.contentOffset.x > self.positionScroll || self.scrollView.contentOffset.x < self.positionScroll{
+//            self.scrollView.isPagingEnabled = true
+//        }else{
+//            self.scrollView.isPagingEnabled = false
+//        }
+//    }
+//
+////    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+////        let pageNumber = scrollView.contentOffset.x / UIScreen.main.bounds.width
+////        print(pageNumber)
+////        self.pageControl.currentPage = Int(pageNumber)
+////    }
+//}
 
 
 

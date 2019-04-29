@@ -41,13 +41,15 @@ public struct DetailResult {
         
     }
     
-    public init(displayTitle:String, animalType:String, distribution:String,imageURL:String, image: UIImage, latLongs:NSDictionary) {
+    public init(displayTitle:String, animalType:String, distribution:String,imageURL:String, image: UIImage, latLongs:NSDictionary, matchingIndex:String, imageString:String) {
         self.displayTitle = displayTitle
         self.animalType = animalType
         self.distribution = distribution
         self.imageURL = imageURL
         self.image = image
         self.latLongs = latLongs
+        self.matchingIndex = matchingIndex
+        self.imageString = imageString
     }
     public var imageURL = ""
     public var displayTitle = ""
@@ -55,6 +57,8 @@ public struct DetailResult {
     public var distribution = ""
     public var latLongs:NSDictionary?
     public var image:UIImage?
+    public var matchingIndex = ""
+    public var imageString = ""
 }
 
 
@@ -161,6 +165,7 @@ open class ROGoogleTranslate {
         
         if let urlEncodedText = params.text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
             if let url = URL(string: "https://kgsearch.googleapis.com/v1/entities:search?languages=en&limit=1&prefix=true&query=\(urlEncodedText)&types=Thing&key=\(self.apiKey)") {
+                print(url)
                 let httprequest = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                     guard error == nil else {
                         print("Something went wrong: \(String(describing: error?.localizedDescription))")
@@ -278,6 +283,7 @@ open class ROGoogleTranslate {
 //        sessaionManager.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
             //                    var statusCode = response.response?.statusCode
             //                    print(statusCode)
+        print("asdfasdfasdfdasf\(parameters)")
          Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
@@ -295,6 +301,7 @@ open class ROGoogleTranslate {
                 print(error)
             }
         }
+        print()
     }
     
     /// Send request to database server

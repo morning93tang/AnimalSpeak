@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:imagepicker/Record+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:imagepicker/Record+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:imagepicker.xcodeproj">
    </FileRef>
    <FileRef

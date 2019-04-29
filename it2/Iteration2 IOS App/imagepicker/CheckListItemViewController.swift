@@ -121,7 +121,7 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
             cell.checkListImage.image = ImageWorker.loadImageData(fileName: checkListItems.imagePath!)
         }
         cell.tittleLabel.text = checkListItems.animalName!
-        cell.tickboxImageView.isHighlighted = checkListItems.unique
+        cell.tickboxImageView.isHighlighted = checkListItems.found
         return cell
     }
 

@@ -27,12 +27,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //    var detailResut = DetailResult()
     var detailResuts = [DetailResult]()
     var delegate:ResultDetailDelegate?
+    var imageString:String?
     private var canceled: Bool
     @IBOutlet weak var labelResults: UILabel!
     @IBOutlet weak var popUpView: UIView!
     
     @IBOutlet weak var animalImage: UIImageView!
     
+    @IBOutlet weak var cancleButton: UIButton!
     @IBOutlet weak var uploadButton: UIButton!
     @IBAction func startButton(_ sender: Any) {
         self.camara()
@@ -137,6 +139,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.popUpView.layer.cornerRadius = 10
         self.popUpView.layer.masksToBounds = true
         self.animalImage.contentMode = .scaleAspectFill
+        self.cancleButton.layer.cornerRadius = 8
+        self.uploadButton.layer.cornerRadius = 8
         ///Set the subviews to be clipped to the bounds of the animalPhotoView.
         self.animalImage.clipsToBounds = true
         //Set cormerRadius,border and backgroud color for animalIconView.
@@ -216,13 +220,21 @@ extension ViewController {
             let labelAnnotations: JSON = responses["result"]
             if labelAnnotations[0]["name"] != "非动物"{
                 let numLabels: Int = labelAnnotations.count
-                var labels: Array<String> = []
+                var labels = [String: String]()
                 if numLabels > 0 {
                     
                     for index in 0..<numLabels {
                         let des = labelAnnotations[index]["baike_info"]["description"].stringValue
                         if des.contains("澳洲") || des.contains("澳大利亚") || des.contains("大洋洲"){
-                            labels.append(labelAnnotations[index]["name"].stringValue)
+                            var score = labelAnnotations[index]["score"].doubleValue.roundTo(places: 4) * 100
+                            if score < 1{
+                                score = (score * 80).roundTo(places:1)
+                            }
+                            if score < 5{
+                                score = (score * 14).roundTo(places:1)
+                            }
+                            labels[labelAnnotations[index]["name"].stringValue] = "\(score)"
+//                            matchingIndex.append("\(labelAnnotations[index]["score"].doubleValue.roundTo(places: 2))")
                         }
                     }
                     
@@ -239,14 +251,14 @@ extension ViewController {
                 if labels.count > 0{
                     var queues = [DispatchQueue]()
                     for label in labels{
-                        let queue = DispatchQueue(label: label, qos: .utility)
+                        let queue = DispatchQueue(label: label.key, qos: .utility)
                         queues.append(queue)
                     }
                     var index = 0
                     for label in labels{
                         group.enter()
                         queues[index].async(group: group) {
-                            params.text = label
+                            params.text = label.key
                             translator.translate(params: params) { (result) in
                                 params.text = result
                                 translator.getDetail(params: params){ (detailResult) in
@@ -254,7 +266,9 @@ extension ViewController {
                                         DispatchQueue.main.async {
                                             var resut = detailResult
                                             resut.image = self.animalImage.image!
+                                            resut.matchingIndex = label.value
                                             self.detailResuts.append(resut)
+                                            print(resut.displayTitle)
                                             group.leave()
                                         }
                                     }else{
@@ -447,3 +461,4 @@ fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [U
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
     return input.rawValue
 }
+

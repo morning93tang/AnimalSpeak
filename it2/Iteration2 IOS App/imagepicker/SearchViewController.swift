@@ -47,15 +47,15 @@ class SearchViewController: UIViewController {
                                 print(anis["name"])
                                 
                                 let name = anis["name"].stringValue
-                                if anis["className"].stringValue == "mammalia"{
+                                if anis["className"].stringValue == "Mammaliz"{
                                     let ani = animal(name: name, element: .Mammal)
                                     self.animalList.append(ani)
                                 }
-                                if anis["className"].stringValue == "aves"{
+                                if anis["className"].stringValue == "Aves"{
                                     let ani = animal(name: name, element: .Birds)
                                     self.animalList.append(ani)
                                 }
-                                if anis["className"].stringValue == "Reptilia"{
+                                if anis["className"].stringValue == "Reptlia"{
                                     let ani = animal(name: name, element: .Reptile)
                                     self.animalList.append(ani)
                                 }

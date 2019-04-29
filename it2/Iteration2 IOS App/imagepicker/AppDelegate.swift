@@ -26,16 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0")
         GMSPlacesClient.provideAPIKey("AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0")
-        //let firstTab = tabBar.viewControllers![0] as! UINavigationController
-        //let mapViewController = firstTab.viewControllers.first as! MapController
-        //let splitView: UISplitViewController = tabBar.viewControllers![1] as! UISplitViewController
-        //splitView.delegate = self
-        //splitView.preferredDisplayMode = .allVisible
-        //let navController: UINavigationController = splitView.viewControllers.first as! UINavigationController
-        //let animalDetailView: AnimalDetailController = splitView.viewControllers.last as! AnimalDetailController
-        //let animalTable: AnimalTableViewController = navController.viewControllers.first as! AnimalTableViewController
-        //animalTable.detailViewController = animalDetailView
-        //animalTable.mapViewController = mapViewController
         return true
     }
     

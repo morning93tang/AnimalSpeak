@@ -39,10 +39,13 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var currentSelectedIcon : IndexPath?
     let imageCache = AutoPurgingImageCache()
     var urlList = [String:String]()
+    var sendAble = false
     private var gradientColors = [UIColor.blue, UIColor.red]
     private var gradientStartPoints = [0.2, 1.0] as? [NSNumber]
     @IBOutlet weak var animalIconCollectionView: UICollectionView!
     
+    
+
     @IBOutlet weak var searchInfroLabel: UILabel!
     
     @IBAction func refreshButton(_ sender: Any) {
@@ -59,15 +62,20 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     @IBAction func detailButton(_ sender: Any) {
+        if self.sendAble{
+            self.performSegue(withIdentifier: "detailAnimaSegue", sender: sender)
+        }else{
+            CBToast.showToast(message: "Please select an animal first.", aLocationStr: "bottom", aShowTime: 5.0)
+        }
         
-        //self.performSegue(withIdentifier: "showDetail", sender: sender)
     }
+    
     @IBOutlet weak var activityIndicatior: UIActivityIndicatorView!
     
     /// Initial the view
     override func viewDidLoad() {
         
-        self.detailButton.isEnabled = false
+        //self.sendable = false
         animalIconCollectionView.delegate = self
         animalIconCollectionView .dataSource = self
         locationManager.delegate = self
@@ -102,6 +110,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         self.activityIndicatior.color = UIColor.black
         self.activityIndicatior.startAnimating()
         super.viewDidLoad()
+        CBToast.showToast(message: "Select an animal icon to check its distribution in the radius of 5KMs.", aLocationStr: "bottom", aShowTime: 5.0)
         //        mapView.isHidden = true
     }
     
@@ -157,28 +166,30 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         cell.animalIconImageView.image = nil
         let name = cell.number.text!
         if self.urlList.count != 0 && self.animalIcons.count != 0{
-            let urlRequest = URLRequest(url: URL(string: self.urlList[name]!)!)
-            DispatchQueue.global().async {
-                
-                if let cachedAvatarImage = self.imageCache.image(for: urlRequest, withIdentifier: name)
-                {
-                    DispatchQueue.main.async {
-                        cell.animalIconImageView.contentMode = .scaleAspectFill
-                        cell.animalIconImageView.image = cachedAvatarImage
-                    }
-                }else{
-                    Alamofire.request(urlRequest).responseImage { response in
-                        debugPrint(response)
-                        if let image = response.result.value {
+            if self.urlList[name] != nil && URL(string: self.urlList[name]!) != nil{
+                let urlRequest = URLRequest(url: URL(string: self.urlList[name]!)!)
+                DispatchQueue.global().async {
+                    
+                    if let cachedAvatarImage = self.imageCache.image(for: urlRequest, withIdentifier: name)
+                    {
+                        DispatchQueue.main.async {
                             cell.animalIconImageView.contentMode = .scaleAspectFill
-                            cell.animalIconImageView.image = image
-                            self.imageCache.add(image,for: urlRequest, withIdentifier: cell.number.text)
+                            cell.animalIconImageView.image = cachedAvatarImage
                         }
+                    }else{
+                        Alamofire.request(urlRequest).responseImage { response in
+                            debugPrint(response)
+                            if let image = response.result.value {
+                                cell.animalIconImageView.contentMode = .scaleAspectFill
+                                cell.animalIconImageView.image = image
+                                self.imageCache.add(image,for: urlRequest, withIdentifier: cell.number.text)
+                            }
+                        }
+                        
                     }
                     
+                    
                 }
-                
-                
             }
         }
         return cell
@@ -231,7 +242,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        self.detailButton.isEnabled = true
+        self.sendAble = true
         self.activityIndicatior.isHidden = false
         if currentSelectedIcon != indexPath{
             self.currentSelectedIcon = indexPath
@@ -483,6 +494,7 @@ extension MapViewController: CLLocationManagerDelegate {
     ///
     /// - Parameter selctedanimalList: List of selected animals.
     func gerResultData(selctedanimalList: [animal]) {
+        self.sendAble = false
         self.currentSelectedIcon = nil
         self.showSearchResult = true
         var queryList = [String]()
