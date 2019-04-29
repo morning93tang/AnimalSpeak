@@ -61,8 +61,8 @@ public class SendEmail {
 	      request.setBody(mail.build());
 	      Response response = sg.api(request);
 	      System.out.println(response.getStatusCode());
-	      System.out.println(response.getBody());
-	      System.out.println(response.getHeaders());
+//	      System.out.println(response.getBody());
+//	      System.out.println(response.getHeaders());
 	      return response.getStatusCode();
 	    } catch (IOException ex) {
 	      throw ex;
@@ -72,8 +72,9 @@ public class SendEmail {
 	}
 	
 	public int ccMail(String pdf,String ccAdress) throws IOException {
+		System.out.println(ccAdress);
 		pdf = "reportPdf/"+pdf+".pdf";
-		Email from = new Email("yuantianyi0302@hotmail.com");
+		Email from = new Email(DEST);
 	    String subject = "Animals Speak-Your Report Has Been Delivered Successfully!";
 	    Email to = new Email(ccAdress);
 	    Content content = new Content("text/plain", "Dear,\n Your report has been delivered to the government department.\nHere is the pdf.");
@@ -95,7 +96,7 @@ public class SendEmail {
 
 
 	    
-	    SendGrid sg = new SendGrid("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");
+	    SendGrid sg = new SendGrid(apiKey);
 	    Request request = new Request();
 	    try {
 	      request.setMethod(Method.POST);
@@ -103,8 +104,8 @@ public class SendEmail {
 	      request.setBody(mail.build());
 	      Response response = sg.api(request);
 	      System.out.println(response.getStatusCode());
-	      System.out.println(response.getBody());
-	      System.out.println(response.getHeaders());
+//	      System.out.println(response.getBody());
+//	      System.out.println(response.getHeaders());
 	      return response.getStatusCode();
 	    } catch (IOException ex) {
 	      throw ex;

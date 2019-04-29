@@ -104,9 +104,7 @@ public class FunctionController {
 			case 10:
 				temp = mapper.readValue(other, typeRef);
 				return sendEmailOfReport(temp);
-			case 11:
-				temp = mapper.readValue(other, typeRef);
-				return generateReportPdf2(temp);
+			
 			default:
 				return test2();
 				
@@ -151,7 +149,7 @@ public class FunctionController {
 		
 		//invoke calculation function
 		rs = AnimalsSpeakLib.calculateAroundAnimals(lat,lon);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -171,7 +169,7 @@ public class FunctionController {
 		
 		//invoke function to get certain around animals
 		rs = AnimalsSpeakLib.getAroundAnimalLocationByName(animal,dob);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -182,7 +180,7 @@ public class FunctionController {
 		List<Double[]> result = new ArrayList<Double[]>();
 		List<String> missList = new ArrayList<String>();
 		//List<String> missListRs = new ArrayList<String>();
-		System.out.println(data.get("animals"));
+//		System.out.println(data.get("animals"));
 		//get animals list from the input
 		List<String> animals = new ArrayList<String>(data.get("animals"));
 		
@@ -235,7 +233,7 @@ public class FunctionController {
 		rs.put("response", jsonArray);
 		jsonArray = gson.toJson(missList); 
 		rs.put("miss", jsonArray);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -248,7 +246,7 @@ public class FunctionController {
 		//invoke the function that get all animals name
 		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
 		rs.put("response", jsonArray);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -260,7 +258,7 @@ public class FunctionController {
 		//invoke the function that get all animals name in a certain class
 		String jsonArray = gson.toJson(FunctionMapper.getAnimalsNameByClass(data.get("className")));
 		rs.put("response", jsonArray);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -274,7 +272,7 @@ public class FunctionController {
 		//invoke the function that will search the query
 		String jsonArray = gson.toJson(FunctionMapper.searchAnimalListByString(str));
 		rs.put("response", jsonArray);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 	
@@ -293,7 +291,7 @@ public class FunctionController {
 		String jsonArray = gson.toJson(answerList);
 		rs.put("response", jsonArray);
 		rs.put("answer", getAnswerSoundId);
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 		
 	}
@@ -307,7 +305,7 @@ public class FunctionController {
     	String ani = id;
     	// get the filePath
         String filePath = AnimalsSpeakLib.getAnimalVoiceUrlByName(ani);
-        System.out.println(filePath);
+//        System.out.println(filePath);
         if(filePath.equalsIgnoreCase("null")) {//no found file
         	return null;
         }else {//found file
@@ -330,21 +328,12 @@ public class FunctionController {
     	String fileName = AnimalsSpeakLib.generatePdfTemplate(data);
     
     	rs.put("response", fileName);
-    	System.out.println(rs);
+//    	System.out.println(rs);
 		return rs;
     
     }
     
-    public Map<String,String> generateReportPdf2(Map<String,String> data) throws IOException{
-    	Map<String,String> rs = new HashMap<String,String>();
-    	//define pdf file name
-    	String fileName = AnimalsSpeakLib.generatePdfTemplate2(data);
-    
-    	rs.put("response", fileName);
-    	System.out.println(rs);
-		return rs;
-    
-    }
+  
     
     //send Email to both government rescue dept. and to the reporter
     public Map<String,String> sendEmailOfReport(Map<String,String> data) throws IOException{
@@ -355,7 +344,7 @@ public class FunctionController {
     	int ccSend = SendEmail.ccMail(pdfName,ccEmailAddress);
     	
     	rs.put("response", "government status:"+mainSend+"|cc status:"+ccSend);
-    	System.out.println(rs);
+//    	System.out.println(rs);
 		return data;
     
     }
@@ -365,7 +354,7 @@ public class FunctionController {
     
     	// get the filePath
         String filePath = "reportPdf/"+id+".pdf";
-        System.out.println(filePath);
+//        System.out.println(filePath);
         if(filePath.equalsIgnoreCase("null")) {//no found file
         	return null;
         }else {//found file
