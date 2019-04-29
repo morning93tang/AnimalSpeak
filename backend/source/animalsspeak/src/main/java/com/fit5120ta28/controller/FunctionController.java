@@ -104,9 +104,7 @@ public class FunctionController {
 			case 10:
 				temp = mapper.readValue(other, typeRef);
 				return sendEmailOfReport(temp);
-			case 11:
-				temp = mapper.readValue(other, typeRef);
-				return generateReportPdf2(temp);
+			
 			default:
 				return test2();
 				
@@ -335,16 +333,7 @@ public class FunctionController {
     
     }
     
-    public Map<String,String> generateReportPdf2(Map<String,String> data) throws IOException{
-    	Map<String,String> rs = new HashMap<String,String>();
-    	//define pdf file name
-    	String fileName = AnimalsSpeakLib.generatePdfTemplate2(data);
-    
-    	rs.put("response", fileName);
-    	System.out.println(rs);
-		return rs;
-    
-    }
+  
     
     //send Email to both government rescue dept. and to the reporter
     public Map<String,String> sendEmailOfReport(Map<String,String> data) throws IOException{
