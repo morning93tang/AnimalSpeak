@@ -560,6 +560,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 700, 556);
         document.add(username);
         
+        
         Paragraph email = new Paragraph("Email: "+data.get("email"))
         		.setFont(fontTitle)
         		.setFontSize(14)
@@ -637,7 +638,12 @@ public class AnimalsSpeakLib {
         img.setFixedPosition(36, 510-offset-newsize[1]);
         document.add(img);
         //Close document
-
+        System.out.println(data.get("userName"));
+        System.out.println(data.get("msg"));
+        System.out.println(data.get("email"));
+        System.out.println(data.get("className"));
+        System.out.println(data.get("lat"));
+        System.out.println(data.get("lon"));
         document.close();
 
 
@@ -779,7 +785,13 @@ public class AnimalsSpeakLib {
         img.setFixedPosition(36, 510-offset-newsize[1]);
         document.add(img);
         //Close document
-
+        System.out.println(data.get("userName"));
+        System.out.println(data.get("msg"));
+        System.out.println(data.get("email"));
+        System.out.println(data.get("className"));
+        System.out.println(data.get("lat"));
+        System.out.println(data.get("lon"));
+        System.out.println(data.get("img"));
         document.close();
 
 
