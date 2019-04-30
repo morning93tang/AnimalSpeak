@@ -600,7 +600,7 @@ public class AnimalsSpeakLib {
         }else {
         	animalClassName = "Unknown";
         }
-//        System.out.println(animalClassName);
+
         Paragraph animalClass = new Paragraph("Animal Class: " + animalClassName)
         		.setFont(fontTitle)
         		.setFontSize(14)
@@ -639,8 +639,10 @@ public class AnimalsSpeakLib {
         //resize the image
         float[] newsize = new float[2]; 
         newsize = calculateNewSizeOfImg(img.getImageWidth(),img.getImageHeight(),523f,530-offset-36);
+        //scale the image using the new size
         img.scaleAbsolute(newsize[0], newsize[1]);
         img.setFixedPosition(36, 490-offset);
+        //clock wise rotate the image
         img.setProperty(Property.ROTATION_ANGLE, Math.toRadians(270));
         document.add(img);
         //Close document
@@ -656,9 +658,12 @@ public class AnimalsSpeakLib {
 
     }
 	
+	//calculate new size of a image
 	private float[] calculateNewSizeOfImg(float imageWidth, float imageHeight,float restWidth,float restHeight) {
 		float[] newsize = new float[2]; 
+		//calculate the scale ratio of width and height
 		float ratio = imageWidth/imageHeight;
+		//if the width is bigger than screen
 		if(imageWidth>restWidth) {
 			newsize[0] = restWidth;
 			newsize[1] = restWidth/ratio;
@@ -666,7 +671,7 @@ public class AnimalsSpeakLib {
 				newsize[1] = restHeight;
 				newsize[0] = restHeight*ratio;
 			}
-		}else if(imageHeight>restHeight) {
+		}else if(imageHeight>restHeight) {//if the height is bigger than screen
 			newsize[1] = restHeight;
 			newsize[0] = restHeight*ratio;
 			if(newsize[0]>restWidth) {
@@ -679,11 +684,15 @@ public class AnimalsSpeakLib {
 		}
 		return newsize;
 	}
-
+	
+	//generate a random string with letter and number
 	private String getRandomString(int length){
+		 //define the character
 	     String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	     //add random seed
 	     Random random=new Random();
 	     StringBuffer sb=new StringBuffer();
+	     //create random string by iteration
 	     for(int i=0;i<length;i++){
 	       int number=random.nextInt(62);
 	       sb.append(str.charAt(number));

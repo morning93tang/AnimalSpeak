@@ -15,11 +15,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SendEmail {
+	//define the email destination
 	private static final String DEST = "yuantianyi0302@hotmail.com";
 	private static final String GOV = "tyua0003@student.monash.edu";
 	private String apiKey;
 	public SendEmail() throws IOException {
-		
+		//read the api key from the file
 		File file = new File("sendgridAPI");
 		FileReader fileReader = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fileReader);
@@ -29,21 +30,28 @@ public class SendEmail {
 		System.out.println("SendEmail init key:"+apiKey);
 	}
 	
+	// send report to the official rescue email
 	public int send(String pdf) throws IOException {
+		//get pdf file path
 		pdf = "reportPdf/"+pdf+".pdf";
 		Email from = new Email(DEST);
-	    String subject = "Sending with SendGrid is Fun";
+		//setup the title
+	    String subject = "Injury Report";
 	    Email to = new Email(GOV);
-	    Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
+	    //setup the content
+	    Content content = new Content("text/plain", "A user sent an injury report.");
 	    Mail mail = new Mail(from, subject, to, content);
 
 	    
-	    
+	    //get the pdf file
 	    File file = new File(pdf);
 	    byte[] filedata=org.apache.commons.io.IOUtils.toByteArray(new FileInputStream(file));
     	Base64 x = new Base64();
+    	//encode the pdf file data
 		String imageDataString = x.encodeAsString(filedata);
+		//add pdf data stream to the email
 		Attachments attachments3 = new Attachments();
+		//set pdf information
 		attachments3.setContent(imageDataString);
 		attachments3.setType("application/pdf");
 		attachments3.setFilename("InjuryReport.pdf");
@@ -52,8 +60,9 @@ public class SendEmail {
 		mail.addAttachments(attachments3);
 
 
-	    
+	    //invoke api key
 	    SendGrid sg = new SendGrid(apiKey);
+	    //define a request
 	    Request request = new Request();
 	    try {
 	      request.setMethod(Method.POST);
@@ -71,6 +80,7 @@ public class SendEmail {
 	   
 	}
 	
+	// cc the report to the sender
 	public int ccMail(String pdf,String ccAdress) throws IOException {
 		System.out.println(ccAdress);
 		pdf = "reportPdf/"+pdf+".pdf";
