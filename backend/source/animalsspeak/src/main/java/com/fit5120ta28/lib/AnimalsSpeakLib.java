@@ -33,6 +33,7 @@ import com.itextpdf.layout.element.Paragraph;
 //import com.itextpdf.layout.element.Tab;
 //import com.itextpdf.layout.element.TabStop;
 //import com.itextpdf.layout.property.TabAlignment;
+import com.itextpdf.layout.property.Property;
 
 
 @Service
@@ -639,7 +640,8 @@ public class AnimalsSpeakLib {
         float[] newsize = new float[2]; 
         newsize = calculateNewSizeOfImg(img.getImageWidth(),img.getImageHeight(),523f,530-offset-36);
         img.scaleAbsolute(newsize[0], newsize[1]);
-        img.setFixedPosition(36, 490-offset-newsize[1]);
+        img.setFixedPosition(36, 490-offset);
+        img.setProperty(Property.ROTATION_ANGLE, Math.toRadians(270));
         document.add(img);
         //Close document
 //        System.out.println(data.get("userName"));
