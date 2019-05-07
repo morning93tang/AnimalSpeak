@@ -39,9 +39,16 @@ import com.itextpdf.layout.property.Property;
 @Service
 public class AnimalsSpeakLib {
 	
-	private static double AROUNDDIS = 0.2d;
-	private static double OVERLAPTHRESHOLD = 0.3d;
+	//define the threshold of the around animals
+	private static double AROUNDDIS = 0.05d;
+	
+	//define the threshold of overlapping checking
+	private static double OVERLAPTHRESHOLD = 0.2d;
+	
+	//define the IO dictionary of the report
 	public static final String REPORTDEST = "reportPdf/";
+	
+	//define the IO dictionary of the injured animal 
 	public static final String INJUREDDEST = "injured/";
 	
 	@Autowired
@@ -277,6 +284,7 @@ public class AnimalsSpeakLib {
 			Double[] pointArr;
 			List<Double[]> pointList = new ArrayList<Double[]>();
 			try {
+				//define input stream
 				InputStreamReader isr = new InputStreamReader(new FileInputStream(checkName));
 				BufferedReader reader = new BufferedReader(isr);
 			    String line = null;
@@ -296,6 +304,7 @@ public class AnimalsSpeakLib {
 				   if(item[0].equalsIgnoreCase("end")) {
 					   break;
 			       }
+				   //parse String to double type
 				   pointArr[0] = Double.parseDouble(item[0]);
 			       pointArr[1] = Double.parseDouble(item[1]);
 			       //System.out.println(item[0]);
@@ -522,6 +531,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(225, 765, 450);
         document.add(title);
         
+        //draw a line
         PdfCanvas canvas = new PdfCanvas(pdf.getFirstPage());
         Color magentaColor = new DeviceCmyk(0.f, 1.f, 0.f, 0.f);
         canvas.setStrokeColor(magentaColor)
@@ -529,12 +539,14 @@ public class AnimalsSpeakLib {
                 .lineTo(215,735)
                 .closePathStroke();
         
+        //add text:Reporter Information
         Paragraph re_info = new Paragraph("Reporter Information")
         		.setFont(fontTitle)
         		.setFontSize(12)
         		.setFixedPosition(245, 726, 450);
         document.add(re_info);
         
+        //draw a line
         canvas.setStrokeColor(magentaColor)
         .moveTo(377, 735)
         .lineTo(556,735)
@@ -552,73 +564,84 @@ public class AnimalsSpeakLib {
         		.setFontSize(14)
         		.setFixedPosition(36, 700, 556);
         document.add(username);
-
+        
+        //add text: email address
         Paragraph email = new Paragraph("Email: "+data.get("email"))
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 680, 556);
         document.add(email);
         
+        //define the offset
         int offset = 0;
         int wraplen = 60;
         String userMsg = "Message: "+ data.get("msg");
-//        System.out.println(data.get("msg").length());
+
         offset = ((userMsg.length()-1)/wraplen)*20;
+        
+        //display the comment on the pdf
         Paragraph comment = new Paragraph(userMsg)
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 660-offset, 520);
         document.add(comment);
      
-//        System.out.println(offset);
+        //draw a line
         canvas.setStrokeColor(magentaColor)
                 .moveTo(36, 645-offset)
                 .lineTo(215,645-offset)
                 .closePathStroke();
         
+        //display text:Animal Information
         Paragraph an_info = new Paragraph("Animal Information")
         		.setFont(fontTitle)
         		.setFontSize(12)
         		.setFixedPosition(248, 636-offset, 450);
         document.add(an_info);
         
+        //draw a line
         canvas.setStrokeColor(magentaColor)
         .moveTo(377, 645-offset)
         .lineTo(556, 645-offset)
         .closePathStroke();
         
-        
+        //display text:animal name
         Paragraph animalname = new Paragraph("Animal Name: "+data.get("animal"))
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 610-offset, 556);
         document.add(animalname);
         
+        //get animal class by animal name	
         String animalClassName;
         if(FunctionMapper.getAnimalClassByName(data.get("animal"))!=null) {
         	animalClassName = FunctionMapper.getAnimalClassByName(data.get("animal")).getClassName();
         }else {
         	animalClassName = "Unknown";
         }
-
+        
+        //display text:animal class
         Paragraph animalClass = new Paragraph("Animal Class: " + animalClassName)
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 590-offset, 556);
         document.add(animalClass);
-
+        
+        //display text:Animal Latitude
         Paragraph animalLat = new Paragraph("Animal Latitude: "+data.get("lat"))
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 570-offset, 556);
         document.add(animalLat);
         
+        //display text:Animal Longitude
         Paragraph animalLon = new Paragraph("Animal Longitude: "+data.get("lon"))
         		.setFont(fontTitle)
         		.setFontSize(14)
         		.setFixedPosition(36, 550-offset, 556);
         document.add(animalLon);
         
+        //display text:Timestamp
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	Date date = new Date();
         Paragraph reportDate = new Paragraph("Report Time: "+dateFormat.format(date))
@@ -627,6 +650,7 @@ public class AnimalsSpeakLib {
         		.setFixedPosition(36, 530-offset, 556);
         document.add(reportDate);
         
+        //display text:Animal Image
         Paragraph animalImg = new Paragraph("Animal Image:")
         		.setFont(fontTitle)
         		.setFontSize(14)
@@ -665,20 +689,25 @@ public class AnimalsSpeakLib {
 		float ratio = imageWidth/imageHeight;
 		//if the width is bigger than screen
 		if(imageWidth>restWidth) {
+			//resize the image
 			newsize[0] = restWidth;
 			newsize[1] = restWidth/ratio;
 			if(newsize[1]>restHeight) {
+				//resize the image
 				newsize[1] = restHeight;
 				newsize[0] = restHeight*ratio;
 			}
 		}else if(imageHeight>restHeight) {//if the height is bigger than screen
+			//resize the image
 			newsize[1] = restHeight;
 			newsize[0] = restHeight*ratio;
 			if(newsize[0]>restWidth) {
+				//resize the image
 				newsize[0] = restWidth;
 				newsize[1] = restWidth/ratio;
 			}
 		}else {
+			//keep the original size
 			newsize[0] = imageWidth;
 			newsize[1] = imageHeight;
 		}
@@ -695,6 +724,7 @@ public class AnimalsSpeakLib {
 	     //create random string by iteration
 	     for(int i=0;i<length;i++){
 	       int number=random.nextInt(62);
+	       //add random string into the stringbuffer
 	       sb.append(str.charAt(number));
 	     }
 	     return sb.toString();

@@ -10641,3 +10641,162 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact com.itextpdf:
 2019-04-29 21:00:50,991 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2019-04-29 21:00:50,993 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-04-29 21:00:50,997 [Worker-54: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Vincent\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:03:19,693 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-05-07 12:03:26,415 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:03:26,425 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:03:26,469 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:03:26,474 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:03:26,474 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:03:28,548 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:03:28,550 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:03:28,551 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:03:28,555 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:03:28,555 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:04:07,284 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:07,285 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:07,285 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:07,288 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:07,289 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:04:26,700 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:26,701 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:26,701 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:26,703 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:26,707 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:04:42,660 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:42,664 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:42,667 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:04:42,672 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:04:42,672 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:05:07,225 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-05-07 12:06:07,910 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:06:07,914 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:06:07,941 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:06:07,946 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:06:07,946 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:06:29,691 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:06:29,692 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:06:29,692 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:06:29,694 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:06:29,694 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:07:53,719 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:07:53,720 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:07:53,720 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:07:53,721 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:07:53,722 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:08:35,029 [main] ERROR o.e.m.j.u.i.DownloadSourcesActionDelegate - Could not schedule source download
+org.eclipse.jdt.core.JavaModelException: bin does not exist
+	at org.eclipse.jdt.internal.core.JavaElement.newJavaModelException(JavaElement.java:583) ~[na:na]
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:256) ~[na:na]
+	at org.eclipse.jdt.internal.core.Openable.openAncestors(Openable.java:530) ~[na:na]
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:250) ~[na:na]
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596) ~[na:na]
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:326) ~[na:na]
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:312) ~[na:na]
+	at org.eclipse.jdt.internal.core.PackageFragmentRoot.getKind(PackageFragmentRoot.java:516) ~[na:na]
+	at org.eclipse.jdt.internal.core.PackageFragmentRoot.getSourceAttachmentPath(PackageFragmentRoot.java:641) ~[na:na]
+	at org.eclipse.m2e.jdt.ui.internal.DownloadSourcesActionDelegate.setActiveEditor(DownloadSourcesActionDelegate.java:51) ~[na:na]
+	at org.eclipse.ui.internal.EditorPluginAction.editorChanged(EditorPluginAction.java:72) ~[na:na]
+	at org.eclipse.ui.internal.EditorActionBuilder$EditorContribution.editorChanged(EditorActionBuilder.java:83) ~[na:na]
+	at org.eclipse.ui.internal.EditorActionBuilder$ExternalContributor.setActiveEditor(EditorActionBuilder.java:132) ~[na:na]
+	at org.eclipse.ui.internal.EditorActionBars.partChanged(EditorActionBars.java:346) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.updateActivations(WorkbenchPage.java:325) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.access$2(WorkbenchPage.java:306) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage$E4PartListener.partActivated(WorkbenchPage.java:213) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl$3.run(PartServiceImpl.java:253) ~[na:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45) ~[org.eclipse.equinox.common_3.10.300.v20190218-2100.jar:na]
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.firePartActivated(PartServiceImpl.java:250) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:775) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:684) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.activate(PartServiceImpl.java:679) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.busyOpenEditor(WorkbenchPage.java:3325) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.lambda$9(WorkbenchPage.java:3216) ~[na:na]
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3213) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3177) ~[na:na]
+	at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:3167) ~[na:na]
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:376) ~[na:na]
+	at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:182) ~[na:na]
+	at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:287) ~[na:na]
+	at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:252) ~[na:na]
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:274) ~[na:na]
+	at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:252) ~[na:na]
+	at org.eclipse.jdt.internal.ui.navigator.OpenAndExpand.run(OpenAndExpand.java:53) ~[na:na]
+	at org.eclipse.ui.actions.RetargetAction.run(RetargetAction.java:218) ~[na:na]
+	at org.eclipse.ui.navigator.CommonNavigatorManager$1.open(CommonNavigatorManager.java:183) ~[na:na]
+	at org.eclipse.ui.OpenAndLinkWithEditorHelper$InternalListener.open(OpenAndLinkWithEditorHelper.java:49) ~[na:na]
+	at org.eclipse.jface.viewers.StructuredViewer$2.run(StructuredViewer.java:853) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45) ~[org.eclipse.equinox.common_3.10.300.v20190218-2100.jar:na]
+	at org.eclipse.ui.internal.JFaceUtil.lambda$0(JFaceUtil.java:47) ~[na:na]
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:176) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.jface.viewers.StructuredViewer.fireOpen(StructuredViewer.java:850) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.jface.viewers.StructuredViewer.handleOpen(StructuredViewer.java:1165) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.ui.navigator.CommonViewer.handleOpen(CommonViewer.java:454) ~[na:na]
+	at org.eclipse.jface.util.OpenStrategy.fireOpenEvent(OpenStrategy.java:277) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.jface.util.OpenStrategy.access$2(OpenStrategy.java:272) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:312) ~[org.eclipse.jface_3.15.100.v20190222-1334.jar:na]
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4131) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1055) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3944) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3547) ~[org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar:na]
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173) ~[na:na]
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062) ~[na:na]
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155) ~[na:na]
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644) ~[na:na]
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338) ~[na:na]
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:566) ~[na:na]
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150) ~[na:na]
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155) ~[na:na]
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203) ~[org.eclipse.equinox.app_1.4.100.v20190215-2139.jar:na]
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137) ~[org.eclipse.osgi_3.13.300.v20190218-1622.jar:na]
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107) ~[org.eclipse.osgi_3.13.300.v20190218-1622.jar:na]
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400) ~[org.eclipse.osgi_3.13.300.v20190218-1622.jar:na]
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255) ~[org.eclipse.osgi_3.13.300.v20190218-1622.jar:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:661) ~[org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar:na]
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597) ~[org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar:na]
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1476) ~[org.eclipse.equinox.launcher_1.5.300.v20190213-1655.jar:na]
+2019-05-07 12:10:47,193 [Worker-0: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.fit5120ta28:animalsspeak:dev @ C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\pom.xml.
+2019-05-07 12:10:47,913 [Worker-0: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /animalsspeak/src/main/java because it overlaps with /animalsspeak/src/main
+2019-05-07 12:10:47,914 [Worker-0: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /animalsspeak/src/main/resources
+2019-05-07 12:10:47,925 [Worker-0: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /animalsspeak/src/main/resources
+2019-05-07 12:10:47,940 [Worker-0: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /animalsspeak/src/test/java because it overlaps with /animalsspeak/src/test
+2019-05-07 12:10:49,034 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:10:49,035 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:10:49,060 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:10:49,070 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:10:49,076 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:11:41,299 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:11:41,305 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:11:41,309 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:11:41,321 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:11:41,321 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:12:13,547 [Worker-15: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.fit5120ta28:animalsspeak:dev @ C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\pom.xml.
+2019-05-07 12:12:14,133 [Worker-15: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /animalsspeak/src/main/java
+2019-05-07 12:12:14,134 [Worker-15: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /animalsspeak/src/main/resources
+2019-05-07 12:12:14,134 [Worker-15: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /animalsspeak/src/main/resources
+2019-05-07 12:12:14,134 [Worker-15: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /animalsspeak/src/test/java
+2019-05-07 12:12:14,285 [Worker-15: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2019-05-07 12:12:15,548 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:12:15,549 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:12:15,588 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:12:15,593 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:12:15,610 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:12:44,190 [Worker-6: Launching Executing install in C__Users_TIANYI YUAN_Documents_GitHub_AnimalSpeak_backend_source_animalsspeak] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak
+2019-05-07 12:12:44,194 [Worker-6: Launching Executing install in C__Users_TIANYI YUAN_Documents_GitHub_AnimalSpeak_backend_source_animalsspeak] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2019-05-07 12:12:51,474 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:12:51,480 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:12:51,486 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:12:51,491 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:12:51,491 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
+2019-05-07 12:20:22,221 [Worker-17: Launching Executing install in C__Users_TIANYI YUAN_Documents_GitHub_AnimalSpeak_backend_source_animalsspeak] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak
+2019-05-07 12:20:22,221 [Worker-17: Launching Executing install in C__Users_TIANYI YUAN_Documents_GitHub_AnimalSpeak_backend_source_animalsspeak] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2019-05-07 12:21:48,841 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:21:48,844 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2019-05-07 12:21:48,850 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-05-07 12:21:48,852 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-05-07 12:21:48,859 [Worker-15: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\TIANYI YUAN\Documents\GitHub\AnimalSpeak\backend\source\animalsspeak\src\test\resources
