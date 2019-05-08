@@ -13,6 +13,9 @@ import java.io.IOException;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Component;
 
+/*
+ * This class is for sending the injury report to offical rescue org.
+ * */
 @Component
 public class SendEmail {
 	//define the email destination
@@ -53,9 +56,13 @@ public class SendEmail {
 		Attachments attachments3 = new Attachments();
 		//set pdf information
 		attachments3.setContent(imageDataString);
+		//set pdf type
 		attachments3.setType("application/pdf");
+		//set pdf file name
 		attachments3.setFilename("InjuryReport.pdf");
+		//set disposition
 		attachments3.setDisposition("attachment");
+		//set content id
 		attachments3.setContentId("Banner");
 		mail.addAttachments(attachments3);
 
@@ -98,15 +105,20 @@ public class SendEmail {
 		String imageDataString = x.encodeAsString(filedata);
 		Attachments attachments3 = new Attachments();
 		attachments3.setContent(imageDataString);
+		//set pdf type
 		attachments3.setType("application/pdf");
+		//set pdf file name
 		attachments3.setFilename("InjuryReport.pdf");
+		//set disposition
 		attachments3.setDisposition("attachment");
+		//set content id
 		attachments3.setContentId("Banner");
 		mail.addAttachments(attachments3);
 
 
-	    
+	    //define sendgrid api key
 	    SendGrid sg = new SendGrid(apiKey);
+	    //init a request
 	    Request request = new Request();
 	    try {
 	      request.setMethod(Method.POST);
