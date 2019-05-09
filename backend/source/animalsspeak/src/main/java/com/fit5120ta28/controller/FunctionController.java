@@ -326,9 +326,12 @@ public class FunctionController {
     	Map<String,String> rs = new HashMap<String,String>();
     	//define pdf file name
     	String fileName = AnimalsSpeakLib.generatePdfTemplate(data);
-    
+    	String randomStr = AnimalsSpeakLib.getRandom6Int();
     	rs.put("response", fileName);
-//    	System.out.println(rs);
+    	rs.put("verification_code", randomStr);
+    	String codeStatus = String.valueOf(SendEmail.sendCode(data.get("email"),randomStr));
+    	rs.put("verification_send_status", codeStatus);
+    	System.out.println(rs);
 		return rs;
     
     }

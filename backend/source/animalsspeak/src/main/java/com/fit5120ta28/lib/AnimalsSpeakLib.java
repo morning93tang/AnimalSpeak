@@ -730,4 +730,21 @@ public class AnimalsSpeakLib {
 	     return sb.toString();
 	 }
 	
+	//generate a random string with letter and number
+	public String getRandom6Int(){
+		 //define the character
+	     String str="0123456789";
+	     //add random seed
+	     Random random=new Random();
+	     StringBuffer sb=new StringBuffer();
+	     //create random string by iteration
+	     for(int i=0;i<6;i++){
+			int number=random.nextInt(10);
+			//add random string into the stringbuffer
+			sb.append(str.charAt(number));
+	     }
+	     return sb.toString();
+	 }
+	
+	
 }

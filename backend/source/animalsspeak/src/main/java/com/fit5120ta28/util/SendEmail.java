@@ -133,4 +133,31 @@ public class SendEmail {
 	      throw ex;
 	    }
 	}
+	
+	// send the verification code to the sender
+	public int sendCode(String email,String code) throws IOException {
+		Email from = new Email(DEST);
+		//setup the title
+	    String subject = "Injury Report-Verification Email";
+	    Email to = new Email(email);
+	    //setup the content
+	    Content content = new Content("text/plain", "Your injury report has been generated. Your Verification Code is: "+code);
+	    Mail mail = new Mail(from, subject, to, content);
+	    //define sendgrid api key
+	    SendGrid sg = new SendGrid(apiKey);
+	    //init a request
+	    Request request = new Request();
+		try {
+		      request.setMethod(Method.POST);
+		      request.setEndpoint("mail/send");
+		      request.setBody(mail.build());
+		      Response response = sg.api(request);
+		      System.out.println(response.getStatusCode());
+//		      System.out.println(response.getBody());
+//		      System.out.println(response.getHeaders());
+		      return response.getStatusCode();
+		    } catch (IOException ex) {
+		      throw ex;
+		    }
+		}
 }
