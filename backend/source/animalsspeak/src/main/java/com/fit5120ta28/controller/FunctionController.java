@@ -23,8 +23,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fit5120ta28.entity.*;
@@ -154,7 +155,7 @@ public class FunctionController {
 	}
 	
 	//get certain animal location within a distance
-	public Map<String,String> getAroundAnimalLocationByName(Map<String,String> data){
+	public Map<String,String> getAroundAnimalLocationByName(Map<String,String> data) throws JsonParseException, JsonMappingException, IOException{
 		Map<String,String> rs = new HashMap<String,String>();
 		
 		//form the file path string
