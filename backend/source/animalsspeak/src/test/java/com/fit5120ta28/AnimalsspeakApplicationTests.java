@@ -61,9 +61,10 @@ public class AnimalsspeakApplicationTests {
 		rs1.put("ccAddress", "769991835@qq.com");
 		
 //		rs.put("lon", "145.863221");
-//		rs1.put("lat", "-36.95268721321231231112323");
-//		rs1.put("lon", "145.863221232131213122213211");
-//		rs1.put("animal", "Sand Goanna");
+		rs1.put("lat", "-35.81");
+		rs1.put("lon", "142.89");
+		rs1.put("animal", "Diamond Python");
+		rs= FunctionController.getAroundAnimalLocationByName(rs1);
 //		rs1.put("userName", "TIANYI YUAN");
 //		rs1.put("email", "769991835@qq.com");
 //		rs1.put("msg", "lllllllll lll lllllll 1lll1 11lll1 1ll1 lll 1111 lll11ll1 11l 1llll11 11111 1 111111");

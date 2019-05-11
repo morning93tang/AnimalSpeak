@@ -14,6 +14,11 @@ import javax.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fit5120ta28.mapper.FunctionMapper;
 import com.google.gson.Gson;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -34,6 +39,8 @@ import com.itextpdf.layout.element.Paragraph;
 //import com.itextpdf.layout.element.TabStop;
 //import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.Property;
+import java.net.URL;
+import java.net.URLConnection;
 
 
 @Service
@@ -369,13 +376,114 @@ public class AnimalsSpeakLib {
 		return fileNameList;
 	}
 	
+	private Map<String,Double> getOccurenceFactorByAnimalName(String file) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {//check if the file exists
+			//not exist
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			//exist
+			System.out.println(file+" loaded!");
+		}
+		
+		Map<String,Double> rs = new HashMap<String,Double>();
+		try {
+			//read files
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(file));
+			BufferedReader reader = new BufferedReader(isr);
+		    String line = null;
+		    
+		    line = reader.readLine();line = reader.readLine();
+		    String item[] = line.split(",");
+		    
+		    
+		    
+		    //put weather information from the dataset into a hashmap
+		    rs.put("max_temp",Double.parseDouble(item[4]));
+		    rs.put("min_temp",Double.parseDouble(item[5]));
+		    rs.put("max_humi",Double.parseDouble(item[6]));
+		    rs.put("min_humi",Double.parseDouble(item[7]));
+		    rs.put("max_windspeed",Double.parseDouble(item[8]));
+		    rs.put("min_windspeed",Double.parseDouble(item[9]));
+		    rs.put("max_precipitation",Double.parseDouble(item[10]));
+		    rs.put("min_precipitation",Double.parseDouble(item[11]));
+		   //System.out.println(count);
+		   reader.close();
+		 
+		  } catch (Exception e) {
+			 
+		      e.printStackTrace();
+		  }
+		
+		return rs;
+		
+	}
+	
+	public static String sendGet(String url, String param){
+		String result = "";
+		String urlName = url + "?" + param;
+		try{
+			URL realUrl = new URL(urlName);
+			//open url connection
+			URLConnection conn = realUrl.openConnection();
+			//set common param for the connection
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			//build real connection
+			conn.connect();
+			//get all response head param
+			Map<String,List<String>> map = conn.getHeaderFields();
+			//iterate all response
+			for (String key : map.keySet()) {
+				System.out.println(key + "-->" + map.get(key));
+			}
+			
+			//define bufferedread to store the stream
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+            
+		} catch (Exception e) {
+			System.out.println("GET request error:" + e);
+			e.printStackTrace();
+		}
+		return result;
+		
+		
+	}
+
+	
+	
 	//get animal location by name
-	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p){
+	@SuppressWarnings("unchecked")
+	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p) throws JsonParseException, JsonMappingException, IOException{
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
+		//get location array for the animal name input
 		String jsonArray = gson.toJson(getLocationArrayByDis(ani,p[0],p[1])); 
 		rs.put("response", jsonArray);
+		//get weather information
+		Map<String,Double> weather = getOccurenceFactorByAnimalName(ani);
+		//double max_temp = weather.get(key)
+		System.out.println(weather);
+		String sr = sendGet("http://api.openweathermap.org/data/2.5/weather","units=metric&q=Melbourne,au&APPID=c34dbbe91eb2168fa12648f30c04bc05");
 		
+		System.out.println(sr);
+		//convert string to json
+		TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
+		Map<String,Object> temp = new HashMap<String,Object>();
+		ObjectMapper mapper = new ObjectMapper(); 
+		temp = mapper.readValue(sr, typeRef);
+	
+		System.out.println(((Map<String,Object>) temp.get("main")).get("temp"));
+
+		
+			
 		return rs;
 	}
 	
