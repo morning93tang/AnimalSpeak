@@ -50,7 +50,7 @@ public class AnimalsSpeakLib {
 	private static double AROUNDDIS = 0.05d;
 	
 	//define the threshold of overlapping checking
-	private static double OVERLAPTHRESHOLD = 0.2d;
+	private static double OVERLAPTHRESHOLD = 0.1d;
 	
 	//define the IO dictionary of the report
 	public static final String REPORTDEST = "reportPdf/";
@@ -406,8 +406,7 @@ public class AnimalsSpeakLib {
 		    rs.put("min_humi",Double.parseDouble(item[7]));
 		    rs.put("max_windspeed",Double.parseDouble(item[8]));
 		    rs.put("min_windspeed",Double.parseDouble(item[9]));
-		    rs.put("max_precipitation",Double.parseDouble(item[10]));
-		    rs.put("min_precipitation",Double.parseDouble(item[11]));
+		 
 		   //System.out.println(count);
 		   reader.close();
 		 
@@ -435,11 +434,11 @@ public class AnimalsSpeakLib {
 			//build real connection
 			conn.connect();
 			//get all response head param
-			Map<String,List<String>> map = conn.getHeaderFields();
+//			Map<String,List<String>> map = conn.getHeaderFields();
 			//iterate all response
-			for (String key : map.keySet()) {
-				System.out.println(key + "-->" + map.get(key));
-			}
+//			for (String key : map.keySet()) {
+//				System.out.println(key + "-->" + map.get(key));
+//			}
 			
 			//define bufferedread to store the stream
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -470,20 +469,86 @@ public class AnimalsSpeakLib {
 		//get weather information
 		Map<String,Double> weather = getOccurenceFactorByAnimalName(ani);
 		//double max_temp = weather.get(key)
-		System.out.println(weather);
+//		System.out.println(weather);
 		String sr = sendGet("http://api.openweathermap.org/data/2.5/weather","units=metric&q=Melbourne,au&APPID=c34dbbe91eb2168fa12648f30c04bc05");
 		
-		System.out.println(sr);
+//		System.out.println(sr);
 		//convert string to json
 		TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
 		Map<String,Object> temp = new HashMap<String,Object>();
 		ObjectMapper mapper = new ObjectMapper(); 
 		temp = mapper.readValue(sr, typeRef);
 	
-		System.out.println(((Map<String,Object>) temp.get("main")).get("temp"));
-
+//		System.out.println(((Map<String,Object>) temp.get("main")).get("temp"));
+		//define Temperature in the dataset
+		double api_temp = Double.parseDouble(((Map<String,Object>) temp.get("main")).get("temp").toString());
+		//define humidity in the dataset
+		double api_humi = Double.parseDouble(((Map<String,Object>) temp.get("main")).get("humidity").toString());
+		//define windspeed in the dataset
+		double api_ws = Double.parseDouble(((Map<String,Object>) temp.get("wind")).get("speed").toString());
 		
-			
+		
+		//start checking factor for occurrence
+		int chance = 0;
+		
+		//check if the Temperature is in the range
+		if(weather.get("max_temp")>=api_temp && weather.get("min_temp")<=api_temp) {
+			//temp in the range
+			chance = chance + 2;
+			rs.put("demand_temperature","yes");
+		}else {
+			rs.put("demand_temperature","no");
+		}
+		
+		if(weather.get("max_humi")>=api_humi && weather.get("min_humi")<=api_humi) {
+			//temp in the range
+			chance = chance + 1;
+			rs.put("demand_humi","yes");
+		}else {
+			rs.put("demand_humi","no");
+		}
+		
+		if(weather.get("max_windspeed")>=api_ws && weather.get("min_windspeed")<=api_ws) {
+			//temp in the range
+			chance = chance + 1;
+			rs.put("demand_windspeed","yes");
+		}else {
+			rs.put("demand_windspeed","no");
+		}
+		int possibility = chance;
+		System.out.println(chance);
+		//define the possibility text displayed on the UI
+		String poss_text = "";
+		switch(possibility) {
+			case 0:
+				poss_text = "very unlikely";
+				break;
+			case 1:
+				poss_text = "unlikely";
+				break;
+			case 2:
+				poss_text = "have a chance";
+				break;
+			case 3:
+				poss_text = "likely";
+				break;
+			case 4:
+				poss_text = "very likely";
+				break;
+				
+		}
+		
+		rs.put("possibility", poss_text);
+		rs.put("possibility_raw", String.valueOf(possibility));
+		rs.put("current_temperature",String.valueOf(api_temp));
+		rs.put("current_humid",String.valueOf(api_humi));
+		rs.put("current_windspeed",String.valueOf(api_ws));
+		rs.put("demand_temperature_max",String.valueOf(weather.get("max_temp")));
+		rs.put("demand_temperature_min",String.valueOf(weather.get("min_temp")));
+		rs.put("demand_humid_max",String.valueOf(weather.get("max_humi")));
+		rs.put("demand_humid_min",String.valueOf(weather.get("min_humi")));
+		rs.put("demand_windspeed_max",String.valueOf(weather.get("max_windspeed")));
+		rs.put("demand_windspeed_min",String.valueOf(weather.get("min_windspeed")));
 		return rs;
 	}
 	
