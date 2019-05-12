@@ -170,7 +170,7 @@ public class FunctionController {
 		
 		//invoke function to get certain around animals
 		rs = AnimalsSpeakLib.getAroundAnimalLocationByName(animal,dob);
-//		System.out.println(rs);
+		System.out.println(rs);
 		return rs;
 	}
 	
