@@ -496,24 +496,30 @@ public class AnimalsSpeakLib {
 			//temp in the range
 			chance = chance + 2;
 			rs.put("demand_temperature","yes");
+		}else if(weather.get("max_temp")<api_temp){
+			rs.put("demand_temperature","too high");
 		}else {
-			rs.put("demand_temperature","no");
+			rs.put("demand_temperature","too low");
 		}
 		
 		if(weather.get("max_humi")>=api_humi && weather.get("min_humi")<=api_humi) {
 			//temp in the range
 			chance = chance + 1;
 			rs.put("demand_humi","yes");
+		}else if(weather.get("max_humi")<api_humi){
+			rs.put("demand_humi","too high");
 		}else {
-			rs.put("demand_humi","no");
+			rs.put("demand_humi","too low");
 		}
 		
 		if(weather.get("max_windspeed")>=api_ws && weather.get("min_windspeed")<=api_ws) {
 			//temp in the range
 			chance = chance + 1;
 			rs.put("demand_windspeed","yes");
+		}else if(weather.get("max_windspeed")<api_ws){
+			rs.put("demand_windspeed","too high");
 		}else {
-			rs.put("demand_windspeed","no");
+			rs.put("demand_windspeed","too low");
 		}
 		int possibility = chance;
 		System.out.println(chance);
