@@ -47,7 +47,7 @@ import java.net.URLConnection;
 public class AnimalsSpeakLib {
 	
 	//define the threshold of the around animals
-	private static double AROUNDDIS = 0.05d;
+	private static double AROUNDDIS = 0.3d;
 	
 	//define the threshold of overlapping checking
 	private static double OVERLAPTHRESHOLD = 0.1d;
