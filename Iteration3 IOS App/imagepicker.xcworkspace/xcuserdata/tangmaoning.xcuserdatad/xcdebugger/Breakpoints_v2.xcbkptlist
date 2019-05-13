@@ -676,8 +676,8 @@
                   symbolName = "imagepicker.SearchViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; imagepicker.SearchViewController"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.136151"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.351998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -691,8 +691,8 @@
                   symbolName = "imagepicker.SearchViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;imagepicker.SearchViewController&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.138414"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.353904"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -1394,11 +1394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.0875421"
+            timestampString = "579450815.813688"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "712"
-            endingLineNumber = "712"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
             landmarkName = "roundTo(places:)"
             landmarkType = "7">
             <Locations>
@@ -1457,8 +1457,8 @@
                   symbolName = "imagepicker.SearchViewController.tableView.getter : weak Swift.Optional&lt;__C.UITableView&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.194761"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.416991"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -1472,8 +1472,8 @@
                   symbolName = "imagepicker.SearchViewController.tableView.setter : weak Swift.Optional&lt;__C.UITableView&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.197063"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.4194649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -1487,8 +1487,8 @@
                   symbolName = "imagepicker.SearchViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; imagepicker.SearchViewController"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.199313"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.422199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -1502,8 +1502,8 @@
                   symbolName = "imagepicker.SearchViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;imagepicker.SearchViewController&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.201474"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.425084"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -1535,8 +1535,8 @@
                   symbolName = "imagepicker.SearchViewController.delegate.getter : Swift.Optional&lt;imagepicker.searchListDelegate&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.208721"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.433301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -1550,8 +1550,8 @@
                   symbolName = "imagepicker.SearchViewController.delegate.setter : Swift.Optional&lt;imagepicker.searchListDelegate&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.21131"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.435564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -1565,8 +1565,8 @@
                   symbolName = "imagepicker.SearchViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; imagepicker.SearchViewController"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.213791"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.437855"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -1580,8 +1580,8 @@
                   symbolName = "imagepicker.SearchViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;imagepicker.SearchViewController&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
-                  timestampString = "579360197.216803"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SearchViewController.swift"
+                  timestampString = "579450816.440167"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -1630,45 +1630,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.08778"
+            timestampString = "579450815.814221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "updateMap(result:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "imagepicker.MapViewController.updateMap(result: __C.NSDictionary) -&gt; ()"
-                  moduleName = "imagepicker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/MapViewController.swift"
-                  timestampString = "579360197.233308"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "319"
-                  endingLineNumber = "319"
-                  offsetFromSymbolStart = "3926">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in imagepicker.MapViewController.updateMap(result: __C.NSDictionary) -&gt; ()"
-                  moduleName = "imagepicker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/MapViewController.swift"
-                  timestampString = "579360197.235773"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "320"
-                  endingLineNumber = "320"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1805,12 +1773,12 @@
                   symbolName = "imagepicker.SecondaryAnimalDetailViewController.gerResultData() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
-                  timestampString = "579360197.282706"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
+                  timestampString = "579450816.493844"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
                   offsetFromSymbolStart = "394">
                </Location>
                <Location
@@ -1820,12 +1788,12 @@
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.SecondaryAnimalDetailViewController.gerResultData() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
-                  timestampString = "579360197.285212"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
+                  timestampString = "579450816.4962699"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
                   offsetFromSymbolStart = "41">
                </Location>
             </Locations>
@@ -1853,12 +1821,12 @@
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.SecondaryAnimalDetailViewController.gerResultData() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
-                  timestampString = "579360197.304004"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
+                  timestampString = "579450816.5020781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
                   offsetFromSymbolStart = "41">
                </Location>
                <Location
@@ -1868,12 +1836,12 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.SecondaryAnimalDetailViewController.gerResultData() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
-                  timestampString = "579360197.305832"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/SecondaryAnimalDetailViewController.swift"
+                  timestampString = "579450816.504595"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
                   offsetFromSymbolStart = "37">
                </Location>
             </Locations>
@@ -2125,8 +2093,8 @@
                   symbolName = "imagepicker.CheckListItemViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;imagepicker.CheckListItemViewController&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListItemViewController.swift"
-                  timestampString = "579360197.326202"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListItemViewController.swift"
+                  timestampString = "579450816.523255"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -2140,8 +2108,8 @@
                   symbolName = "imagepicker.CheckListItemViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;imagepicker.CheckListItemViewController&gt;"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListItemViewController.swift"
-                  timestampString = "579360197.328501"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListItemViewController.swift"
+                  timestampString = "579450816.525885"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "30"
@@ -2766,11 +2734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.090326"
+            timestampString = "579450815.815222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3933,13 +3901,13 @@
                   symbolName = "imagepicker.CheckListTableViewController.updateData(animalName: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
-                  timestampString = "579360197.565011"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
+                  timestampString = "579450816.758225"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
                   endingLineNumber = "139"
-                  offsetFromSymbolStart = "1423">
+                  offsetFromSymbolStart = "1411">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -3948,8 +3916,8 @@
                   symbolName = "closure #2 (imagepicker.ListItem) -&gt; Swift.Bool in imagepicker.CheckListTableViewController.updateData(animalName: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
-                  timestampString = "579360197.567673"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
+                  timestampString = "579450816.76086"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "139"
@@ -3997,13 +3965,13 @@
                   symbolName = "imagepicker.CheckListTableViewController.updateData(animalName: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
-                  timestampString = "579360197.578392"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
+                  timestampString = "579450816.777176"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
                   endingLineNumber = "141"
-                  offsetFromSymbolStart = "2091">
+                  offsetFromSymbolStart = "2079">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -4012,8 +3980,8 @@
                   symbolName = "closure #3 (imagepicker.ListItem) -&gt; Swift.Bool in imagepicker.CheckListTableViewController.updateData(animalName: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
-                  timestampString = "579360197.580532"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListTableViewController.swift"
+                  timestampString = "579450816.7792749"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
@@ -4333,8 +4301,8 @@
                   symbolName = "imagepicker.QuizeResultViewController.backToHome(Any) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
-                  timestampString = "579360197.5952851"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
+                  timestampString = "579450816.795784"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -4348,8 +4316,8 @@
                   symbolName = "imagepicker.QuizeResultViewController.backToHome(Any) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
-                  timestampString = "579360197.597351"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
+                  timestampString = "579450816.798129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -4509,8 +4477,8 @@
                   symbolName = "imagepicker.QuizeResultViewController.seeAnwser(Any) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
-                  timestampString = "579360197.64359"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
+                  timestampString = "579450816.91071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -4524,8 +4492,8 @@
                   symbolName = "imagepicker.QuizeResultViewController.seeAnwser(Any) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
-                  timestampString = "579360197.6461281"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/QuizeResultViewController.swift"
+                  timestampString = "579450816.912739"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -4653,8 +4621,8 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.PdfViewController.viewDidLoad() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/PdfViewController.swift"
-                  timestampString = "579360197.68101"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/PdfViewController.swift"
+                  timestampString = "579450816.941771"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "105"
@@ -4668,8 +4636,8 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.PdfViewController.viewDidLoad() -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/PdfViewController.swift"
-                  timestampString = "579360197.683238"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/PdfViewController.swift"
+                  timestampString = "579450816.943645"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -4734,11 +4702,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.0935251"
+            timestampString = "579450815.8167371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5053,12 +5021,12 @@
                   symbolName = "closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.CheckListViewController.newList(tittle: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
-                  timestampString = "579360197.794234"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
+                  timestampString = "579450817.034482"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "636"
-                  endingLineNumber = "636"
+                  startingLineNumber = "733"
+                  endingLineNumber = "733"
                   offsetFromSymbolStart = "53">
                </Location>
                <Location
@@ -5068,12 +5036,12 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.CheckListViewController.newList(tittle: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
-                  timestampString = "579360197.797412"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
+                  timestampString = "579450817.036998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "637"
-                  endingLineNumber = "637"
+                  startingLineNumber = "734"
+                  endingLineNumber = "734"
                   offsetFromSymbolStart = "79">
                </Location>
             </Locations>
@@ -5613,12 +5581,12 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.CheckListViewController.newList(tittle: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
-                  timestampString = "579360197.870436"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
+                  timestampString = "579450817.088148"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "652"
-                  endingLineNumber = "652"
+                  startingLineNumber = "749"
+                  endingLineNumber = "749"
                   offsetFromSymbolStart = "3903">
                </Location>
                <Location
@@ -5628,12 +5596,12 @@
                   symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__C.NSDictionary&gt;) -&gt; () in imagepicker.CheckListViewController.newList(tittle: Swift.String) -&gt; ()"
                   moduleName = "imagepicker"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tangmaoning/Documents/it3/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
-                  timestampString = "579360197.872642"
+                  urlString = "file:///Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3%20IOS%20App/imagepicker/CheckListViewController.swift"
+                  timestampString = "579450817.090057"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "653"
-                  endingLineNumber = "653"
+                  startingLineNumber = "750"
+                  endingLineNumber = "750"
                   offsetFromSymbolStart = "52">
                </Location>
             </Locations>
@@ -5758,7 +5726,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/TabBarController.swift"
-            timestampString = "579373388.0512069"
+            timestampString = "579450619.319744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -5966,11 +5934,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.113097"
+            timestampString = "579450815.817941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "reload(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -5982,39 +5950,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1131541"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "reload(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.113205"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "reload(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.113254"
+            timestampString = "579450815.8183531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -6030,11 +5966,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1133029"
+            timestampString = "579450815.8187439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "reload(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6046,11 +5982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1133519"
+            timestampString = "579450815.819141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "reload(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6062,11 +5998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1134"
+            timestampString = "579450815.8195421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "reload(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6078,7 +6014,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.113447"
+            timestampString = "579450815.819931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
@@ -6094,11 +6030,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1134959"
+            timestampString = "579450815.820321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "reload(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "imagepicker/MapViewController.swift"
+            timestampString = "579450815.820668"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "reload(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "imagepicker/MapViewController.swift"
+            timestampString = "579450815.8209831"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "reload(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -6334,12 +6302,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "imagepicker/MapViewController.swift"
-            timestampString = "579443590.1142581"
+            timestampString = "579450815.82147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "reload(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "imagepicker/MapViewController.swift"
+            timestampString = "579450815.821787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "searchAnima(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -29,6 +29,9 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     //    let sessaionManager = SessionManager(delegate: SessionDelegate(), serverTrustPolicyManager:MyServerTrustPolicyManager(policies:["https://118.139.67.137:8443":.disableEvaluation]))
     //
 
+    @IBAction func searchAnima(_ sender: Any) {
+        
+    }
     let slideUpPanelManager = TSSlidingUpPanelManager.with
     var showSearchResult = false
     var firstTime = true
@@ -530,7 +533,9 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
             }
         }
         if identifier == "searchSegue"{
+            self.slideUpPanelManager.changeSlideUpPanelStateTo(toState: SLIDE_UP_PANEL_STATE.CLOSED)
             let destVC : SearchViewController = segue.destination as! SearchViewController
+            
             destVC.delegate = self
             
         }

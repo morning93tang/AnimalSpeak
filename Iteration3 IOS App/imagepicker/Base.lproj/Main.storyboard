@@ -258,6 +258,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="searchIcon" id="f4K-32-tLw">
                             <color key="tintColor" red="0.19215686269999999" green="0.61176470589999998" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
+                                <action selector="searchAnima:" destination="fxR-hQ-V7J" id="33y-x2-bse"/>
                                 <segue destination="LTi-0Y-40e" kind="show" identifier="searchSegue" id="T12-H4-8b7"/>
                             </connections>
                         </barButtonItem>
