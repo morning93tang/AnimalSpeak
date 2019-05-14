@@ -14,6 +14,11 @@ import javax.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fit5120ta28.mapper.FunctionMapper;
 import com.google.gson.Gson;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -34,16 +39,18 @@ import com.itextpdf.layout.element.Paragraph;
 //import com.itextpdf.layout.element.TabStop;
 //import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.Property;
+import java.net.URL;
+import java.net.URLConnection;
 
 
 @Service
 public class AnimalsSpeakLib {
 	
 	//define the threshold of the around animals
-	private static double AROUNDDIS = 0.05d;
+	private static double AROUNDDIS = 0.3d;
 	
 	//define the threshold of overlapping checking
-	private static double OVERLAPTHRESHOLD = 0.2d;
+	private static double OVERLAPTHRESHOLD = 0.1d;
 	
 	//define the IO dictionary of the report
 	public static final String REPORTDEST = "reportPdf/";
@@ -369,13 +376,185 @@ public class AnimalsSpeakLib {
 		return fileNameList;
 	}
 	
+	private Map<String,Double> getOccurenceFactorByAnimalName(String file) {
+		File checkName=new File(file);
+		if(!checkName.exists()) {//check if the file exists
+			//not exist
+			System.out.println("cannot find file:"+file);
+			return null;
+		}else {
+			//exist
+			System.out.println(file+" loaded!");
+		}
+		
+		Map<String,Double> rs = new HashMap<String,Double>();
+		try {
+			//read files
+			InputStreamReader isr = new InputStreamReader(new FileInputStream(file));
+			BufferedReader reader = new BufferedReader(isr);
+		    String line = null;
+		    
+		    line = reader.readLine();line = reader.readLine();
+		    String item[] = line.split(",");
+		    
+		    
+		    
+		    //put weather information from the dataset into a hashmap
+		    rs.put("max_temp",Double.parseDouble(item[4]));
+		    rs.put("min_temp",Double.parseDouble(item[5]));
+		    rs.put("max_humi",Double.parseDouble(item[6]));
+		    rs.put("min_humi",Double.parseDouble(item[7]));
+		    rs.put("max_windspeed",Double.parseDouble(item[8]));
+		    rs.put("min_windspeed",Double.parseDouble(item[9]));
+		 
+		   //System.out.println(count);
+		   reader.close();
+		 
+		  } catch (Exception e) {
+			 
+		      e.printStackTrace();
+		  }
+		
+		return rs;
+		
+	}
+	
+	public static String sendGet(String url, String param){
+		String result = "";
+		String urlName = url + "?" + param;
+		try{
+			URL realUrl = new URL(urlName);
+			//open url connection
+			URLConnection conn = realUrl.openConnection();
+			//set common param for the connection
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			//build real connection
+			conn.connect();
+			//get all response head param
+//			Map<String,List<String>> map = conn.getHeaderFields();
+			//iterate all response
+//			for (String key : map.keySet()) {
+//				System.out.println(key + "-->" + map.get(key));
+//			}
+			
+			//define bufferedread to store the stream
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+            
+		} catch (Exception e) {
+			System.out.println("GET request error:" + e);
+			e.printStackTrace();
+		}
+		return result;
+		
+		
+	}
+
+	
+	
 	//get animal location by name
-	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p){
+	@SuppressWarnings("unchecked")
+	public Map<String,String> getAroundAnimalLocationByName(String ani,Double[] p) throws JsonParseException, JsonMappingException, IOException{
 		Map<String,String> rs = new HashMap<String,String>();
 		Gson gson = new Gson();
+		//get location array for the animal name input
 		String jsonArray = gson.toJson(getLocationArrayByDis(ani,p[0],p[1])); 
 		rs.put("response", jsonArray);
+		//get weather information
+		Map<String,Double> weather = getOccurenceFactorByAnimalName(ani);
+		//double max_temp = weather.get(key)
+//		System.out.println(weather);
+		String sr = sendGet("http://api.openweathermap.org/data/2.5/weather","units=metric&q=Melbourne,au&APPID=c34dbbe91eb2168fa12648f30c04bc05");
 		
+//		System.out.println(sr);
+		//convert string to json
+		TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
+		Map<String,Object> temp = new HashMap<String,Object>();
+		ObjectMapper mapper = new ObjectMapper(); 
+		temp = mapper.readValue(sr, typeRef);
+	
+//		System.out.println(((Map<String,Object>) temp.get("main")).get("temp"));
+		//define Temperature in the dataset
+		double api_temp = Double.parseDouble(((Map<String,Object>) temp.get("main")).get("temp").toString());
+		//define humidity in the dataset
+		double api_humi = Double.parseDouble(((Map<String,Object>) temp.get("main")).get("humidity").toString());
+		//define windspeed in the dataset
+		double api_ws = Double.parseDouble(((Map<String,Object>) temp.get("wind")).get("speed").toString());
+		
+		
+		//start checking factor for occurrence
+		int chance = 0;
+		
+		//check if the Temperature is in the range
+		if(weather.get("max_temp")>=api_temp && weather.get("min_temp")<=api_temp) {
+			//temp in the range
+			chance = chance + 2;
+			rs.put("demand_temperature","yes");
+		}else if(weather.get("max_temp")<api_temp){
+			rs.put("demand_temperature","too high");
+		}else {
+			rs.put("demand_temperature","too low");
+		}
+		
+		if(weather.get("max_humi")>=api_humi && weather.get("min_humi")<=api_humi) {
+			//temp in the range
+			chance = chance + 1;
+			rs.put("demand_humi","yes");
+		}else if(weather.get("max_humi")<api_humi){
+			rs.put("demand_humi","too high");
+		}else {
+			rs.put("demand_humi","too low");
+		}
+		
+		if(weather.get("max_windspeed")>=api_ws && weather.get("min_windspeed")<=api_ws) {
+			//temp in the range
+			chance = chance + 1;
+			rs.put("demand_windspeed","yes");
+		}else if(weather.get("max_windspeed")<api_ws){
+			rs.put("demand_windspeed","too high");
+		}else {
+			rs.put("demand_windspeed","too low");
+		}
+		int possibility = chance;
+		System.out.println(chance);
+		//define the possibility text displayed on the UI
+		String poss_text = "";
+		switch(possibility) {
+			case 0:
+				poss_text = "very unlikely";
+				break;
+			case 1:
+				poss_text = "unlikely";
+				break;
+			case 2:
+				poss_text = "have a chance";
+				break;
+			case 3:
+				poss_text = "likely";
+				break;
+			case 4:
+				poss_text = "very likely";
+				break;
+				
+		}
+		
+		rs.put("possibility", poss_text);
+		rs.put("possibility_raw", String.valueOf(possibility));
+		rs.put("current_temperature",String.valueOf(api_temp));
+		rs.put("current_humid",String.valueOf(api_humi));
+		rs.put("current_windspeed",String.valueOf(api_ws));
+		rs.put("demand_temperature_max",String.valueOf(weather.get("max_temp")));
+		rs.put("demand_temperature_min",String.valueOf(weather.get("min_temp")));
+		rs.put("demand_humid_max",String.valueOf(weather.get("max_humi")));
+		rs.put("demand_humid_min",String.valueOf(weather.get("min_humi")));
+		rs.put("demand_windspeed_max",String.valueOf(weather.get("max_windspeed")));
+		rs.put("demand_windspeed_min",String.valueOf(weather.get("min_windspeed")));
 		return rs;
 	}
 	
@@ -729,5 +908,22 @@ public class AnimalsSpeakLib {
 	     }
 	     return sb.toString();
 	 }
+	
+	//generate a random string with letter and number
+	public String getRandom6Int(){
+		 //define the character
+	     String str="0123456789";
+	     //add random seed
+	     Random random=new Random();
+	     StringBuffer sb=new StringBuffer();
+	     //create random string by iteration
+	     for(int i=0;i<6;i++){
+			int number=random.nextInt(10);
+			//add random string into the stringbuffer
+			sb.append(str.charAt(number));
+	     }
+	     return sb.toString();
+	 }
+	
 	
 }
