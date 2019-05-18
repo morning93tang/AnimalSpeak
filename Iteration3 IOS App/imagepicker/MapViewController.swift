@@ -75,11 +75,12 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     @IBAction func backToCurrentLocation(_ sender: Any) {
         if self.userLOcation != nil{
-            
+            mapView.clear()
             let camera = GMSCameraPosition.camera(withTarget: self.userLOcation!.coordinate, zoom: 6.0)
             mapView.animate(to: camera)
             self.currentLocation = self.userLOcation
             self.locationSearchResult = self.userLOcation!.coordinate
+            reload(self)
         }
     }
     
@@ -88,6 +89,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     @IBAction func reload(_ sender: Any) {
+        
         self.heatmapLayer.map = nil
         self.activityIndicatior.isHidden = false
         self.animalIcons = []
@@ -141,6 +143,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                 }else{
                     self.animalIcons = []
                     self.urlList = [:]
+                    CBToast.showToast(message: "This address is beyond the Victoria border.", aLocationStr: "bottom", aShowTime: 5.0)
                 }
             }
         }
@@ -453,6 +456,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
 //                let lat = String(self.currentLocation!.coordinate.latitude)
 //                let lng = String(self.currentLocation!.coordinate.longitude)
                 let lat = String(self.locationSearchResult!.latitude)
+                print("\(self.locationSearchResult!.latitude)")
                 let lng = String(self.locationSearchResult!.longitude)
                 if showSearchResult{
                     let worker = ROGoogleTranslate()
@@ -555,6 +559,9 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     func getAutocompletePicker() {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
+        let filter = GMSAutocompleteFilter()
+        filter.country = "AU"
+        autocompleteController.autocompleteFilter = filter
         present(autocompleteController, animated: true, completion: nil)
     }
     @IBAction func serachLocation(sender: UIButton)
@@ -740,20 +747,28 @@ extension UIView {
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        let position = place.coordinate
-        let marker = GMSMarker(position: position)
-        marker.title = place.name
-        marker.snippet = "Long press to drag"
-        marker.isDraggable = true
-        marker.map = self.mapView
-        marker.icon = UIImage(named: "zoom")?.resize(maxWidthHeight: 30.0)
-        let camera = GMSCameraPosition.camera(withLatitude: position.latitude,
-                                              longitude: position.longitude,
-                                              zoom: 10)
-        mapView.animate(to: camera)
-        self.locationSearchResult = position
-        self.mapView.selectedMarker = marker
-        self.reload(self)
+        mapView.clear()
+        
+        let name = place.addressComponents?.first(where: { $0.type == "administrative_area_level_1" })?.shortName
+        if name != "VIC" {
+             CBToast.showToast(message: "This address is beyond the Victoria border.", aLocationStr: "bottom", aShowTime: 5.0)
+        }else{
+            let position = place.coordinate
+            let marker = GMSMarker(position: position)
+            marker.title = place.name
+            marker.snippet = "Long press to drag"
+            marker.isDraggable = true
+            marker.map = self.mapView
+            marker.icon = UIImage(named: "zoom")?.resize(maxWidthHeight: 30.0)
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude,
+                                                  longitude: position.longitude,
+                                                  zoom: 10)
+            mapView.animate(to: camera)
+            self.locationSearchResult = position
+            self.mapView.selectedMarker = marker
+            self.reload(self)
+        }
+        
         
         
 //        self.viewContainer.isHidden = false
@@ -771,6 +786,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 //
         print("Error: ", error.localizedDescription)
     }
+    
     
     // User canceled the operation.
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {

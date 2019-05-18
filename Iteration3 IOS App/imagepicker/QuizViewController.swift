@@ -35,6 +35,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var playButtonBackgroundView: UIView!
     @IBOutlet weak var feedBackLabel: UILabel!
     @IBOutlet weak var goodLuck: UIImageView!
+    @IBOutlet weak var cardBackView: UIView!
     var answer = ""
     var player: AVPlayer?
     var audioPlayer:AVAudioPlayer!
@@ -98,6 +99,10 @@ class QuizViewController: UIViewController {
         self.playButtonBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.playButtonBackgroundView.layer.shadowOpacity = 0.8
         self.playButton.layer.cornerRadius = 0.5 * playButton.bounds.size.width
+        self.cardBackView.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        self.cardBackView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cardBackView.layer.shadowOpacity = 0.8
+        self.cardBackView.layer.cornerRadius = 4
         generateQuize()
         // Do any additional setup after loading the view.
     }

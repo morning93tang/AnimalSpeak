@@ -1,4 +1,4 @@
-// Copyright 2016 Google Inc. All Rights Reserved.
+// Copyright 2016 Baidu Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ protocol ResultDetailDelegate {
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
-//    var detailResut = DetailResult()
+    //    var detailResut = DetailResult()
     var detailResuts = [DetailResult]()
     var delegate:ResultDetailDelegate?
     var imageString:String?
@@ -45,6 +45,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var activityIndecater: UIActivityIndicatorView!
     
     
+    
+    var fastDict = ["蓝舌蜥":"Blotched Blue-tongued Lizard","澳洲鹤":"Brolga","八哥":"Common Myna","树蛇":"Common Tree Snake","南美珊瑚蛇":"Coral Snake","蟒蛇":"Diamond Python","韩国杜莎犬":"Dingo","鼩鼱":"Dusky Antechinus","袋鼠":"Eastern Grey Kangaroo","袋貂":"Eastern Quoll","鸸鹋":"Emu","米切氏凤头鹦鹉":"Galah","北方狭口蛙":"Giant Burrowing Frog","兔耳袋狸":"Greater Bilby","狐蝠":"Grey-headed Flying-fox","树袋熊":"Koala","巨蜥":"Lace Monitor","小蓝企鹅":"Little Penguin","睡鼠":"Little_Pygmy-possum","野鸭":"Mallard","壁虎":"Marbled Gecko","小袋鼠":"Parma Wallaby","鸭嘴兽":"Platypus","短尾矮袋鼠":"Quokka","红袋鼠":"Red Kangaroo","葵花凤头鹦鹉":"Sulphur-crested Cockatoo","袋獾":"Tasmanian Devil","夜鹰":"Tawny Frogmouth","澳洲魔蜥":"Thorny Devil","虎蛇":"Tiger Snake","White's Skink":"石龙子"]
     
     var baiduAiURL: URL {
         return URL(string: "https://aip.baidubce.com/rest/2.0/image-classify/v1/animal?access_token=24.d6928c257251cd4f6209e34b039cfcb8.2592000.1559435618.282335-15897168")!
@@ -209,7 +211,7 @@ extension ViewController {
         // Use SwiftyJSON to parse results
         let json = JSON(data: dataToParse)
         let errorObj: JSON = json["error"]
-        
+        var translate = true
         
         // Check for errors
         if (errorObj.dictionaryValue != [:]) {
@@ -225,9 +227,26 @@ extension ViewController {
                 var labels = [String: String]()
                 if numLabels > 0 {
                     
+                    //                    for index in 0..<numLabels {
+                    //                        let des = labelAnnotations[index]["baike_info"]["description"].stringValue
+                    //                        if des.contains("澳洲") || des.contains("澳大利亚") || des.contains("大洋洲"){
+                    //                            var score = labelAnnotations[index]["score"].doubleValue.roundTo(places: 4) * 100
+                    //                            if score < 1{
+                    //                                score = (score * 80).roundTo(places:1)
+                    //                            }
+                    //                            if score < 5{
+                    //                                score = (score * 14).roundTo(places:1)
+                    //                            }
+                    //                            labels[labelAnnotations[index]["name"].stringValue] = "\(score)"
+                    ////                            matchingIndex.append("\(labelAnnotations[index]["score"].doubleValue.roundTo(places: 2))")
+                    //                        }
+                    //                    }
+                    
                     for index in 0..<numLabels {
-                        let des = labelAnnotations[index]["baike_info"]["description"].stringValue
-                        if des.contains("澳洲") || des.contains("澳大利亚") || des.contains("大洋洲"){
+                        let des = labelAnnotations[index]["name"].stringValue
+                        print(des)
+                        let name = fastDict[des]
+                        if name != nil{
                             var score = labelAnnotations[index]["score"].doubleValue.roundTo(places: 4) * 100
                             if score < 1{
                                 score = (score * 80).roundTo(places:1)
@@ -235,105 +254,30 @@ extension ViewController {
                             if score < 5{
                                 score = (score * 14).roundTo(places:1)
                             }
-                            labels[labelAnnotations[index]["name"].stringValue] = "\(score)"
-//                            matchingIndex.append("\(labelAnnotations[index]["score"].doubleValue.roundTo(places: 2))")
+                            labels[name!] = "\(score)"
                         }
                     }
-                    
-                    print(labels)
-                }
-                
-                let translator = ROGoogleTranslate()
-                translator.apiKey = "AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0" // Add your API Key here
-                
-                let group = DispatchGroup()
-
-                var params = ROGoogleTranslateParams()
-                
-                if labels.count > 0{
-                    var queues = [DispatchQueue]()
-                    for label in labels{
-                        let queue = DispatchQueue(label: label.key, qos: .utility)
-                        queues.append(queue)
-                    }
-                    var index = 0
-                    for label in labels{
-                        group.enter()
-                        queues[index].async(group: group) {
-                            params.text = label.key
-                            translator.translate(params: params) { (result) in
-                                params.text = result
-                                translator.getDetail(params: params){ (detailResult) in
-                                    if detailResult.animalType.count > 1 && !self.canceled{
-                                        DispatchQueue.main.async {
-                                            var resut = detailResult
-                                            resut.image = self.animalImage.image!
-                                            resut.matchingIndex = label.value
-                                            self.detailResuts.append(resut)
-                                            print(resut.displayTitle)
-                                            group.leave()
-                                        }
-                                    }else{
-                                        group.leave()
-                                    }
-//                                    else{
-//                                        DispatchQueue.main.async {[weak self] in
-//                                            self?.labelResults.text = "Sorry, I'm not able to identify this animal."
-//                                            self?.uploadButton.isEnabled = true
-//                                            self?.animalImage.alpha = 1
-//                                            self?.activityIndecater.isHidden = true
-//                                        }
-//                                    }
-//                                    
+                    if labels.count == 0{
+                        for index in 0..<numLabels {
+                            let des = labelAnnotations[index]["baike_info"]["description"].stringValue
+                            if des.contains("澳洲") || des.contains("澳大利亚") || des.contains("大洋洲"){
+                                var score = labelAnnotations[index]["score"].doubleValue.roundTo(places: 4) * 100
+                                if score < 1{
+                                    score = (score * 80).roundTo(places:1)
                                 }
+                                if score < 5{
+                                    score = (score * 14).roundTo(places:1)
+                                }
+                                labels[labelAnnotations[index]["name"].stringValue] = "\(score)"
+                                //                            matchingIndex.append("\(labelAnnotations[index]["score"].doubleValue.roundTo(places: 2))")
                             }
                         }
-                        index = index + 1
-                    }
-                    group.notify(queue: DispatchQueue.main) {
-                        if self.detailResuts.count == 0{
-                            self.labelResults.text = "Sorry, I'm not able to identify this animal."
-                            self.uploadButton.isEnabled = true
-                            self.animalImage.alpha = 1
-                            self.activityIndecater.isHidden = true
-                        }else{
-                            self.delegate!.gerResultData(detailResut: self.detailResuts)
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
-                    
-                    //                    params.text = labels[0]
-                    //                    translator.translate(params: params) { (result) in
-                    //                        params.text = result
-                    //                        translator.getDetail(params: params){ (detailResult) in
-                    //                            if detailResult.animalType.count > 1 && !self.canceled{
-                    //                                DispatchQueue.main.async {
-                    //                                    self.detailResut = detailResult
-                    //                                    self.detailResut.image = self.animalImage.image!
-                    //                                    self.delegate!.gerResultData(detailResut: self.detailResut)
-                    //                                    self.dismiss(animated: true, completion: nil)
-                    //                                }
-                    //                            }
-                    //                            else{
-                    //                                DispatchQueue.main.async {[weak self] in
-                    //                                    self?.labelResults.text = "Sorry, I'm not able to identify this animal."
-                    //                                    self?.uploadButton.isEnabled = true
-                    //                                    self?.animalImage.alpha = 1
-                    //                                    self?.activityIndecater.isHidden = true
-                    //                                }
-                    //                            }
-                    //
-                    //                        }
-                    //                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.labelResults.text = "Sorry, we currently only offer animal identification service for Victoria wildlife."
-                        UIView.animate(withDuration: 0.2, animations: {self.labelResults.isHidden = false})
-                        self.animalImage.alpha = 1
-                        self.activityIndecater.isHidden = true
-                        self.uploadButton.isEnabled = true
+                    }else{
+                        translate = false
                     }
                 }
+                finalResult(labels:labels,transLate:translate)
+                
             }
             else {
                 DispatchQueue.main.async {
@@ -345,6 +289,86 @@ extension ViewController {
             }
         }
         
+    }
+    
+    func finalResult(labels:[String: String],transLate:Bool){
+        let translator = ROGoogleTranslate()
+        translator.apiKey = "AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0" // Add your API Key here
+        
+        let group = DispatchGroup()
+        
+        var params = ROGoogleTranslateParams()
+        
+        if labels.count > 0{
+            var queues = [DispatchQueue]()
+            for label in labels{
+                let queue = DispatchQueue(label: label.key, qos: .utility)
+                queues.append(queue)
+            }
+            var index = 0
+            for label in labels{
+                group.enter()
+                queues[index].async(group: group) {
+                    params.text = label.key
+                    if transLate{
+                        print("gogogogogogogog")
+                        translator.translate(params: params) { (result) in
+                            params.text = result
+                            translator.getDetail(params: params){ (detailResult) in
+                                if detailResult.animalType.count > 1 && !self.canceled{
+                                    DispatchQueue.main.async {
+                                        var resut = detailResult
+                                        resut.image = self.animalImage.image!
+                                        resut.matchingIndex = label.value
+                                        self.detailResuts.append(resut)
+                                        print(resut.displayTitle)
+                                        group.leave()
+                                    }
+                                }else{
+                                    group.leave()
+                                }
+                            }
+                        }
+                        
+                    }else{
+                        translator.getDetail(params: params){ (detailResult) in
+                            if detailResult.animalType.count > 1 && !self.canceled{
+                                DispatchQueue.main.async {
+                                    var resut = detailResult
+                                    resut.image = self.animalImage.image!
+                                    resut.matchingIndex = label.value
+                                    self.detailResuts.append(resut)
+                                    print(resut.displayTitle)
+                                    group.leave()
+                                }
+                            }else{
+                                group.leave()
+                            }
+                        }
+                    }
+                }
+                index = index + 1
+            }
+            group.notify(queue: DispatchQueue.main) {
+                if self.detailResuts.count == 0{
+                    self.labelResults.text = "Sorry, I'm not able to identify this animal."
+                    self.uploadButton.isEnabled = true
+                    self.animalImage.alpha = 1
+                    self.activityIndecater.isHidden = true
+                }else{
+                    self.delegate!.gerResultData(detailResut: self.detailResuts)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.labelResults.text = "Sorry, we currently only offer animal identification service for Victoria wildlife."
+                UIView.animate(withDuration: 0.2, animations: {self.labelResults.isHidden = false})
+                self.animalImage.alpha = 1
+                self.activityIndecater.isHidden = true
+                self.uploadButton.isEnabled = true
+            }
+        }
     }
     
     

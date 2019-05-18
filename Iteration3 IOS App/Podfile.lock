@@ -7,11 +7,9 @@ PODS:
   - GoogleMaps/Base (3.0.3)
   - GoogleMaps/Maps (3.0.3):
     - GoogleMaps/Base
-  - GooglePlacePicker (3.0.3):
-    - GoogleMaps (= 3.0.3)
-    - GooglePlaces (= 3.0.3)
   - GooglePlaces (3.0.3):
     - GoogleMaps/Base (= 3.0.3)
+  - SwiftGifOrigin (1.7.0)
   - SwiftyJSON (3.1.4)
   - YoutubePlayer-in-WKWebView (0.2.5)
 
@@ -19,8 +17,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.8)
   - AlamofireImage (~> 3.5)
   - GoogleMaps
-  - GooglePlacePicker
   - GooglePlaces
+  - SwiftGifOrigin (~> 1.7.0)
   - SwiftyJSON (~> 3.1)
   - YoutubePlayer-in-WKWebView (~> 0.2.0)
 
@@ -29,8 +27,8 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - GoogleMaps
-    - GooglePlacePicker
     - GooglePlaces
+    - SwiftGifOrigin
     - SwiftyJSON
     - YoutubePlayer-in-WKWebView
 
@@ -38,11 +36,11 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
-  GooglePlacePicker: 0c90898945f02ef36cce86fc9a107e1c5d3d26b1
   GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   YoutubePlayer-in-WKWebView: 4dad12b3ece938a6456fa4374df78942f88b485a
 
-PODFILE CHECKSUM: 015b78a36f0621d3114adc44f1e683940d7574a5
+PODFILE CHECKSUM: b8c07031047e27a9376a75ffe98515b9e233f6df
 
 COCOAPODS: 1.7.0.beta.2

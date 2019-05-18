@@ -92,6 +92,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate,UITableView
             progressLabel.text = "0/5"
             self.progressBar.progress = 0.0
         }
+        self.checkLists = self.checkLists.sorted(by: { Int($0.fouded!)! > Int($1.fouded!)!})
+        
        
     }
     
@@ -191,7 +193,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate,UITableView
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! CheclistItemsTableViewCell
             let items = Array((self.userCheckLists[0].hasItems)!) as! [ListItem]
-            let item = items[indexPath.row]
+            let sortedItems = items.sorted(by: { ($0.hasEntities?.count)! > ($1.hasEntities?.count)!})
+            let item = sortedItems[indexPath.row]
             if item.imagePath != nil {
                 cell.checkListImage.image = ImageWorker.loadImageData(fileName: item.imagePath!)
                 if item.hasEntities!.count > 0 {
@@ -258,32 +261,32 @@ class CheckListViewController: UIViewController, UITableViewDelegate,UITableView
             let fouded = Int(checkList.fouded!)
             if let items = checkList.hasItems?.allObjects as? [ListItem]{
                 let needUpdate = items.first(where: { $0.animalName == animalName})?.found
-//                    items.first(where: { $0.animalName == animalName})?.found = true
-//                    items.first(where: { $0.animalName == animalName})?.imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
-//                    checkList.fouded = String(fouded! + 1)
-//                    saveData()
-                    let item = items.first(where: { $0.animalName == animalName})
-                    item?.found = true
-                    let imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
-                    item?.imagePath = imagePath
-                    let imageEntityst = NSEntityDescription.insertNewObject(forEntityName: "ImageEntity", into: managedObjectContext) as! ImageEntity
-                    imageEntityst.imagePath = imagePath
-                    if currentLocation != nil{
-                        let coordinate = self.currentLocation?.coordinate
-                        imageEntityst.lat = "\(coordinate?.latitude)"
-                        imageEntityst.long = "\(coordinate?.longitude)"
-                        imageEntityst.dateTime = dateString
-                    }
-                    item?.addToHasEntities(imageEntityst)
-                    if item?.hasEntities?.count == 1 {
-                        checkList.fouded = String(fouded! + 1)
-                    }
-                    saveData()
-                    var message:NSString?
-                    message = "\(animalName) has been ticked in \(checkList.tittle!) checkList." as NSString
-                    CBToast.showToast(message: message, aLocationStr: "bottom", aShowTime: 3.0)
-                    self.tableView.reloadData()
+                //                    items.first(where: { $0.animalName == animalName})?.found = true
+                //                    items.first(where: { $0.animalName == animalName})?.imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
+                //                    checkList.fouded = String(fouded! + 1)
+                //                    saveData()
+                let item = items.first(where: { $0.animalName == animalName})
+                item?.found = true
+                let imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
+                item?.imagePath = imagePath
+                let imageEntityst = NSEntityDescription.insertNewObject(forEntityName: "ImageEntity", into: managedObjectContext) as! ImageEntity
+                imageEntityst.imagePath = imagePath
+                if currentLocation != nil{
+                    let coordinate = self.currentLocation?.coordinate
+                    imageEntityst.lat = "\(coordinate?.latitude)"
+                    imageEntityst.long = "\(coordinate?.longitude)"
+                    imageEntityst.dateTime = dateString
                 }
+                item?.addToHasEntities(imageEntityst)
+                if item?.hasEntities?.count == 1 {
+                    checkList.fouded = String(fouded! + 1)
+                }
+                saveData()
+                var message:NSString?
+                message = "\(animalName) has been ticked in \(checkList.tittle!) checkList." as NSString
+                CBToast.showToast(message: message, aLocationStr: "bottom", aShowTime: 3.0)
+                self.tableView.reloadData()
+            }
             
             //            let indexPath = IndexPath(row:index, section: 0)
             //            tableView.reloadRows(at: [indexPath], with: .top)
@@ -299,32 +302,32 @@ class CheckListViewController: UIViewController, UITableViewDelegate,UITableView
             let fouded = Int(checkList.fouded!)
             if let items = checkList.hasItems?.allObjects as? [ListItem]{
                 let needUpdate = items.first(where: { $0.animalName == animalName})?.found
-                    let item = items.first(where: { $0.animalName == animalName})
-                    item?.found = true
-                    let imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
-                    item?.imagePath = imagePath
-                    let imageEntityst = NSEntityDescription.insertNewObject(forEntityName: "ImageEntity", into: managedObjectContext) as! ImageEntity
-                    imageEntityst.imagePath = imagePath
-                    if currentLocation != nil{
-                        let coordinate = self.currentLocation?.coordinate
-                        imageEntityst.lat = "\(coordinate?.latitude)"
-                        imageEntityst.long = "\(coordinate?.longitude)"
-                        imageEntityst.dateTime = dateString
-                    }
-                    item?.addToHasEntities(imageEntityst)
-                    if item?.hasEntities?.count == 1 {
-                        checkList.fouded = String(fouded! + 1)
-                    }
-                    
-                    saveData()
-                    var message:NSString?
-                    message = "\(animalName) has been ticked in the Animals checkList." as NSString
-                    CBToast.showToast(message: message, aLocationStr: "bottom", aShowTime: 3.0)
+                let item = items.first(where: { $0.animalName == animalName})
+                item?.found = true
+                let imagePath = ImageWorker.saveImage(image: self.image!, name: UUID().uuidString)
+                item?.imagePath = imagePath
+                let imageEntityst = NSEntityDescription.insertNewObject(forEntityName: "ImageEntity", into: managedObjectContext) as! ImageEntity
+                imageEntityst.imagePath = imagePath
+                if currentLocation != nil{
+                    let coordinate = self.currentLocation?.coordinate
+                    imageEntityst.lat = "\(coordinate?.latitude)"
+                    imageEntityst.long = "\(coordinate?.longitude)"
+                    imageEntityst.dateTime = dateString
+                }
+                item?.addToHasEntities(imageEntityst)
+                if item?.hasEntities?.count == 1 {
+                    checkList.fouded = String(fouded! + 1)
+                }
+                
+                saveData()
+                var message:NSString?
+                message = "\(animalName) has been ticked in the Animals checkList." as NSString
+                CBToast.showToast(message: message, aLocationStr: "bottom", aShowTime: 3.0)
                 if self.tableView != nil{
                     self.tableView.reloadData()
                 }
                 
-                }
+            }
             
             //            let indexPath = IndexPath(row:index, section: 0)
             //            tableView.reloadRows(at: [indexPath], with: .top)
@@ -373,9 +376,6 @@ class CheckListViewController: UIViewController, UITableViewDelegate,UITableView
                 self.levelImage.image = UIImage(named: "expert")
                 self.progressBar.progress = 1.0
             }
-        }else{
-            progressLabel.text = "0/5"
-            self.progressBar.progress = 0.0
         }
     }
     

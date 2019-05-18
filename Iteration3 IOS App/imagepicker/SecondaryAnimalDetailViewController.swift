@@ -66,7 +66,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: emptyView.bounds, camera: camera)
         mapView.delegate = self
-        mapView.settings.myLocationButton = true
+        //mapView.settings.myLocationButton = true
         mapView.settings.zoomGestures = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true

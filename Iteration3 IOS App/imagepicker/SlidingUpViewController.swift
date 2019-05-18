@@ -287,7 +287,7 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
             self.activityIndicator.startAnimating()
             self.animalImgaeView.image = nil
             self.descriptionTextBox.text = "Loading..."
-            let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+            let camera = GMSCameraPosition.camera(withLatitude: -37.812946, longitude: 144.963658, zoom: 6.0)
             mapView.animate(to: camera)
             if UIApplication.shared.statusBarOrientation.isLandscape {
                 let height = UIScreen.main.bounds.size.height

@@ -20,6 +20,7 @@
 		BE3BB831225A74D1005544DD /* animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB830225A74D1005544DD /* animal.swift */; };
 		BE79B89A2257E97F008EAF9C /* police_stations.json in Resources */ = {isa = PBXBuildFile; fileRef = BE79B8992257E97F008EAF9C /* police_stations.json */; };
 		BE79B89E2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */; };
+		BE83BF5B228DBBD0002282BA /* RECORD.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE83BF5A228DBBCF002282BA /* RECORD.gif */; };
 		BE935EE82274B11700734CA2 /* QuizeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EE72274B11700734CA2 /* QuizeResultViewController.swift */; };
 		BE935EEE2275941500734CA2 /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EED2275941500734CA2 /* ReportDetailViewController.swift */; };
 		BE935EF02275976C00734CA2 /* ReportPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EEF2275976C00734CA2 /* ReportPageViewController.swift */; };
@@ -113,6 +114,7 @@
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
 		BE79B8992257E97F008EAF9C /* police_stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = police_stations.json; sourceTree = "<group>"; };
 		BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAnimalDetailViewController.swift; sourceTree = "<group>"; };
+		BE83BF5A228DBBCF002282BA /* RECORD.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RECORD.gif; sourceTree = "<group>"; };
 		BE935EE72274B11700734CA2 /* QuizeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizeResultViewController.swift; sourceTree = "<group>"; };
 		BE935EED2275941500734CA2 /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		BE935EEF2275976C00734CA2 /* ReportPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPageViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				BEB3FCAE225797A5004DFA6B /* AnimalDetailViewController .swift */,
 				1BFC2E861BF1AA7300885EBB /* LaunchScreen.storyboard */,
 				1BFC2E811BF1AA7300885EBB /* Main.storyboard */,
+				BE83BF5A228DBBCF002282BA /* RECORD.gif */,
 				1BFC2E891BF1AA7300885EBB /* Info.plist */,
 				BEF01226224C446600456638 /* TabBarController.swift */,
 				BEF01228224C8A6B00456638 /* MapViewController.swift */,
@@ -514,6 +517,7 @@
 				BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */,
 				BEF9D712226CA60400F39F81 /* GreatOtway.jpg in Resources */,
 				BEF9D71A226CAE4A00F39F81 /* WilsonsPromontory.jpg in Resources */,
+				BE83BF5B228DBBD0002282BA /* RECORD.gif in Resources */,
 				BEF9D71E226CB07E00F39F81 /* HealesvilleSanctuary.jpg in Resources */,
 				1BFC2E831BF1AA7300885EBB /* Main.storyboard in Resources */,
 				BEF9D714226CA76F00F39F81 /* Phillip Island.jpg in Resources */,
@@ -550,6 +554,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/YoutubePlayer-in-WKWebView/YoutubePlayer_in_WKWebView.framework",
 			);
@@ -557,6 +562,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YoutubePlayer_in_WKWebView.framework",
 			);
@@ -573,13 +579,11 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
