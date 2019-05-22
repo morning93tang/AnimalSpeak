@@ -14,6 +14,9 @@ class QuizeResultViewController: UIViewController {
     var currentBest:String?
     var tittle:String?
     var answer:String?
+    /// Back to quizHomeViewController(segue to secondaryDetailViewController)
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func backToHome(_ sender: Any) {
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
@@ -23,6 +26,8 @@ class QuizeResultViewController: UIViewController {
                 thirdTab.popToRootViewController(animated: true)
             }
     }
+    /// Check the correct answer(segue to secondaryDetailViewController)
+    ///
     @IBAction func seeAnwser(_ sender: Any) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let tabBar: UITabBarController = appDelegate.window?.rootViewController as! UITabBarController
@@ -42,6 +47,8 @@ class QuizeResultViewController: UIViewController {
     @IBOutlet weak var recordBackgroundView: UIView!
     @IBOutlet weak var newAttemptLabel: UILabel!
     @IBOutlet weak var bestLabel: UILabel!
+    
+    /// Setup UI outlet
     override func viewDidLoad() {
         self.recordLabel.text = tittle
         self.bestLabel.text = currentBest
@@ -81,18 +88,6 @@ class QuizeResultViewController: UIViewController {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
     }
-    
-    
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -28,9 +28,8 @@ let kClusterItemCount = 10000
 let kCameraLatitude = -37.812946
 let kCameraLongitude = 144.963658
 
+/// This class is for showing user's image data on the google map with the animal name and the uploaded time. When there are more than 5 icons close to each other, those icon will be grouped and showed as a cluster with the number of entities.
 class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMapViewDelegate,GMUClusterRendererDelegate {
-
-
     
     private var mapView: GMSMapView!
     private var clusterManager: GMUClusterManager!
@@ -86,6 +85,13 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
     }
     
     
+    /// Add maker as POIItems that holds the image data
+    ///
+    /// - Parameters:
+    ///   - accessibilityLabel: identifier
+    ///   - position: CLLocatuonCoordinated2D(Position of the marker)
+    ///   - datetime: Date and time(String)
+    ///   - icon: UIImage stored in core data
     func generatePOIItems(_ accessibilityLabel: String, position: CLLocationCoordinate2D,datetime:String, icon: UIImage) {
         let item = POIItem(position: position, name: accessibilityLabel, datetime: datetime, icon: icon)
         self.clusterManager.add(item)
@@ -93,6 +99,9 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
     }
     
     
+    /// Make a marker for each ImageEntity which represent user's record.
+    ///
+    /// - Parameter images: NSArray of ImageEntity which represent user's record.
     func setMarkerForMap(images: [ImageEntity]) -> Void {
         
         
@@ -122,6 +131,10 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
     }
     
     
+    /// Render the GMSMarker with image an call out before show on the map.
+    ///
+    /// - Parameters:
+    ///   - marker: marker need to be rendered
     func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker) {
         if let temp = (marker.userData as? POIItem){
             marker.snippet = temp.datetime
@@ -131,24 +144,12 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
         }
     }
     
+    /// Action excuted after click in infowindow(marker's call out)
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        print(marker.title!)
-        print(marker.snippet!)
+
     }
     
-//    func renderer(_ renderer: GMUClusterRenderer, willRenderMarker marker: GMSMarker){
-//        if let temp = (marker.userData as? POIItem){
-//            marker.iconView = UIImageView(image: temp.icon)
-//        }
-//    }
-//
-    
-//
-//    func renderer(_ renderer: GMUClusterRenderer, will object: Any) -> GMSMarker? {
-//        if let temp = (marker.userData as? POIItem){
-//
-//        }
-//    }
+
     /*
     // MARK: - Navigation
 
@@ -175,7 +176,7 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
         if arrTemp.count > 1{
             // Core Logic giving minor variation to similar lat long
             
-            let variation = (randomFloat(min: 0.0, max: 2.0) - 0.5) / 1500
+            let variation = (randomFloat(min: 0.0, max: 2.0) - 0.5) / 1000
             lat = lat + variation
             lng = lng + variation
         }
@@ -191,6 +192,7 @@ class AlbumsMapViewController: UIViewController, GMUClusterManagerDelegate,GMSMa
 }
 
 extension String {
+    /// Cast sting to Douler
     func toDouble() -> Double {
         let nsString = self.replacingOccurrences(of: "[^\\.\\d+-]", with: "", options: [.regularExpression]) as NSString
         return nsString.doubleValue

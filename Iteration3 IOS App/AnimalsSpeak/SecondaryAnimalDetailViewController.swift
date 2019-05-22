@@ -86,7 +86,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
             self.scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
         }
         self.tittleLabel.text = self.animalName
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         var params = ROGoogleTranslateParams()
         params.text = self.animalName
         translator.getDetail(params: params){ (detailResult) in
@@ -158,7 +158,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
         self.loadSound(animalName: self.animalName)
         heatmapLayer.map = nil
         let name = self.animalName
-        let worker = ROGoogleTranslate()
+        let worker = APIWoker()
         worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{

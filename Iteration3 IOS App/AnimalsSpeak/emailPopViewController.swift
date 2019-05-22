@@ -10,6 +10,7 @@ import UIKit
 
 
 
+/// Required user to insert their email and descriptions to generate and send email.
 class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var additionallabel: UILabel!
     @IBOutlet weak var cancleButton: UIButton!
@@ -20,6 +21,9 @@ class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDel
     @IBOutlet weak var hintLabel: UILabel!
     var goodToSend = false
     
+    /// Request an generated email format from server if user input pass the validation. If not pass give user feedback for correcting the input.
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func sendButtonAction(_ sender: Any) {
         if goodToSend{
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
@@ -39,14 +43,11 @@ class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDel
             
         }
     }
+    /// Dismis the popup on user cancling.
+    ///
     @IBAction func cancleButtonAction(_ sender: Any) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-//            let tabBar: UITabBarController = appDelegate.window?.rootViewController as! UITabBarController
-//            let fivthTab = tabBar.viewControllers![4] as! UINavigationController
-//            let pageVC = fivthTab.viewControllers.first as! ReportPageViewController
             appDelegate.window?.rootViewController?.dismiss(animated: false, completion: nil)
-//            pageVC.popToRootViewController(animated: false)
-//            pageVC.performSegue(withIdentifier: "answerSegue", sender: homeVC)
         }
     }
     
@@ -68,10 +69,14 @@ class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDel
         // Do any additional setup after loading the view.
     }
     
+    /// Move the popup view up when keyboard up.
+    ///
     func textFieldDidBeginEditing(_ textField: UITextField) {
         animateViewMoving(up: true, moveValue: 100)
     }
     
+    /// Move the popup view down when keyboard down.
+    ///
     func textFieldDidEndEditing(_ textField: UITextField) {
         animateViewMoving(up: false, moveValue: 100)
         if textField.text != nil && isValidEmail(testStr:textField.text!){
@@ -123,14 +128,5 @@ class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDel
 
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

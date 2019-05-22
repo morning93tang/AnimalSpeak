@@ -21,12 +21,14 @@ class QuizHomeViewController: UIViewController {
     private var managedObjectContext: NSManagedObjectContext
     
     
+    /// Initiate managedObjectContext to access coreData
     required init?(coder aDecoder: NSCoder) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedObjectContext = (appDelegate?.persistentContainer.viewContext)!
         super.init(coder: aDecoder)!
     }
     
+    /// Access CoreData to get user's current quiz record.
     func initAppData() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Record")
         do {
@@ -46,19 +48,19 @@ class QuizHomeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
+        /// Setup button
         self.playGameButton.layer.cornerRadius = 20.0
         self.playGameButton.layer.masksToBounds = false
-//        self.playGameButton.layer.backgroundColor = UIColor.white.cgColor
         self.playGameButton.layer.shadowColor =  UIColor.black.withAlphaComponent(0.6).cgColor
         self.playGameButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.playGameButton.layer.shadowOpacity = 0.8
+        /// Setup record view back ground view
         self.backgroundView.layer.cornerRadius = 3.0
         self.backgroundView.layer.masksToBounds = false
         self.backgroundView.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         self.backgroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.backgroundView.layer.shadowOpacity = 0.8
-//        self.backgroundCardView.layer.shadowOpacity = 0.8
+        /// Setup record back gorund view
         self.recordCardImageView.layer.cornerRadius = 3.0
         self.recordCardImageView.contentMode = .scaleAspectFill
         self.recordCardImageView.clipsToBounds = true
@@ -87,18 +89,10 @@ class QuizHomeViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+// MARK: - UIImageView extension for loding an gif into UIImageView.
+// If you want further improved loding speed and memory management you can consider using other library to replace this.
 extension UIImageView {
     
     public func loadGif(name: String) {

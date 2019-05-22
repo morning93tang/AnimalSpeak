@@ -18,7 +18,6 @@
 		BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3BB82A225A0970005544DD /* icons8-play_filled.png */; };
 		BE3BB82F225A719D005544DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB82E225A719D005544DD /* SearchViewController.swift */; };
 		BE3BB831225A74D1005544DD /* animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB830225A74D1005544DD /* animal.swift */; };
-		BE79B89A2257E97F008EAF9C /* police_stations.json in Resources */ = {isa = PBXBuildFile; fileRef = BE79B8992257E97F008EAF9C /* police_stations.json */; };
 		BE79B89E2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */; };
 		BE83BF5B228DBBD0002282BA /* RECORD.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE83BF5A228DBBCF002282BA /* RECORD.gif */; };
 		BE83BF5E22918BDE002282BA /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BE83BF5D22918BDD002282BA /* arrow.png */; };
@@ -31,7 +30,6 @@
 		BE9EB34022773BA800D68188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9EB33F22773BA600D68188 /* Assets.xcassets */; };
 		BEA9209622733D0700F0209F /* QuizHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9209522733D0700F0209F /* QuizHomeViewController.swift */; };
 		BEA920982273583300F0209F /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA920972273583300F0209F /* QuizViewController.swift */; };
-		BEAD9B432286A5F20063B49C /* AutoCompletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD9B422286A5F20063B49C /* AutoCompletViewController.swift */; };
 		BEAD9B462287021F0063B49C /* TSSlidingUpPanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD9B452287021F0063B49C /* TSSlidingUpPanelManager.swift */; };
 		BEAD9B48228702540063B49C /* SlidingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAD9B47228702540063B49C /* SlidingUpViewController.swift */; };
 		BEB3FCAD22579799004DFA6B /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3FCAC22579799004DFA6B /* AnimalCollectionViewCell.swift */; };
@@ -111,7 +109,6 @@
 		BE3BB82A225A0970005544DD /* icons8-play_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-play_filled.png"; sourceTree = "<group>"; };
 		BE3BB82E225A719D005544DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
-		BE79B8992257E97F008EAF9C /* police_stations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = police_stations.json; sourceTree = "<group>"; };
 		BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAnimalDetailViewController.swift; sourceTree = "<group>"; };
 		BE83BF5A228DBBCF002282BA /* RECORD.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RECORD.gif; sourceTree = "<group>"; };
 		BE83BF5D22918BDD002282BA /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -124,7 +121,6 @@
 		BE9EB33F22773BA600D68188 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEA9209522733D0700F0209F /* QuizHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHomeViewController.swift; sourceTree = "<group>"; };
 		BEA920972273583300F0209F /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
-		BEAD9B422286A5F20063B49C /* AutoCompletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompletViewController.swift; sourceTree = "<group>"; };
 		BEAD9B452287021F0063B49C /* TSSlidingUpPanelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSSlidingUpPanelManager.swift; sourceTree = "<group>"; };
 		BEAD9B47228702540063B49C /* SlidingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingUpViewController.swift; sourceTree = "<group>"; };
 		BEB3FCAC22579799004DFA6B /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -267,7 +263,6 @@
 				BEF9D715226CAB1700F39F81 /* LakeElizabeth.jpg */,
 				BEF9D719226CAE4A00F39F81 /* WilsonsPromontory.jpg */,
 				BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */,
-				BE79B8992257E97F008EAF9C /* police_stations.json */,
 				1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */,
 				1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */,
 				BEB3FCAC22579799004DFA6B /* AnimalCollectionViewCell.swift */,
@@ -303,7 +298,6 @@
 				BE9EB33D22771DED00D68188 /* CBToast.swift */,
 				BEBD73FE2280455B0066C8A7 /* CheckListViewController.swift */,
 				BEBD74122281AEFB0066C8A7 /* AlbumsMapViewController.swift */,
-				BEAD9B422286A5F20063B49C /* AutoCompletViewController.swift */,
 				BEAD9B47228702540063B49C /* SlidingUpViewController.swift */,
 			);
 			path = AnimalsSpeak;
@@ -510,7 +504,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BFC2E881BF1AA7300885EBB /* LaunchScreen.storyboard in Resources */,
-				BE79B89A2257E97F008EAF9C /* police_stations.json in Resources */,
 				BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */,
 				BEF9D712226CA60400F39F81 /* GreatOtway.jpg in Resources */,
 				BEF9D71A226CAE4A00F39F81 /* WilsonsPromontory.jpg in Resources */,
@@ -656,7 +649,6 @@
 				BE3BB831225A74D1005544DD /* animal.swift in Sources */,
 				BEF01229224C8A6B00456638 /* MapViewController.swift in Sources */,
 				BEA920982273583300F0209F /* QuizViewController.swift in Sources */,
-				BEAD9B432286A5F20063B49C /* AutoCompletViewController.swift in Sources */,
 				BEF9D728226E211A00F39F81 /* CheckListItemViewController.swift in Sources */,
 				BEBD74372281B49D0066C8A7 /* GMUDefaultClusterIconGenerator.m in Sources */,
 				BEF9D70A226C8B2D00F39F81 /* ListItem+CoreDataClass.swift in Sources */,

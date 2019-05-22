@@ -80,10 +80,9 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let camera = GMSCameraPosition.camera(withLatitude: -37.812946, longitude: 144.963658, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: emptyView.bounds, camera: camera)
         mapView.delegate = self
-        mapView.settings.myLocationButton = true
         mapView.settings.zoomGestures = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
@@ -132,7 +131,7 @@ class AnimalDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.loadSound(animalName: derailResult.displayTitle)
         heatmapLayer.map = nil
         let name = self.derailResult.displayTitle
-        let worker = ROGoogleTranslate()
+        let worker = APIWoker()
         worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{

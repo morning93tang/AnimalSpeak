@@ -148,14 +148,10 @@ class QuizViewController: UIViewController {
         self.audioPlayer = nil
         let strWithNoSpace = animalName.replacingOccurrences(of: " ", with: "%20")
         let audioFileName = strWithNoSpace as NSString
-        
-        //path extension will consist of the type of file it is, m4a or mp4
         let pathExtension = audioFileName.pathExtension
         
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            
-            // the name of the file here I kept is yourFileName with appended extension
             documentsURL.appendPathComponent("yourFileName."+pathExtension)
             return (documentsURL, [.removePreviousFile])
         }
@@ -166,8 +162,7 @@ class QuizViewController: UIViewController {
                 print(localURL)
                 do {
                     print(localURL.absoluteURL)
-                    self.audioPlayer = try AVAudioPlayer(contentsOf:localURL.absoluteURL )//(URL:NSURL(string:urlString))
-                    //                    guard let player = self.audioPlayer else { return }
+                    self.audioPlayer = try AVAudioPlayer(contentsOf:localURL.absoluteURL )
                     self.audioPlayer.prepareToPlay()
                     self.playButton.isHidden = false
                     self.end = DispatchTime.now()
@@ -192,7 +187,6 @@ class QuizViewController: UIViewController {
                     print(error.localizedDescription)
                     self.generateQuize()
                 }
-                //self.preparePlayer(urlString:localURL.absoluteString,filrExtension:"wav")
                 
             } else {
                 self.generateQuize()
@@ -202,7 +196,7 @@ class QuizViewController: UIViewController {
     }
     
     func generateQuize(){
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         var params = ROGoogleTranslateParams()
         var results = [DetailResult]()
         let group = DispatchGroup()
@@ -232,7 +226,6 @@ class QuizViewController: UIViewController {
                                                 print("bbbb\(detailResult)")
                                             group.leave()
                                         }else{
-                                            //results = [DetailResult]()
                                             group.leave()
                                             
                                         }
@@ -260,11 +253,6 @@ class QuizViewController: UIViewController {
                                                         print("sb\(forDisplay)")
                                                         print("caocaocao\(result.displayTitle)")
                                                         if forDisplay.count == 4{
-//                                                            self.end = DispatchTime.now()
-//                                                            let nanoTime = self.end.uptimeNanoseconds - self.start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
-//                                                            let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
-                                                            
-//                                                            print("Time to evaluate problem \(timeInterval) seconds")
                                                             var index2 = 0
                                                             for value in forDisplay{
                                                                 lables[index2]!.text = value.key
@@ -275,35 +263,7 @@ class QuizViewController: UIViewController {
                                                             }
                                                             print("load")
                                                             self.loadSound(animalName:self.answer)
-//                                                            if timeInterval < 3.0{
-//                                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 - timeInterval) {
-//                                                                    self.loadingPage.isHidden = true
-//                                                                }
-//
-//                                                            }
-//                                                            else{
-//                                                                self.loadingPage.isHidden = true
-//                                                            }
                                                         }
-                                                        
-                                                        
-                                                        //                                                    self.label1.text = result.displayTitle
-                                                        //                                                    if buttons.count == 1 {
-                                                        //
-                                                        //
-                                                        //                                                        self.label1.text = json.arrayValue[0].stringValue
-                                                        //                                                        self.label2.text = json.arrayValue[1].stringValue
-                                                        //                                                        self.label3.text = json.arrayValue[2].stringValue
-                                                        //self.label4.text = json.arrayValue[3].stringValue
-                                                        //                                                        self.anwserButton1.setImage(images[0], for: .normal)
-                                                        //                                                        self.anwserButton1.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                                                        //                                                        self.anwserButton2.setImage(images[1], for: .normal)
-                                                        //                                                        self.anwserButton2.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                                                        //                                                        self.answerButton3.setImage(images[2], for: .normal)
-                                                        //                                                        self.answerButton3.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                                                        //                                                        //self.answerButton4.imageView?.image = images[4]
-                                                        //                                                        print(self.answer)
-                                                        //                                                    }
                                                 }
                                             }
                                         }
@@ -314,54 +274,6 @@ class QuizViewController: UIViewController {
                                     self.generateQuize()
                                 }
                             }
-                            //                                    params.text = name.stringValue
-                            //                                    translator.getDetail(params: params){ (detailResult) in
-                            //                                        if detailResult.animalType.count > 1 {
-                            //                                            print("true")
-                            //                                            results.append(detailResult)
-                            //                                            var images = [UIImage]()
-                            //                                            if results.count == 3 && keepgoing{
-                            //                                            for result in results{
-                            //                                                DispatchQueue.main.async {
-                            //                                                    Alamofire.request(result.imageURL).responseImage { response in
-                            //                                                        debugPrint(response)
-                            //                                                        debugPrint(response.result)
-                            //                                                        if let image = response.result.value {
-                            //                                                            images.append(image)
-                            //                                                            if images.count == 3 {
-                            //                                                                print("load")
-                            //                                                                self.label1.text = json.arrayValue[0].stringValue
-                            //                                                                self.label2.text = json.arrayValue[1].stringValue
-                            //                                                                self.label3.text = json.arrayValue[2].stringValue
-                            //                                                                //self.label4.text = json.arrayValue[3].stringValue
-                            //                                                                self.anwserButton1.setImage(images[0], for: .normal)
-                            //                                                                self.anwserButton1.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                            //                                                                self.anwserButton2.setImage(images[1], for: .normal)
-                            //                                                                self.anwserButton2.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                            //                                                                self.answerButton3.setImage(images[2], for: .normal)
-                            //                                                                self.answerButton3.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
-                            //                                                                //self.answerButton4.imageView?.image = images[4]
-                            //                                                                print(self.answer)
-                            //                                                                self.loadingPage.isHidden = true
-                            //                                                            }
-                            //                                                        }
-                            //                                                    }
-                            //                                                }
-                            //                                            }
-                            //                                        }
-                            //
-                            //                                    }
-                            //                                        else{
-                            //                                            keepgoing = false
-                            //                                            self.generateQuize()
-                            //                                        }
-                            //                                }
-                            //                            }
-                            //                        }
-                            //                    }
-                            //                }
-                            //            }
-                            //        }
                         }
                     }
                 }
@@ -386,15 +298,5 @@ class QuizViewController: UIViewController {
         }
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

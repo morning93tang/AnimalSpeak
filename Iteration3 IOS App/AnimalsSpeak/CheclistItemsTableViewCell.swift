@@ -29,7 +29,6 @@ class CheclistItemsTableViewCell: UITableViewCell {
         self.checkListImage.contentMode = .scaleAspectFill
         self.checkListImage.clipsToBounds = true
         self.numberOfImages.text = ""
-        //self.checkListProgress.transform = checkListProgress.transform.scaledBy(x: 1, y: 8)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

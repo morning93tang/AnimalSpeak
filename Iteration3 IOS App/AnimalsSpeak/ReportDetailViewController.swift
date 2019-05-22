@@ -6,15 +6,6 @@
 //  Copyright © 2019 Sara Robinson. All rights reserved.
 //
 
-import UIKit
-
-//
-//  AnimalDetailViewController.swift
-//  imagepicker
-//
-//  Created by 唐茂宁 on 2/4/19.
-//  Copyright © 2019 Sara Robinson. All rights reserved.
-//
 
 import UIKit
 import Alamofire
@@ -141,7 +132,7 @@ class ReportDetailViewController: UIViewController, ResultDetailDelegate,GMSMapV
         self.loadSound(animalName: derailResult.displayTitle)
         heatmapLayer.map = nil
         let name = self.derailResult.displayTitle
-        let worker = ROGoogleTranslate()
+        let worker = APIWoker()
         worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{

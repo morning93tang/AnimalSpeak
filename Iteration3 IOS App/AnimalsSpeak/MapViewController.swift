@@ -18,7 +18,7 @@ import CoreLocation
 
 //
 
-/// Displaying heat map
+/// This class implement the collectionView and collectionViewDataSource for dsiplaying the rounded animal icons in the top section of the MapView. When Icon seleted heat map will be renderd with on the mapView. Temperature Data will also be pass to slidingUpView. Animal location data and weather condition data is required form animalsSpeak server using REST API calls.
 class MapViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,GMSMapViewDelegate,searchListDelegate{
     
     //    open class MyServerTrustPolicyManager: ServerTrustPolicyManager{
@@ -110,7 +110,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         let lat = "\(userLocation.latitude)"
         let lng = "\(userLocation.longitude)"
         var params = ROGoogleTranslateParams()
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         translator.sendRequestToServer(methodId: 6,request: ["lat":lat,"lon":lng]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{
@@ -179,10 +179,6 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
         heatmapLayer.opacity = 0.6
         heatmapLayer.gradient = GMUGradient(colors: gradientColors,startPoints: gradientStartPoints,colorMapSize: 256)
         emptyView.addSubview(mapView)
-//        detailButton.layer.shadowColor = UIColor.black.cgColor
-//        detailButton.layer.shadowOffset = CGSize(width: -1, height: -1)
-//        detailButton.layer.shadowRadius = 5
-//        detailButton.layer.shadowOpacity = 0.1
         animalIconCollectionView.layer.shadowColor = UIColor.black.cgColor
         animalIconCollectionView.layer.shadowOffset = CGSize(width: -1, height: -1)
         animalIconCollectionView.layer.shadowRadius = 5
@@ -267,6 +263,9 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     
+    /// Update map using animals location data
+    ///
+    /// - Parameter result: Anima loaction coodinates
     func updateMap(result:NSDictionary){
         var listToAdd = [GMUWeightedLatLng]()
         if let list = result["response"] as? String{
@@ -428,7 +427,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                 print("\(self.locationSearchResult!.latitude)")
                 let lng = String(self.locationSearchResult!.longitude)
                 if showSearchResult{
-                    let worker = ROGoogleTranslate()
+                    let worker = APIWoker()
 //                    worker.sendRequestToServer(methodId: 2,request: ["animals":[self.animalIcons[indexPath.row]]] ){ (result) in
 //                        DispatchQueue.global().async {
 //                            if result != nil{
@@ -443,7 +442,7 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
                         
                     }
                 }else{
-                    let worker = ROGoogleTranslate()
+                    let worker = APIWoker()
                     worker.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
                         DispatchQueue.global().async {
                             if result != nil{
@@ -623,7 +622,7 @@ extension MapViewController: CLLocationManagerDelegate {
             self.activityIndicatior.isHidden = false
             _ = self.currentLocation!.coordinate
             var params = ROGoogleTranslateParams()
-            let translator = ROGoogleTranslate()
+            let translator = APIWoker()
             //self.animalIcons = iconlist
             self.urlList.removeAll()
             for name in queryList{

@@ -10,7 +10,8 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-/// Utility class for sending request to google
+
+/// Structure for setting parameter to google translate service
 public struct ROGoogleTranslateParams {
     
     
@@ -64,8 +65,8 @@ public struct DetailResult {
 }
 
 
-/// Offers easier access to APIs
-open class ROGoogleTranslate {
+/// Offers easier access to APIs. Open class that handles HTTP requests and its methods use call back to send reslut to 
+open class APIWoker {
     
     /// Store here the server's IP address
     var serverIp = "35.201.22.21"

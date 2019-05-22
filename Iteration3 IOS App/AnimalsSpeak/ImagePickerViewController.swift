@@ -19,9 +19,11 @@ import AVFoundation
 import AlamofireImage
 import Photos
 
+/// Cofirm with this delegate to get image recognition result.
 protocol ResultDetailDelegate {
     func gerResultData(detailResut: [DetailResult]) }
 
+/// This ViewController is connnect to imagePicerView which can be presented as a pop up view. This view allow user to upload image from local photo library or camera. After user upload an image, it will be resize and send to image recgition API. Finally the result will be converted from JSON format to DetailResult() stucture.
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate {
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
@@ -220,6 +222,7 @@ extension ViewController {
             // Parse the response
             //print(json)
             let responses: JSON = json
+            print(responses)
             print(json)
             let labelAnnotations: JSON = responses["result"]
             if labelAnnotations[0]["name"] != "非动物"{
@@ -278,7 +281,7 @@ extension ViewController {
     }
     
     func finalResult(labels:[String: String],transLate:Bool){
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         translator.apiKey = "AIzaSyCDS_M2Vf5qb4mwYsyM8vq_XuDkjCYYsF0" // Add your API Key here
         
         let group = DispatchGroup()
@@ -411,7 +414,7 @@ extension ViewController {
         // Resize the image if it exceeds the 2MB API limit
         if (imagedata?.count > 2097152) {
             let oldSize: CGSize = image.size
-            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            let newSize: CGSize = CGSize(width: 300, height: oldSize.height / oldSize.width * 300)
             imagedata = resizeImage(newSize, image: image)
         }
         

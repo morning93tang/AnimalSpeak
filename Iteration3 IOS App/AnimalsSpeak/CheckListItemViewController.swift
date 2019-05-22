@@ -19,18 +19,22 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var checkListDes: UILabel!
     @IBOutlet weak var tittleLabel: UILabel!
-//    @IBOutlet weak var checkListImageView: UIImageView!
     @IBOutlet weak var checkListItemTableView: UITableView!
     var checkListItems = [ListItem]()
     var checkList:CheckList?
     var frame = CGRect(x:0,y:0,width:0,height:0)
     private var managedObjectContext: NSManagedObjectContext
+    
+    /// Initiate managedObjectContex to get access to CoreData
+    ///
+    /// - Parameter aDecoder: <#aDecoder description#>
     required init?(coder aDecoder: NSCoder) {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedObjectContext = (appDelegate?.persistentContainer.viewContext)!
         super.init(coder: aDecoder)!
     }
     
+    /// Layout table view cell height after view changed.
     override func viewWillLayoutSubviews() {
         super.updateViewConstraints()
         self.tableHeight?.constant = self.checkListItemTableView.contentSize.height
@@ -40,8 +44,7 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
         self.viewWillLayoutSubviews()
     }
     
-    
-    
+    /// Setup UIOutlets
     override func viewDidLoad() {
         super.viewDidLoad()
         checkListItemTableView.alwaysBounceVertical = false
@@ -57,6 +60,7 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
         self.backGroundView.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.backGroundView.layer.shadowOpacity = 0.8
         self.pagecontrol.numberOfPages = 2
+        ///Adjust page controller width
         for index in 0..<2{
             if index == 0 {
                 frame.origin.x = UIScreen.main.bounds.width * CGFloat(index)
@@ -70,10 +74,6 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
                 frame.size = scroolView.frame.size
                 let videoWebView = WKYTPlayerView(frame:frame)
                 videoWebView.load(withVideoId: checkList!.videoLink!)
-//                videoWebView.allowsInlineMediaPlayback = true
-//                videoWebView.loadHTMLString("<iframe width=\""+"\(videoWebView.frame.width)" + "\" height=\"" + "\(videoWebView.frame.height)" + "\" src=\"" + "https://www.youtube.com/embed/" + checkList!.videoLink! + "?&playinline=1\" frameborder=\"0\" allowfullscreen></iframe>", baseURL: nil)
-//                videoWebView.scrollView.contentOffset = videoWebView.scrollView.center;
-//                //videoWebView.scrollView.isScrollEnabled = false
                 self.scroolView.addSubview(videoWebView)
             }
         }
@@ -84,7 +84,6 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
         if checkList != nil{
             self.checkListDes.text = checkList!.listDescription
             self.tittleLabel.text = checkList!.tittle
-//            self.checkListImageView.image = ImageWorker.loadImageData(fileName: checkList!.imagePath!)
         }
         if checkList?.hasItems != nil{
             checkListItems = Array((checkList?.hasItems)!) as! [ListItem]
@@ -93,21 +92,14 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
         }
     }
     
+    /// Force page view to the next page after decelerating
+    ///
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = scrollView.contentOffset.x / UIScreen.main.bounds.width
         print(pageNumber)
         pagecontrol.currentPage = Int(pageNumber)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -127,6 +119,7 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
         return 0
     }
     
+    /// Load table view data form Checklist managed context.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "checkListItemCell", for: indexPath) as! CheclistItemsTableViewCell
         let checkListItem = self.checkListItems[indexPath.row]
@@ -142,18 +135,17 @@ class CheckListItemViewController: UIViewController,UITableViewDelegate,UIScroll
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)  {
-
+        
         if segue.identifier == "showItemOnMap"{
             let destination = segue.destination as? AlbumsMapViewController
-                let item = checkListItems[checkListItemTableView.indexPathForSelectedRow!.row]
-                if let entities = item.hasEntities?.allObjects as? [ImageEntity]{
-                    destination?.imageEntitys = entities
-                }
-            //destination?.imageEntitys = Array(userCheckLists[0].hasItems!)[tableView.indexPathForSelectedRow!.row]
+            let item = checkListItems[checkListItemTableView.indexPathForSelectedRow!.row]
+            if let entities = item.hasEntities?.allObjects as? [ImageEntity]{
+                destination?.imageEntitys = entities
+            }
         }
     }
     
-
+    
 }
 
 extension UILabel {

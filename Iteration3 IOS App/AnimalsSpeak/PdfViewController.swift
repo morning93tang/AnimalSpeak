@@ -26,15 +26,9 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
     var long = ""
     var fileName = ""
     
-    
-//    override func loadView() {
-//        webView = WKWebView()
-//        webView.navigationDelegate = self
-//        view = webView
-//    }
     @IBAction func send(_ sender: Any) {
         self.sendButton.isEnabled = false
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         translator.sendRequestToServer(methodId: 10,request: ["file":fileName,"ccAddress":email]){ (result) in
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 let tabBar: UITabBarController = appDelegate.window?.rootViewController as! UITabBarController
@@ -51,6 +45,10 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
         
     }
     
+    /// Cover image to base64Encoded, so it can be embeded in the http post body.
+    /// If the image size is larger 2MP it will be resized to match the limitaion.
+    /// - Parameter image: UIimage
+    /// - Returns: String(base64EncodedImage)
     func base64EncodeImage(_ image: UIImage) -> String {
         var imagedata = image.jpegData(compressionQuality:0.001)!
         
@@ -64,6 +62,12 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
         return "data:image/jpeg;base64," + imagedata.base64EncodedString(options: .endLineWithCarriageReturn)
     }
     
+    /// Resize Image
+    ///
+    /// - Parameters:
+    ///   - imageSize: Size you want the image to be.
+    ///   - image: UIimage
+    /// - Returns: Data
     func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
         UIGraphicsBeginImageContext(imageSize)
         image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
@@ -74,6 +78,7 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
     }
     
     
+    /// Setup UI outlets
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sendButton.isEnabled = false
@@ -86,15 +91,12 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
         self.wkwebView = WKWebView(frame:contentView.bounds)
         self.wkwebView.navigationDelegate = self
         self.contentView.addSubview(wkwebView)
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         self.sendButton.layer.cornerRadius = 8.0
         self.sendButton.layer.masksToBounds = false
-        //        self.playGameButton.layer.backgroundColor = UIColor.white.cgColor
         self.buttonBackView.layer.shadowColor =  UIColor.black.withAlphaComponent(0.6).cgColor
         self.buttonBackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.buttonBackView.layer.shadowOpacity = 0.8
-        //let imageString = self.base64EncodeImage(self.img!)
-        //print(imageString)
         translator.sendRequestToServer(methodId: 9,request: ["animal":name,"className":"mammalia","lat":lat,"lon":long,"userName":"Animal talk app user","email":email,"msg":msg,"img":self.base64EncodeImage(img!)]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{
@@ -114,44 +116,13 @@ class PdfViewController: UIViewController, WKNavigationDelegate {
             }
         }
         
-        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 
         }
-        
-        
-        //                            Alamofire.download("http://localhost:8081/getReport?id=\(strWithNoSpace)", to: destination).response { response in
-        //                                if let localURL = response.destinationURL {
-        //                                    print(localURL)
-        //                                    do {
-        //                                        print(localURL.absoluteURL)
-        //                                        self.audioPlayer = try AVAudioPlayer(contentsOf:localURL.absoluteURL )
-        //                                        self.audioPlayer.prepareToPlay()
-        //                                        self.playButton.isHidden = false
-        //                                        self.playIcon.isHidden = false
-        //                                    } catch let error {
-        //                                        print(error.localizedDescription)
-        //                                    }
-        //                                } else {
-        //
-        //                                }
-        //                        }
-        //                    }
-        //                }
-        
-        // Do any additional setup after loading the view.
     }
     
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
     
 }

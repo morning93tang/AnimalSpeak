@@ -1,6 +1,5 @@
 //
 //  CBToast.swift
-//  FIT5120-ArtTour
 //
 //  Acknowledge to bolagong(https://github.com/bolagong)
 //  This Toast file is written by bolagong on GitHub at: https://github.com/bolagong/Toast

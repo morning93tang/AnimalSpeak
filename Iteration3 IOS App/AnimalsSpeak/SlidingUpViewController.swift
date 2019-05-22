@@ -13,13 +13,18 @@ import GooglePlaces
 import GoogleMaps
 import SwiftyJSON
 
+
+/// This class is for add a sliding up panel which includes all the detail of an animal. The idetifier of the corresponding UIViewController is "SUSlidingUp".
 class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidingUpPanelAnimationDelegate,GMSMapViewDelegate {
+    
+    /// This inner class can be used to setup your server trustpolicy, in case your are using a server with out enterprise certificate.
     open class MyServerTrustPolicyManager: ServerTrustPolicyManager{
         open override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
             return ServerTrustPolicy.disableEvaluation
         }
     }
     
+    /// Setup the trust ip address here.
     let sessaionManager = SessionManager(delegate: SessionDelegate(), serverTrustPolicyManager:MyServerTrustPolicyManager(policies:["https://118.139.67.137:8443":.disableEvaluation]))
     
     @IBOutlet weak var weatherConView: UIView!
@@ -32,20 +37,9 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
     @IBOutlet weak var animalImgaeView: UIImageView!
     @IBOutlet weak var tittleLabel: UILabel!
     @IBOutlet weak var descriptionTextBox: UITextView!
-    var animalName = ""
-    var dispalyedName = ""
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playIcon: UIImageView!
-    var player: AVPlayer?
-    var audioPlayer:AVAudioPlayer!
-    private var heatmapLayer: GMUHeatmapTileLayer!
-    var currentLocation: CLLocation?
-    var mapView: GMSMapView!
-    var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 5.0
-    private var gradientColors = [UIColor.blue, UIColor.red]
-    private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var humidtyLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
@@ -59,11 +53,22 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var toggleSlidingUpPanelBtn: UIButton!
     let slidingUpManager: TSSlidingUpPanelManager = TSSlidingUpPanelManager.with
+    var currentLocation: CLLocation?
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 5.0
+    var animalName = ""
+    var dispalyedName = ""
+    var player: AVPlayer?
+    var audioPlayer:AVAudioPlayer!
+    private var heatmapLayer: GMUHeatmapTileLayer!
+    private var gradientColors = [UIColor.blue, UIColor.red]
+    private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // Set up UI outlets
         self.weatherConView.layer.masksToBounds = false
         self.weatherConView.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         self.weatherConView.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -111,6 +116,9 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
         
     }
     
+    /// Update the heatmap according to the result get from server.
+    ///
+    /// - Parameter result: JSON formate response
     func updateMap(result:NSDictionary){
         var listToAdd = [GMUWeightedLatLng]()
         if let list = result["response"] as? String{
@@ -139,7 +147,7 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
         heatmapLayer.map = nil
         let name = self.animalName
         _ = [GMUWeightedLatLng]()
-        let worker = ROGoogleTranslate()
+        let worker = APIWoker()
         worker.sendRequestToServer(methodId: 2,request: ["animals":[name]]){ (result) in
             DispatchQueue.global().async {
                 if result != nil{
@@ -217,38 +225,50 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
     }
     
     
+    /// Play sonund when play button clicked
+    ///
+    /// - Parameter sender: viewController
     @IBAction func playSoundInstance(_ sender: Any) {
         self.audioPlayer.play()
     }
     
     
-    func updateView(){
-        
-    }
     
+    /// Change the state of sliding up panel according to panel's current state(close to open)
+    ///
+    /// - Parameter sender: self
     @IBAction func toggleSlidingUpPanelBtnPressed(_ sender: Any) {
         if slidingUpManager.getSlideUpPanelState() == .DOCKED {
             slidingUpManager.changeSlideUpPanelStateTo(toState: .OPENED)
-            upadteView()
+            updateView()
         } else {
             slidingUpManager.changeSlideUpPanelStateTo(toState: .DOCKED)
         }
     }
     
+    /// Defin actions when panel is start dragging actions.
+    ///
+    /// - Parameter startYPos: the original Y position of the panel
     func slidingUpPanelStartDragging(startYPos: CGFloat) {
-        upadteView()
+        updateView()
     }
     
     func slidingUpPanelDraggingFinished(delta: CGFloat) {
         
     }
     
+    /// Rotating the button acordding to panel's y position.
+    ///
+    /// - Parameter yPos: the original Y position of the panel
     func slidingUpPanelDraggingVertically(yPos: CGFloat) {
         let dismissBtnRotationDegree = slidingUpManager.scaleNumber(oldValue: yPos, newMin: 0, newMax: CGFloat(Double.pi))
         
         toggleSlidingUpPanelBtn.transform = CGAffineTransform(rotationAngle: dismissBtnRotationDegree)
     }
     
+    /// Change the state of sliding up panel according to panel's current state(close to open)
+    ///
+    /// - Parameter sender: self
     func slidingUpPanelAnimationStart(withDuration: TimeInterval, slidingUpCurrentPanelState: SLIDE_UP_PANEL_STATE, yPos: CGFloat) {
         
         var rotationAngle: CGFloat = 0.0
@@ -273,12 +293,17 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
         
     }
     
+    /// Change the state of sliding up panel according to panel's current state(close to open)
+    ///
+    /// - Parameter sender: self
     func slidingUpPanelAnimationFinished(withDuration: TimeInterval, slidingUpCurrentPanelState: SLIDE_UP_PANEL_STATE, yPos: CGFloat) {
         print("[SUSlidingUpVC::animationFinished] sliding Up Panel state=\(slidingUpCurrentPanelState) yPos=\(yPos)")
         
     }
     
-    func upadteView(){
+    
+    /// Call this method to up date the panel after seleted animal is changed
+    func updateView(){
         if dispalyedName != animalName{
             dispalyedName = animalName
             self.playButton.isHidden = true
@@ -294,7 +319,7 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
                 self.scrollView.setContentOffset(CGPoint(x: 0, y: height), animated: true)
             }
             self.tittleLabel.text = self.animalName
-            let translator = ROGoogleTranslate()
+            let translator = APIWoker()
             var params = ROGoogleTranslateParams()
             params.text = self.animalName
             translator.getDetail(params: params){ (detailResult) in
@@ -342,6 +367,11 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
 }
 
 extension UIView {
+    /// Define corner radius according to the corner position.
+    ///
+    /// - Parameters:
+    ///   - cornerRadii: CGFloat
+    ///   - corners: UIRectCorner
     func roundCornersWithLayerMask(cornerRadii: CGFloat, corners: UIRectCorner) {
         let path = UIBezierPath(roundedRect: bounds,
                                 byRoundingCorners: corners,

@@ -70,6 +70,10 @@ class ImageWorker{
 
 extension UIImage {
     
+    /// Resize image view to desired size.
+    ///
+    /// - Parameter maxWidthHeight: The Double value of the width and height you want the image to be.
+    /// - Returns: Resized UIImage
     func resize(maxWidthHeight : Double)-> UIImage? {
         
         let actualHeight = Double(size.height)

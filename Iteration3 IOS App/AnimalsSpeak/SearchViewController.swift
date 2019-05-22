@@ -34,7 +34,7 @@ class SearchViewController: UIViewController {
     
     /// Initialize the view with default data by dispalying all animals.
     override func viewDidLoad() {
-        let translator = ROGoogleTranslate()
+        let translator = APIWoker()
         translator.sendRequestToServer(methodId: 3,request: ["lat":"asf","lon":"sdafsadf"]){ (result) in
             if result != nil{
                 if let list = result!["response"] as? String{
