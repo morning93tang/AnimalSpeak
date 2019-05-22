@@ -8,7 +8,7 @@
       location = "group:imagepicker/Record+CoreDataProperties.swift">
    </FileRef>
    <FileRef
-      location = "group:imagepicker.xcodeproj">
+      location = "group:/Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3 IOS App/AnimalsSpeak.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
