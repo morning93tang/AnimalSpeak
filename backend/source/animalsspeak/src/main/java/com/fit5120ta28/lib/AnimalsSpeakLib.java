@@ -470,19 +470,15 @@ public class AnimalsSpeakLib {
 		Map<String,Double> weather = getOccurenceFactorByAnimalName(ani);
 		//double max_temp = weather.get(key)
 //		System.out.println(weather);
-		String sr = sendGet("http://api.openweathermap.org/data/2.5/find","units=metric&lat="+p[0]+"&lon="+p[1]+"&APPID=c34dbbe91eb2168fa12648f30c04bc05");
+		String sr = sendGet("http://api.openweathermap.org/data/2.5/weather","units=metric&q=Melbourne,au&APPID=c34dbbe91eb2168fa12648f30c04bc05");
 		
-		System.out.println(sr);
+//		System.out.println(sr);
 		//convert string to json
 		TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
 		Map<String,Object> temp = new HashMap<String,Object>();
-		
 		ObjectMapper mapper = new ObjectMapper(); 
 		temp = mapper.readValue(sr, typeRef);
-//		Map<String,Object> list = new HashMap<String,Object>();
-//		list = temp[0];
-		//System.out.println(((List<HashMap<String,Object>>) temp.get("list")).get(0));
-		temp = ((List<HashMap<String,Object>>) temp.get("list")).get(0);
+	
 //		System.out.println(((Map<String,Object>) temp.get("main")).get("temp"));
 		//define Temperature in the dataset
 		double api_temp = Double.parseDouble(((Map<String,Object>) temp.get("main")).get("temp").toString());
