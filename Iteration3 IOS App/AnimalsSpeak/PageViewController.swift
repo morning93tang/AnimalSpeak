@@ -10,8 +10,7 @@ import UIKit
 import Alamofire
 
 
-/// This controller confirm to ResultDetailDelegate. After getting result from image recognition API the delegate method will be invoked to load AnimalDetailViews accordingly.
-class IdentificationPageViewController: UIPageViewController,UIPageViewControllerDelegate,ResultDetailDelegate {
+class PageViewController: UIPageViewController,UIPageViewControllerDelegate,ResultDetailDelegate {
     
     var orderedViewControllers = [UIViewController]()
     var derailResult = [DetailResult]()
@@ -97,7 +96,7 @@ class IdentificationPageViewController: UIPageViewController,UIPageViewControlle
     
 }
 
-extension IdentificationPageViewController: UIPageViewControllerDataSource {
+extension PageViewController: UIPageViewControllerDataSource {
     // MARK: Data source functions.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {

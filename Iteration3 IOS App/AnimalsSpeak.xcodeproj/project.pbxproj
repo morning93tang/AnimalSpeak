@@ -18,14 +18,13 @@
 		BE3BB82B225A0970005544DD /* icons8-play_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = BE3BB82A225A0970005544DD /* icons8-play_filled.png */; };
 		BE3BB82F225A719D005544DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB82E225A719D005544DD /* SearchViewController.swift */; };
 		BE3BB831225A74D1005544DD /* animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BB830225A74D1005544DD /* animal.swift */; };
-		BE44AC532295C77A00B0207F /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE44AC522295C77A00B0207F /* icon-76@2x.png */; };
 		BE79B89E2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */; };
 		BE83BF5B228DBBD0002282BA /* RECORD.gif in Resources */ = {isa = PBXBuildFile; fileRef = BE83BF5A228DBBCF002282BA /* RECORD.gif */; };
 		BE83BF5E22918BDE002282BA /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BE83BF5D22918BDD002282BA /* arrow.png */; };
 		BE935EE82274B11700734CA2 /* QuizeResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EE72274B11700734CA2 /* QuizeResultViewController.swift */; };
 		BE935EEE2275941500734CA2 /* ReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EED2275941500734CA2 /* ReportDetailViewController.swift */; };
 		BE935EF02275976C00734CA2 /* ReportPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EEF2275976C00734CA2 /* ReportPageViewController.swift */; };
-		BE935EF22275BB9E00734CA2 /* EmailPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EF12275BB9E00734CA2 /* EmailPopViewController.swift */; };
+		BE935EF22275BB9E00734CA2 /* emailPopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EF12275BB9E00734CA2 /* emailPopViewController.swift */; };
 		BE935EF42275C8FE00734CA2 /* PdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE935EF32275C8FE00734CA2 /* PdfViewController.swift */; };
 		BE9EB33E22771DED00D68188 /* CBToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9EB33D22771DED00D68188 /* CBToast.swift */; };
 		BE9EB34022773BA800D68188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE9EB33F22773BA600D68188 /* Assets.xcassets */; };
@@ -69,7 +68,7 @@
 		BEF9D71E226CB07E00F39F81 /* HealesvilleSanctuary.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEF9D71D226CB07E00F39F81 /* HealesvilleSanctuary.jpg */; };
 		BEF9D722226E159900F39F81 /* CheclistItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D721226E159900F39F81 /* CheclistItemsTableViewCell.swift */; };
 		BEF9D728226E211A00F39F81 /* CheckListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D727226E211A00F39F81 /* CheckListItemViewController.swift */; };
-		BEF9D72A2270D30000F39F81 /* IdentificationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D7292270D30000F39F81 /* IdentificationPageViewController.swift */; };
+		BEF9D72A2270D30000F39F81 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D7292270D30000F39F81 /* PageViewController.swift */; };
 		DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,14 +109,13 @@
 		BE3BB82A225A0970005544DD /* icons8-play_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-play_filled.png"; sourceTree = "<group>"; };
 		BE3BB82E225A719D005544DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
-		BE44AC522295C77A00B0207F /* icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-76@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/icon-76@2x.png"; sourceTree = "<group>"; };
 		BE79B89D2258E4F6008EAF9C /* SecondaryAnimalDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAnimalDetailViewController.swift; sourceTree = "<group>"; };
 		BE83BF5A228DBBCF002282BA /* RECORD.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RECORD.gif; sourceTree = "<group>"; };
 		BE83BF5D22918BDD002282BA /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		BE935EE72274B11700734CA2 /* QuizeResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizeResultViewController.swift; sourceTree = "<group>"; };
 		BE935EED2275941500734CA2 /* ReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDetailViewController.swift; sourceTree = "<group>"; };
 		BE935EEF2275976C00734CA2 /* ReportPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPageViewController.swift; sourceTree = "<group>"; };
-		BE935EF12275BB9E00734CA2 /* EmailPopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPopViewController.swift; sourceTree = "<group>"; };
+		BE935EF12275BB9E00734CA2 /* emailPopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailPopViewController.swift; sourceTree = "<group>"; };
 		BE935EF32275C8FE00734CA2 /* PdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewController.swift; sourceTree = "<group>"; };
 		BE9EB33D22771DED00D68188 /* CBToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBToast.swift; sourceTree = "<group>"; };
 		BE9EB33F22773BA600D68188 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,7 +185,7 @@
 		BEF9D71D226CB07E00F39F81 /* HealesvilleSanctuary.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = HealesvilleSanctuary.jpg; sourceTree = "<group>"; };
 		BEF9D721226E159900F39F81 /* CheclistItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheclistItemsTableViewCell.swift; sourceTree = "<group>"; };
 		BEF9D727226E211A00F39F81 /* CheckListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItemViewController.swift; sourceTree = "<group>"; };
-		BEF9D7292270D30000F39F81 /* IdentificationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationPageViewController.swift; sourceTree = "<group>"; };
+		BEF9D7292270D30000F39F81 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,7 +275,6 @@
 				BEF01226224C446600456638 /* TabBarController.swift */,
 				BEF01228224C8A6B00456638 /* MapViewController.swift */,
 				BEE502EA22510DB700D753FE /* APIWorker.swift */,
-				BE44AC522295C77A00B0207F /* icon-76@2x.png */,
 				BE9EB33F22773BA600D68188 /* Assets.xcassets */,
 				BE3BB82E225A719D005544DD /* SearchViewController.swift */,
 				BE3BB830225A74D1005544DD /* animal.swift */,
@@ -290,13 +287,13 @@
 				BEF9D70D226C8D5E00F39F81 /* ImageWorker.swift */,
 				BEF9D721226E159900F39F81 /* CheclistItemsTableViewCell.swift */,
 				BEF9D727226E211A00F39F81 /* CheckListItemViewController.swift */,
-				BEF9D7292270D30000F39F81 /* IdentificationPageViewController.swift */,
+				BEF9D7292270D30000F39F81 /* PageViewController.swift */,
 				BEA9209522733D0700F0209F /* QuizHomeViewController.swift */,
 				BEA920972273583300F0209F /* QuizViewController.swift */,
 				BE935EE72274B11700734CA2 /* QuizeResultViewController.swift */,
 				BE935EED2275941500734CA2 /* ReportDetailViewController.swift */,
 				BE935EEF2275976C00734CA2 /* ReportPageViewController.swift */,
-				BE935EF12275BB9E00734CA2 /* EmailPopViewController.swift */,
+				BE935EF12275BB9E00734CA2 /* emailPopViewController.swift */,
 				BE935EF32275C8FE00734CA2 /* PdfViewController.swift */,
 				BE9EB33D22771DED00D68188 /* CBToast.swift */,
 				BEBD73FE2280455B0066C8A7 /* CheckListViewController.swift */,
@@ -518,7 +515,6 @@
 				BEF9D716226CAB1700F39F81 /* LakeElizabeth.jpg in Resources */,
 				BEF9D71C226CB02300F39F81 /* TowerHill.jpg in Resources */,
 				BE9EB34022773BA800D68188 /* Assets.xcassets in Resources */,
-				BE44AC532295C77A00B0207F /* icon-76@2x.png in Resources */,
 				BEF9D710226C8E9800F39F81 /* HallsGap.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,7 +619,7 @@
 				BEF01227224C446600456638 /* TabBarController.swift in Sources */,
 				BEBD742D2281B4910066C8A7 /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				BEAD9B462287021F0063B49C /* TSSlidingUpPanelManager.swift in Sources */,
-				BEF9D72A2270D30000F39F81 /* IdentificationPageViewController.swift in Sources */,
+				BEF9D72A2270D30000F39F81 /* PageViewController.swift in Sources */,
 				BEF9D704226C474C00F39F81 /* imagepicker.xcdatamodeld in Sources */,
 				BEB3FCAD22579799004DFA6B /* AnimalCollectionViewCell.swift in Sources */,
 				BEF9D6FF2269886C00F39F81 /* CheckListTableViewCell.swift in Sources */,
@@ -635,7 +631,7 @@
 				BEB3FCC22257ABC8004DFA6B /* GMUGradient.m in Sources */,
 				BE935EF02275976C00734CA2 /* ReportPageViewController.swift in Sources */,
 				BEBD74132281AEFB0066C8A7 /* AlbumsMapViewController.swift in Sources */,
-				BE935EF22275BB9E00734CA2 /* EmailPopViewController.swift in Sources */,
+				BE935EF22275BB9E00734CA2 /* emailPopViewController.swift in Sources */,
 				BEE502EB22510DB700D753FE /* APIWorker.swift in Sources */,
 				BEBD74212281B0080066C8A7 /* GMUStaticCluster.m in Sources */,
 				BEBD742E2281B4910066C8A7 /* GMUWrappingDictionaryKey.m in Sources */,
@@ -821,7 +817,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CLANG_OPTIMIZATION_PROFILE_FILE = "$(SDKROOT)/OptimizationProfiles/$(PROJECT_NAME).profdata";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77X54GL6C9;
@@ -848,7 +843,6 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CLANG_OPTIMIZATION_PROFILE_FILE = "$(SDKROOT)/OptimizationProfiles/$(PROJECT_NAME).profdata";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 77X54GL6C9;

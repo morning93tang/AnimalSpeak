@@ -44,14 +44,7 @@ class SecondaryAnimalDetailViewController: UIViewController,GMSMapViewDelegate {
     private var gradientColors = [UIColor.blue, UIColor.red]
     private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     @IBAction func playSoundInstance(_ sender: Any) {
-        if audioPlayer.isPlaying {
-            self.audioPlayer.stop()
-            self.audioPlayer.currentTime = 0
-            self.playIcon.isHighlighted = false
-        }else{
-            self.audioPlayer.play()
-            self.playIcon.isHighlighted = true
-        }
+        self.audioPlayer.play()
     }
     
     override func viewDidLoad() {

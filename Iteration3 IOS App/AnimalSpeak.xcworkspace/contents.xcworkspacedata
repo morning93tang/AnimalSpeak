@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:/Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3 IOS App/AnimalsSpeak.xcodeproj">
+      location = "group:/Users/tangmaoning/Documents/GitHub/AnimalTalk/Iteration3 IOS App/AnimalsSpeak.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

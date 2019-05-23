@@ -13,7 +13,7 @@ import SwiftyJSON
 protocol searchListDelegate {
     func gerResultData(selctedanimalList: [animal]) }
 
-/// This controller is responsible for requesting all animal names and classes form server and loading them into a table view. Use segment control to segmented animal names by class name. Search bar auto completion.
+/// View controller for displaying search bar and search result list
 class SearchViewController: UIViewController {
     
 

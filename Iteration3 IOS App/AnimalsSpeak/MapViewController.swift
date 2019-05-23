@@ -52,7 +52,6 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var sendAble = false
     var userLOcation: CLLocation?
     var slidingVC: SUSlidingUpVC?
-    var selectedAnimal = ""
     private var gradientColors = [UIColor.blue, UIColor.red]
     private var gradientStartPoints = [0.2, 1.0] as [NSNumber]
     @IBOutlet weak var animalIconCollectionView: UICollectionView!
@@ -411,47 +410,69 @@ class MapViewController: UIViewController, UICollectionViewDelegate, UICollectio
     ///   - collectionView: Current instance of collection view
     ///   - indexPath: Index of selected cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
         self.sendAble = true
         self.activityIndicatior.isHidden = false
+        toggleSlidingUpPanel()
         if currentSelectedIcon != indexPath{
             self.currentSelectedIcon = indexPath
             if let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell?{
                 self.currentSelectedIcon = indexPath
                 heatmapLayer.map = nil
                 let name = cell.number.text!
-                if name != self.selectedAnimal{
-                    toggleSlidingUpPanel()
-                    self.selectedAnimal = name
-                    let lat = String(self.locationSearchResult!.latitude)
-                    print("\(self.locationSearchResult!.latitude)")
-                    let lng = String(self.locationSearchResult!.longitude)
-                    if showSearchResult{
-                        let worker = APIWoker()
-                        worker.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
-                            DispatchQueue.global().async {
-                                if result != nil{
-                                    
-                                    self.updateMap(result: result!)
-                                }
+//                let lat = String(self.currentLocation!.coordinate.latitude)
+//                let lng = String(self.currentLocation!.coordinate.longitude)
+                let lat = String(self.locationSearchResult!.latitude)
+                print("\(self.locationSearchResult!.latitude)")
+                let lng = String(self.locationSearchResult!.longitude)
+                if showSearchResult{
+                    let worker = APIWoker()
+//                    worker.sendRequestToServer(methodId: 2,request: ["animals":[self.animalIcons[indexPath.row]]] ){ (result) in
+//                        DispatchQueue.global().async {
+//                            if result != nil{
+//                                self.updateMap(result: result!)
+                    worker.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
+                        DispatchQueue.global().async {
+                            if result != nil{
+                                
+                                self.updateMap(result: result!)
                             }
                         }
-                    }else{
-                        let worker = APIWoker()
-                        worker.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
-                            DispatchQueue.global().async {
-                                if result != nil{
-                                    
-                                    self.updateMap(result: result!)
-                                }
+                        
+                    }
+                }else{
+                    let worker = APIWoker()
+                    worker.sendRequestToServer(methodId: 7,request: ["animal":name,"lat":lat,"lon":lng] ){ (result) in
+                        DispatchQueue.global().async {
+                            if result != nil{
+                                
+                                self.updateMap(result: result!)
+                                //                            if let list = result!["response"] as? String{
+                                //                                if let data = list.data(using: .utf8) {
+                                //                                    if let json = try? JSON(data: data) {
+                                //                                        for latlong in json.arrayValue {
+                                //                                            let lat = latlong[0].doubleValue.roundTo(places: 4)
+                                //                                            let lng = latlong[1].doubleValue.roundTo(places: 4)
+                                //                                            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat , lng ), intensity: 700.0)
+                                //                                            listToAdd.append(coords)
+                                //                                        }
+                                //                                        DispatchQueue.main.async {
+                                //                                            self.heatmapLayer.weightedData = listToAdd
+                                //                                            //self.addHeatmap()
+                                //                                            self.heatmapLayer.map = self.mapView
+                                //                                            self.activityIndicatior.isHidden = true
+                                //                                        }
+                                //
+                                //                                    }
+                                //                                }
+                                //                            }
                             }
                         }
                     }
-                    
                 }
+                
             }
-        }
-        else{
-            self.activityIndicatior.isHidden = true
         }
     }
     

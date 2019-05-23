@@ -11,7 +11,7 @@ import UIKit
 
 
 /// Required user to insert their email and descriptions to generate and send email.
-class EmailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
+class emailPopViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var additionallabel: UILabel!
     @IBOutlet weak var cancleButton: UIButton!
     @IBOutlet weak var seeTempButton: UIButton!

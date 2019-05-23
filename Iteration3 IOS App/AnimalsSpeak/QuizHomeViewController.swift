@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 
-/// The controller responsible for loading user's quize record and gif background.
 class QuizHomeViewController: UIViewController {
     var answer = ""
     @IBOutlet weak var playGameButton: UIButton!

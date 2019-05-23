@@ -8,7 +8,6 @@
 
 import UIKit
 
-/// Reusable checklist table cell.
 class CheckListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var backgroundCardView: UIView!

@@ -14,7 +14,7 @@ import UserNotifications
 import CoreLocation
 
 
-/// This class is responsible for storeing the images and the loction coordinates. All the record which counting the number of witiness of an animal will be show in the form of table. The overall progress will be calculate to load a progress bar. A tittle and a badge will be loaded according to the overall progress.
+/// This class is to stord the images and times of anmails that finded by user. All the record will be show in the form of checklist.
 class CheckListViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
     
     private var managedObjectContext: NSManagedObjectContext

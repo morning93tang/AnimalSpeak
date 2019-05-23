@@ -13,7 +13,6 @@ import SwiftyJSON
 import CoreData
 
 
-/// This controller dynamically loading quizs from server. Images and audio files will be downloaded and catched after a question is loaded from server. Loading page will be shown with curent number of correct answers during the process of downloading.
 class QuizViewController: UIViewController {
 
     private var managedObjectContext: NSManagedObjectContext
@@ -47,7 +46,6 @@ class QuizViewController: UIViewController {
         super.init(coder: aDecoder)!
     }
     
-    /// Save record data to managedObjectContext
     func saveData() {
         
         do {
@@ -108,32 +106,26 @@ class QuizViewController: UIViewController {
         generateQuize()
         // Do any additional setup after loading the view.
     }
-    /// Play audio onclick
     @IBAction func play(_ sender: Any) {
         self.audioPlayer.play()
     }
     
-    /// Check answer onclick
     @IBAction func answarButton1Action(_ sender: Any) {
         print(self.answer)
         self.checkAnwser(answer: self.label1.text!)
     }
-        /// Check answer onclick
     @IBAction func answarButton2Action(_ sender: Any) {
         self.checkAnwser(answer: self.label2.text!)
     }
-        /// Check answer onclick
     @IBAction func answarButton3Action(_ sender: Any) {
          self.checkAnwser(answer: self.label3.text!)
     }
-        /// Check answer onclick
     @IBAction func answarButton4Action(_ sender: Any) {
         self.checkAnwser(answer: self.label4.text!)
         
     }
     
     
-    /// Compare user selection with correct answer. Load next question if correctly answered, otherwise stop and save the new record if there is one.
     func checkAnwser(answer:String){
         start = DispatchTime.now()
         if answer == self.answer{
@@ -151,7 +143,6 @@ class QuizViewController: UIViewController {
     }
     
     
-    /// Use animal name to download audio file from server
     func loadSound(animalName:String){
         self.playButton.isHidden = true
         self.audioPlayer = nil
@@ -204,7 +195,6 @@ class QuizViewController: UIViewController {
         }
     }
     
-    /// Send request to server to get a question and its correct anwser.
     func generateQuize(){
         let translator = APIWoker()
         var params = ROGoogleTranslateParams()
