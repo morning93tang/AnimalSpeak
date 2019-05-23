@@ -37,9 +37,11 @@ iOS 10.1 or higher
 ```
 
 ## Prerequisites
+1. Befor you can run the project please change the bundle identifier and select your own iOS developer team for the project.
+
+2. Install CocoaPods on you machine.
 ```
-1.Befor you can run the project please change the bundle identifier and select 
-your own iOS developer team for the project.
+sudo gem install cocoapods
 ```
 
 ### Testing
@@ -48,6 +50,11 @@ Now you can build and run the project by open the following file:
 ```
 AnimalSpeak.xcworkspace
 ```
+If there is no project under this workspace please run pod commond in stall in the same directory:
+```
+pod install
+```
+
 ### Start the server on your local machine or cloud server:
 ```
 Please refer to the sever setup documentation(Link:)
@@ -122,39 +129,6 @@ Confrim the structure of JSON reponse of your own service to the following sampl
     ]
 ```
 
-### func createRequest(with imageBase64: String):
-This method makes http request to image recognition API.
-Modify this line to connect to you own service:
-```
- var request = URLRequest(url: serverUrl)
-```
-### Result format:
-Confrim the structure of JSON reponse of your own service to the following sample stucture:
-```
- "result" : [
-    {
-      "score" : "0.891785",
-      "name" : "Little penguin",
-      "baike_info" : {
-        "baike_url" : "http:\/\/item\/%E5%B0%8F%E8%93%9D%E4%BC%81%E9%B9%85\/10475388",
-        "description" : "Little penguin",
-        "image_url" : "http:\/\/baike\/pic\/item\/2fdda3cc7cd98d1068ea3254273fb80e7bec909c.jpg"
-      }
-    },
-    {
-      "score" : "0.024584",
-      "name" : "Penguin",
-      "baike_info" : {
-        "baike_url" : "http:\/\/item\/%E4%BB%99%E4%BC%81%E9%B9%85\/10958840",
-        "description" : "penguin",
-        "image_url" : "http:\/\/pic\/item\/6159252dd42a2834d9a165e25bb5c9ea14cebfd0.jpg"
-      }
-    }
-    ]
-```
-
-## ImagePickerViewController.swift
-This ViewController is bound with the imagePickerView which can be presented as a pop up view. This class implment the fuctionalities of upload images from local photo library or camera. After user upload an image, it will be resize and send to image recgition API. Finally the result will be converted from JSON format to DetailResult() stucture.
 ### func createRequest(with imageBase64: String):
 This method makes http request to image recognition API.
 Modify this line to connect to you own service:
