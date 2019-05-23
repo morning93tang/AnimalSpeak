@@ -526,7 +526,7 @@ public class AnimalsSpeakLib {
 			rs.put("demand_windspeed","too low");
 		}
 		int possibility = chance;
-		System.out.println(chance);
+		//System.out.println(chance);
 		//define the possibility text displayed on the UI
 		String poss_text = "";
 		switch(possibility) {

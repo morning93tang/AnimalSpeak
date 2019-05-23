@@ -170,7 +170,7 @@ public class FunctionController {
 		
 		//invoke function to get certain around animals
 		rs = AnimalsSpeakLib.getAroundAnimalLocationByName(animal,dob);
-		System.out.println(rs);
+		//System.out.println(rs);
 		return rs;
 	}
 	
@@ -224,7 +224,7 @@ public class FunctionController {
 				
 				System.out.println("follow done");
 			}
-			System.out.println("results size:"+result.size());
+			//System.out.println("results size:"+result.size());
 			//result = deduplicate3(result);
 		}
 		
@@ -332,7 +332,7 @@ public class FunctionController {
     	rs.put("verification_code", randomStr);
     	String codeStatus = String.valueOf(SendEmail.sendCode(data.get("email"),randomStr));
     	rs.put("verification_send_status", codeStatus);
-    	System.out.println(rs);
+    	//System.out.println(rs);
 		return rs;
     
     }
