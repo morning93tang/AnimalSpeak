@@ -88,7 +88,7 @@ var baiduAiURL: URL {
 ```
 
 # Usage
-In this section, viewController classes will be explained on how they can be used, modified, and improved. For more detail please referring to in-line comments.
+In this section, each ViewController class vill be explained including how they can be used, modified, and improved.
 ## ImagePickerViewController.swift
 This ViewController is bound with the imagePickerView which can be presented as a pop up view. This class implment the fuctionalities of upload images from local photo library or camera. After user upload an image, it will be resize and send to image recgition API. Finally the result will be converted from JSON format to DetailResult() stucture.
 ### func createRequest(with imageBase64: String):
@@ -226,71 +226,6 @@ worker.sendRequestToServer(methodId: 2,request: ["animals":[name]])
     }
 }
 ```
-
-## SearchViewController.swift
-This controller is responsible for requesting all animal names and classes form server and loading them into a table view. Use segment control to segmented animal names by class name. Search bar auto completion.
-### func configureSearchController():
-To change segments name you can make changes to this line of code.
-```
-searchController.searchBar.scopeButtonTitles = ["All", "Mammal", "Birds","Reptile"]
-```
-
-## ImageWorker.swift
-An utility class responsible for image manipulationions including saving images as .jpg files, loading image file use file path, and resizing images.
-
-## IdentificationPageViewController.swift
-This controller confirm to ResultDetailDelegate. After getting result from image recognition API the delegate method will be invoked to load AnimalDetailViews accordingly.
-### func gerResultData(detailResut: [DetailResult]):
-The delegate method gets animal detail stuctures. Each result in the NSArray will be used to initiate an AnimalDetailView and added to the pageViewController. Modify following codes to restrict the number of result pages.
-```
-// Add this lines:
-// var maxPageNumber = 1()
-// if derailResult.count < maxPageNumber{
-//     maxPageNumber = derailResult.count
-// }else{
-//     maxPageNumber = derailResult.count
-// }
- for index in 0..<maxPageNumber{
-    ......
- }
- 
-```
-
-## QuizHomeViewController.swift
-The controller responsible for loading user's quize record and gif background.
-### func initAppData():
-Loading user's record form CoreData. If application start up for the first time, an initial value will be generate and stored in CoreData. Modify this function if you want to keep user's profile data on your clould service.
-
-### extension UIImageView:
-UIImageView extension for loding an gif into UIImageView. Replace this extension with your library if you want to use larger gif files which require faster loding speed and better memory management.
-
-## QuizViewController.swift
-This controller dynamically loading quizs from server. Images and audio files will be downloaded and catched after a question is loaded from server. Loading page will be shown with curent number of correct answers during the process of downloading. 
-
-## EmailPopViewController.swift
-Require user's email address and validate it to generate templet and send email.
-
-## PdfViewController.swift
-Load PDF file using WebView and request server to send email.
-### func base64EncodeImage(_ image: UIImage) -> String:
-This function compress can a image and covert it into base64 encoded String value. Controll the image quality to save internet usage and responding time.
-```
-Note：Size of a photo token by devices like iPhoneX can be large to 21MBs. Consider your compresion percetage carefully before making any modification, 
-var imagedata = image.jpegData(compressionQuality:Flocat value indicate the percentage of compression)!
-```
-
-## CheckListViewController.swift
-This class is responsible for storeing images and loction coordinates of animals recognized by the API. Records will be saved according to user's current loaction to the corresponding checklist.  All the record will be shown as a counting of times that user witinesses. The overall progress will be calculate to load a progress bar. A tittle and a badge will be loaded according to the overall progress.
-### func base64EncodeImage(_ image: UIImage) -> String:
-This function compress can a image and covert it into base64 encoded String value. Controll the image quality to save internet usage and responding time.
-```
-Note：Size of a photo token by devices like iPhoneX can be large to 21MBs. Consider your compresion percetage carefully before making any modification, 
-var imagedata = image.jpegData(compressionQuality:Flocat value indicate the percentage of compression)!
-```
-
-
-
-
 
 
 
