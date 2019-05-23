@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5A9BB22DDF2615257B27F2BD90A229CD"
-               BuildableName = "Pods_imagepicker.framework"
-               BlueprintName = "Pods-imagepicker"
+               BlueprintIdentifier = "74E47BD97B82401022C5D63DC102BA45"
+               BuildableName = "Pods_AnimalsSpeak.framework"
+               BlueprintName = "Pods-AnimalsSpeak"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A9BB22DDF2615257B27F2BD90A229CD"
-            BuildableName = "Pods_imagepicker.framework"
-            BlueprintName = "Pods-imagepicker"
+            BlueprintIdentifier = "74E47BD97B82401022C5D63DC102BA45"
+            BuildableName = "Pods_AnimalsSpeak.framework"
+            BlueprintName = "Pods-AnimalsSpeak"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

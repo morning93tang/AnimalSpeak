@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19BEAA07F7E1AC786619B59C /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */; };
 		1BB2EE991C359A9C0066BECE /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB2EE981C359A9C0066BECE /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		1BFC2E7E1BF1AA7300885EBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7D1BF1AA7300885EBB /* AppDelegate.swift */; };
 		1BFC2E801BF1AA7300885EBB /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E7F1BF1AA7300885EBB /* ImagePickerViewController.swift */; };
@@ -70,7 +69,7 @@
 		BEF9D722226E159900F39F81 /* CheclistItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D721226E159900F39F81 /* CheclistItemsTableViewCell.swift */; };
 		BEF9D728226E211A00F39F81 /* CheckListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D727226E211A00F39F81 /* CheckListItemViewController.swift */; };
 		BEF9D72A2270D30000F39F81 /* IdentificationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF9D7292270D30000F39F81 /* IdentificationPageViewController.swift */; };
-		DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */; };
+		C39E7AF606DA374CFC335153 /* Pods_AnimalsSpeak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462B58F310E92D3BC146B584 /* Pods_AnimalsSpeak.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,8 @@
 		1BFC2E9F1BF1AA7300885EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249890A99ED0C03E4BF78770 /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.release.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.release.xcconfig"; sourceTree = "<group>"; };
-		8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_imagepicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		462B58F310E92D3BC146B584 /* Pods_AnimalsSpeak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalsSpeak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74020C5A34CCEA46BB743E3C /* Pods-AnimalsSpeak.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsSpeak.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak.release.xcconfig"; sourceTree = "<group>"; };
 		BE3BB82A225A0970005544DD /* icons8-play_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-play_filled.png"; sourceTree = "<group>"; };
 		BE3BB82E225A719D005544DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BE3BB830225A74D1005544DD /* animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animal.swift; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 		BEF9D727226E211A00F39F81 /* CheckListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListItemViewController.swift; sourceTree = "<group>"; };
 		BEF9D7292270D30000F39F81 /* IdentificationPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationPageViewController.swift; sourceTree = "<group>"; };
 		D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-imagepicker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-imagepicker/Pods-imagepicker.debug.xcconfig"; sourceTree = "<group>"; };
+		F69A54D55F1D8E7C00C32240 /* Pods-AnimalsSpeak.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimalsSpeak.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BB2EE991C359A9C0066BECE /* SwiftyJSON.framework in Frameworks */,
-				DC6D6714E04797FA123D80F1 /* Pods_imagepicker.framework in Frameworks */,
-				19BEAA07F7E1AC786619B59C /* Pods_imagepicker.framework in Frameworks */,
+				C39E7AF606DA374CFC335153 /* Pods_AnimalsSpeak.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +330,8 @@
 				1A7875495C2015C0FC41D8D9 /* Frameworks */,
 				D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */,
 				39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */,
+				F69A54D55F1D8E7C00C32240 /* Pods-AnimalsSpeak.debug.xcconfig */,
+				74020C5A34CCEA46BB743E3C /* Pods-AnimalsSpeak.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -390,7 +392,7 @@
 		C98069B286957C6B2EB85FC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8594D88748FB1C54F1925CCA /* Pods_imagepicker.framework */,
+				462B58F310E92D3BC146B584 /* Pods_AnimalsSpeak.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -546,7 +548,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
@@ -563,7 +565,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6B22D18B9A55D2729B143683 /* [CP] Copy Pods Resources */ = {
@@ -572,7 +574,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
@@ -583,7 +585,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-imagepicker/Pods-imagepicker-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnimalsSpeak/Pods-AnimalsSpeak-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		975209D4FA62D26BE2E4CA99 /* [CP] Check Pods Manifest.lock */ = {
@@ -597,7 +599,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-imagepicker-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AnimalsSpeak-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -816,7 +818,7 @@
 		};
 		1BFC2EA31BF1AA7300885EBB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1D2D37BECBAFEFA38A63C60 /* Pods-imagepicker.debug.xcconfig */;
+			baseConfigurationReference = F69A54D55F1D8E7C00C32240 /* Pods-AnimalsSpeak.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -843,7 +845,7 @@
 		};
 		1BFC2EA41BF1AA7300885EBB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39CF979D4FE706B3A1A1DD8B /* Pods-imagepicker.release.xcconfig */;
+			baseConfigurationReference = 74020C5A34CCEA46BB743E3C /* Pods-AnimalsSpeak.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

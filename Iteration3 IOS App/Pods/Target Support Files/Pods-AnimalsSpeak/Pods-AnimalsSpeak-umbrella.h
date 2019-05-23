@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_imagepickerVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_imagepickerVersionString[];
+FOUNDATION_EXPORT double Pods_AnimalsSpeakVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_AnimalsSpeakVersionString[];
 
