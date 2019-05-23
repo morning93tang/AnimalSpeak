@@ -70,7 +70,7 @@ public class FunctionController {
     @ResponseBody
     @CrossOrigin//(origins = "http://localhost:8080")
     public Map<String,String> function(@RequestBody String requestString,@RequestParam(name="methodId", required=true)int functionid,@RequestParam(name="postData", required=false)String other) throws Exception {
-		System.out.println("requestString is:"+requestString);
+		//System.out.println("requestString is:"+requestString);
 		//put the parameter input into the map
 		ObjectMapper mapper = new ObjectMapper(); 
 		TypeReference<HashMap<String,String>> typeRef = new TypeReference<HashMap<String,String>>() {};
