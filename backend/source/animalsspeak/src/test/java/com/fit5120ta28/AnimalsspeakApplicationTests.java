@@ -63,8 +63,8 @@ public class AnimalsspeakApplicationTests {
 //		rs.put("lon", "145.863221");
 		rs1.put("lat", "-38.05201");
 		rs1.put("lon", "146.16545");
-		rs1.put("animal", "Australian Magpie");
-		rs= FunctionController.getAroundAnimalLocationByName(rs1);
+		//rs1.put("animal", "Australian Magpie");
+		rs= FunctionController.getAroundAnimalsByLatLon(rs1);
 //		rs1.put("userName", "TIANYI YUAN");
 //		rs1.put("email", "769991835@qq.com");
 //		rs1.put("msg", "lllllllll lll lllllll 1lll1 11lll1 1ll1 lll 1111 lll11ll1 11l 1llll11 11111 1 111111");

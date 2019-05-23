@@ -286,7 +286,9 @@ public class AnimalsSpeakLib {
 		List<String> aroundList = new ArrayList<String>();
 		//iterate all animals dataset to calcuate the distance between them and the user location
 		for(int i = 0 ; i < fileNameList.size();i++) {
+			
 			File checkName=new File(path+fileNameList.get(i));
+			
 			int count = 0;
 			Double[] pointArr;
 			List<Double[]> pointList = new ArrayList<Double[]>();
@@ -333,7 +335,7 @@ public class AnimalsSpeakLib {
 			   
 			   
 			  } catch (Exception e) {
-				  
+				  System.out.println("reading"+checkName);
 			      e.printStackTrace();
 			  }
 			
