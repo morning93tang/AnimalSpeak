@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Reuseable pational park cell
 class CheclistItemsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tickboxImageView: UIImageView!

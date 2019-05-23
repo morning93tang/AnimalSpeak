@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 
+/// Load PDF file using WebView and request server to send email.
 class PdfViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var emptyview: UIView!

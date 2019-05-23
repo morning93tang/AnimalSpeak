@@ -10,6 +10,7 @@
 import UIKit
 import CoreData
 
+/// An utility class responsible for image manipulationions including saving images as .jpg files, loading image file use file path, and resizing images.
 class ImageWorker{
     
     /// Save a image use .jpg extensions and the file path will be returned.
