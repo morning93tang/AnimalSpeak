@@ -229,7 +229,14 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
     ///
     /// - Parameter sender: viewController
     @IBAction func playSoundInstance(_ sender: Any) {
-        self.audioPlayer.play()
+        if audioPlayer.isPlaying {
+            self.audioPlayer.stop()
+            self.audioPlayer.currentTime = 0
+            self.playIcon.isHighlighted = false
+        }else{
+            self.audioPlayer.play()
+            self.playIcon.isHighlighted = true
+        }
     }
     
     
@@ -238,6 +245,11 @@ class SUSlidingUpVC: UIViewController, TSSlidingUpPanelDraggingDelegate,TSSlidin
     ///
     /// - Parameter sender: self
     @IBAction func toggleSlidingUpPanelBtnPressed(_ sender: Any) {
+        if audioPlayer.isPlaying {
+            self.audioPlayer.stop()
+            self.audioPlayer.currentTime = 0
+            self.playIcon.isHighlighted = false
+        }
         if slidingUpManager.getSlideUpPanelState() == .DOCKED {
             slidingUpManager.changeSlideUpPanelStateTo(toState: .OPENED)
             updateView()

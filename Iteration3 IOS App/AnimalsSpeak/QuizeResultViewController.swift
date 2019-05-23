@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The controller is responsible for diplay detail of the correct answer.
 class QuizeResultViewController: UIViewController {
     
     var newAttempt:String?

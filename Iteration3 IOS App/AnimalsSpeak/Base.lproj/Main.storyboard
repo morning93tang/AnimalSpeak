@@ -484,7 +484,7 @@
                                                     <action selector="playSoundInstance:" destination="mu0-0Z-gSP" eventType="touchUpInside" id="WjU-Ps-Ncb"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" translatesAutoresizingMaskIntoConstraints="NO" id="oJQ-3y-fBZ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" highlightedImage="stop" translatesAutoresizingMaskIntoConstraints="NO" id="oJQ-3y-fBZ">
                                                 <rect key="frame" x="16" y="17.666666666666668" width="22" height="24.000000000000004"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="0AT-C6-wfE"/>
@@ -1090,7 +1090,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg2-ov-emL">
-                                                <rect key="frame" x="214" y="420.33333333333337" width="15.666666666666657" height="28.333333333333314"/>
+                                                <rect key="frame" x="214" y="420.66666666666663" width="15.666666666666657" height="28"/>
                                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1470,7 +1470,7 @@
                                                     <action selector="playSoundInstance:" destination="2d5-Vk-ZAv" eventType="touchUpInside" id="NFY-UC-Wnt"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" highlightedImage="stop" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lS1-Jp-FBs">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" highlightedImage="stop" translatesAutoresizingMaskIntoConstraints="NO" id="lS1-Jp-FBs">
                                                 <rect key="frame" x="16" y="17.666666666666668" width="22" height="24.000000000000004"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="58W-9p-W97"/>
@@ -1591,7 +1591,7 @@
         <!--Animal Identification-->
         <scene sceneID="yN1-kX-E4z">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Animal Identification" transitionStyle="scroll" pageSpacing="4" navigationOrientation="horizontal" spineLocation="none" id="ffe-lL-RKN" customClass="PageViewController" customModule="AnimalsSpeak" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Animal Identification" transitionStyle="scroll" pageSpacing="4" navigationOrientation="horizontal" spineLocation="none" id="ffe-lL-RKN" customClass="IdentificationPageViewController" customModule="AnimalsSpeak" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Animal Identification" id="Mpe-CG-wh0">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="cameraIcon" id="l3e-4j-jPL">
                             <color key="tintColor" red="0.19215686269999999" green="0.61176470589999998" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2244,7 +2244,7 @@
                                                     <action selector="playSoundInstance:" destination="pHd-Io-gJs" eventType="touchUpInside" id="MwS-AO-Sou"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" translatesAutoresizingMaskIntoConstraints="NO" id="RDU-Yq-IqJ">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" highlightedImage="stop" translatesAutoresizingMaskIntoConstraints="NO" id="RDU-Yq-IqJ">
                                                 <rect key="frame" x="16" y="17.666666666666668" width="22" height="24.000000000000004"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="Ikm-Si-tKD"/>
@@ -2366,7 +2366,7 @@
         <!--Email Pop View Controller-->
         <scene sceneID="ocn-4n-R60">
             <objects>
-                <viewController id="DPw-9D-xV1" customClass="emailPopViewController" customModule="AnimalsSpeak" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DPw-9D-xV1" customClass="EmailPopViewController" customModule="AnimalsSpeak" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nP1-XN-Asc"/>
                         <viewControllerLayoutGuide type="bottom" id="B1o-Hk-L3D"/>
@@ -2839,8 +2839,9 @@
                                                             <action selector="playSoundInstance:" destination="rLj-gA-3mh" eventType="touchUpInside" id="fd2-Xi-JOO"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" translatesAutoresizingMaskIntoConstraints="NO" id="oaE-lH-7bI">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-play_filled.png" highlightedImage="stop" translatesAutoresizingMaskIntoConstraints="NO" id="oaE-lH-7bI">
                                                         <rect key="frame" x="16" y="17.666666666666686" width="22" height="24"/>
+                                                        <color key="tintColor" red="0.93706244230000002" green="0.7191414237" blue="0.32537150380000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="22" id="8My-ZP-Rgv"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="Pre-ug-CyB"/>
@@ -3153,7 +3154,7 @@
         <image name="report" width="75" height="75"/>
         <image name="searchIcon" width="75" height="75"/>
         <image name="searchPlace" width="203" height="200"/>
-        <image name="stop" width="16" height="16"/>
+        <image name="stop" width="100" height="100"/>
         <image name="takeApic" width="157" height="157"/>
         <image name="tickBox" width="75" height="75"/>
         <image name="ticked" width="75" height="75"/>
