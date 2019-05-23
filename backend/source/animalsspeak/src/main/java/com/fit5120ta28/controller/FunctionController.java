@@ -57,6 +57,9 @@ public class FunctionController {
     ResourceLoader loader;  
 	@Autowired
 	SendEmail SendEmail;
+	
+	public int testGlobal = 0;
+	
 	/*Main API entrance
 	 * 
 	 * accept request and process it then send response back
@@ -115,6 +118,15 @@ public class FunctionController {
 		
     }
 	
+	public void addGlobalInt() {
+		testGlobal++;
+	}
+	
+	public int getGlobalInt() {
+		return testGlobal;
+	}
+	
+	
 	//test use function
 	public Map<String,String> test1(Map<String,String> data) {
 		Map<String,String> rs = new HashMap<String,String>();
@@ -150,7 +162,7 @@ public class FunctionController {
 		
 		//invoke calculation function
 		rs = AnimalsSpeakLib.calculateAroundAnimals(lat,lon);
-//		System.out.println(rs);
+		System.out.println(rs);
 		return rs;
 	}
 	
@@ -247,7 +259,7 @@ public class FunctionController {
 		//invoke the function that get all animals name
 		String jsonArray = gson.toJson(FunctionMapper.getAllAnimalsName());
 		rs.put("response", jsonArray);
-//		System.out.println(rs);
+		//System.out.println(rs);
 		return rs;
 	}
 	

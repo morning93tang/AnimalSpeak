@@ -58,8 +58,18 @@ public class AnimalsSpeakLib {
 	//define the IO dictionary of the injured animal 
 	public static final String INJUREDDEST = "injured/";
 	
+	public int weatherGlobalAPIindex = 0;
+	
+	public String[] weatherapis = new String[2];
+	
+
 	@Autowired
 	FunctionMapper FunctionMapper;
+	
+	public AnimalsSpeakLib() {
+		weatherapis[0]="c34dbbe91eb2168fa12648f30c04bc05";
+		weatherapis[1]="7024b683c10d1045e749a0eec135976b";
+	}
 	
 	//String to hash md5
 	public String crypt(String str) {
@@ -88,6 +98,17 @@ public class AnimalsSpeakLib {
 	public String formFileName(String animal) {
 		return "datasets/"+animal+".csv";
 	}
+	
+	public void nextWeatherApi() {
+		if(weatherGlobalAPIindex==0) {
+			weatherGlobalAPIindex = 1;
+			//System.out.println("switch to: 1");
+		}else {
+			weatherGlobalAPIindex = 0;
+			//System.out.println("switch to: 0");
+		}
+	}
+	
 	
 	//generate a template cookie
 	public String cookieGenerate(String usr,String pass)
@@ -472,9 +493,11 @@ public class AnimalsSpeakLib {
 		Map<String,Double> weather = getOccurenceFactorByAnimalName(ani);
 		//double max_temp = weather.get(key)
 //		System.out.println(weather);
-		String sr = sendGet("http://api.openweathermap.org/data/2.5/find","units=metric&lat="+p[0]+"&lon="+p[1]+"&APPID=c34dbbe91eb2168fa12648f30c04bc05");
+		String sr = sendGet("http://api.openweathermap.org/data/2.5/find","units=metric&lat="+p[0]+"&lon="+p[1]+"&cnt=1&APPID="+weatherapis[weatherGlobalAPIindex]);
+		nextWeatherApi();
 		
-		System.out.println(sr);
+//		System.out.println(sr);
+		
 		//convert string to json
 		TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String,Object>>() {};
 		Map<String,Object> temp = new HashMap<String,Object>();
